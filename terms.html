@@ -77,6 +77,75 @@
             font-weight: bold;
             color: #2c3e50;
         }
+        
+        /* Адаптивность для планшетов */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            .container {
+                padding: 20px;
+                border-radius: 0;
+            }
+            h1 {
+                font-size: 20px;
+            }
+            h2 {
+                font-size: 18px;
+            }
+            h3 {
+                font-size: 16px;
+            }
+            ul, ol {
+                padding-left: 20px;
+            }
+            .important-notice, .contact-info {
+                padding: 12px;
+            }
+        }
+        
+        /* Адаптивность для мобильных */
+        @media (max-width: 480px) {
+            body {
+                padding: 5px;
+            }
+            .container {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 18px;
+            }
+            h2 {
+                font-size: 16px;
+                margin-top: 20px;
+            }
+            h3 {
+                font-size: 15px;
+            }
+            p, li {
+                font-size: 14px;
+            }
+            .important-notice, .contact-info {
+                padding: 10px;
+                font-size: 14px;
+            }
+        }
+        
+        /* Для очень маленьких экранов */
+        @media (max-width: 375px) {
+            .container {
+                padding: 10px;
+            }
+            h1 {
+                font-size: 17px;
+            }
+            h2 {
+                font-size: 15px;
+            }
+            .important-notice strong {
+                font-size: 13px;
+            }
+        }
     </style>
 </head>
 <body>
