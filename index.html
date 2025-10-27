@@ -424,6 +424,180 @@
                 max-width: 200px;
             }
         }
+        
+        @media (max-width: 900px) {
+            body {
+                padding: 16px;
+            }
+            
+            .container {
+                border-radius: 12px;
+            }
+            
+            .header {
+                padding: 24px 24px;
+            }
+            
+            .header h1 {
+                font-size: 1.7em;
+            }
+            
+            .header p {
+                font-size: 0.9em;
+            }
+            
+            .summary {
+                padding: 24px 24px;
+                gap: 16px;
+            }
+            
+            .content {
+                padding: 24px;
+            }
+            
+            .group-header {
+                padding: 16px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 14px;
+            }
+            
+            .header {
+                padding: 22px 16px;
+            }
+            
+            .header h1 {
+                font-size: 1.5em;
+            }
+            
+            .header p {
+                font-size: 0.85em;
+            }
+            
+            .summary {
+                grid-template-columns: repeat(1, minmax(0, 1fr));
+                padding: 20px 16px;
+                gap: 14px;
+            }
+            
+            .summary-card {
+                padding: 16px;
+            }
+            
+            .summary-card .number {
+                font-size: 2em;
+            }
+            
+            .content {
+                padding: 20px 16px;
+            }
+            
+            .group-header {
+                flex-wrap: wrap;
+                gap: 10px;
+                align-items: flex-start;
+            }
+            
+            .group-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.5em;
+            }
+            
+            .group-title {
+                flex: 1 1 100%;
+            }
+            
+            .group-title h2 {
+                font-size: 1em;
+            }
+            
+            .group-title p {
+                font-size: 0.75em;
+            }
+            
+            .group-count {
+                margin-left: 0;
+                font-size: 1.2em;
+                padding: 4px 12px;
+            }
+            
+            .toggle-icon {
+                margin-left: auto;
+            }
+            
+            table {
+                font-size: 0.75em;
+                min-width: 600px;
+            }
+            
+            thead th,
+            tbody td {
+                padding: 10px 8px;
+            }
+            
+            .trend-cell {
+                max-width: 160px;
+            }
+            
+            .chart-mini {
+                width: 100px;
+                height: 36px;
+            }
+            
+            .chart-modal-content {
+                width: 95%;
+                margin: 12% auto;
+                padding: 20px;
+            }
+            
+            .chart-modal-title {
+                font-size: 1.3em;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            body {
+                padding: 12px 10px;
+            }
+            
+            .header {
+                padding: 18px 12px;
+            }
+            
+            .header h1 {
+                font-size: 1.3em;
+            }
+            
+            .summary {
+                padding: 18px 12px;
+            }
+            
+            .summary-card h3 {
+                font-size: 0.9em;
+            }
+            
+            .summary-card .number {
+                font-size: 1.8em;
+            }
+            
+            .group-header {
+                padding: 14px;
+            }
+            
+            .group-count {
+                font-size: 1.1em;
+            }
+            
+            .chart-modal-content {
+                padding: 16px;
+                margin: 18% auto;
+            }
+        }
+    
     </style>
 </head>
 <body>
@@ -931,3 +1105,4 @@
     </script>
 </body>
 </html>
+
