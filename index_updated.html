@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анализ динамики показателей крови - Обновлено 28.10.2025</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 8px;
+        }
+        
+        .header p {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+        
+        .summary {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 30px 40px;
+            background: #f8f9fa;
+        }
+        
+        .summary-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .summary-card:hover {
+            transform: translateY(-3px);
+        }
+        
+        .summary-card.critical { border-left-color: #dc2626; }
+        .summary-card.improving { border-left-color: #10b981; }
+        .summary-card.stable { border-left-color: #6b7280; }
+        .summary-card.warning { border-left-color: #f59e0b; }
+        
+        .summary-card h3 {
+            font-size: 1em;
+            margin-bottom: 10px;
+            color: #666;
+        }
+        
+        .summary-card .number {
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+        
+        .summary-card.critical .number { color: #dc2626; }
+        .summary-card.improving .number { color: #10b981; }
+        .summary-card.stable .number { color: #6b7280; }
+        .summary-card.warning .number { color: #f59e0b; }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .group-section {
+            margin-bottom: 40px;
+        }
+        
+        .group-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .group-header:hover {
+            transform: translateX(3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .group-header.critical {
+            background: linear-gradient(90deg, #fee2e2 0%, #fecaca 100%);
+            border-left: 4px solid #dc2626;
+        }
+        
+        .group-header.improving {
+            background: linear-gradient(90deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 4px solid #10b981;
+        }
+        
+        .group-header.stable {
+            background: linear-gradient(90deg, #f3f4f6 0%, #e5e7eb 100%);
+            border-left: 4px solid #6b7280;
+        }
+        
+        .group-header.warning {
+            background: linear-gradient(90deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .group-icon {
+            font-size: 1.8em;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .group-title {
+            flex: 1;
+        }
+        
+        .group-title h2 {
+            font-size: 1.1em;
+            margin-bottom: 2px;
+            font-weight: 600;
+        }
+        
+        .group-title p {
+            color: #666;
+            font-size: 0.8em;
+            margin: 0;
+        }
+        
+        .group-count {
+            font-size: 1.4em;
+            font-weight: bold;
+            padding: 6px 16px;
+            background: white;
+            border-radius: 20px;
+            min-width: 45px;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .group-count.critical { color: #dc2626; }
+        .group-count.improving { color: #10b981; }
+        .group-count.stable { color: #6b7280; }
+        .group-count.warning { color: #f59e0b; }
+        
+        .toggle-icon {
+            font-size: 1.2em;
+            transition: transform 0.3s;
+            color: #666;
+        }
+        
+        .toggle-icon.expanded {
+            transform: rotate(180deg);
+        }
+        
+        .group-content {
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+        
+        .group-content.collapsed {
+            max-height: 0;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9em;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        thead th {
+            padding: 15px 12px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+        
+        tbody tr {
+            border-bottom: 1px solid #e5e7eb;
+            transition: background-color 0.2s;
+        }
+        
+        tbody tr:hover {
+            background-color: #f9fafb;
+        }
+        
+        tbody td {
+            padding: 12px;
+            vertical-align: middle;
+        }
+        
+        .test-name {
+            font-weight: 600;
+            color: #374151;
+            min-width: 200px;
+        }
+        
+        .category-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            font-weight: 600;
+            margin-top: 3px;
+        }
+        
+        .category-badge.inflammation { background: #fecaca; color: #991b1b; }
+        .category-badge.liver { background: #fed7aa; color: #9a3412; }
+        .category-badge.kidney { background: #bfdbfe; color: #1e40af; }
+        .category-badge.protein { background: #ddd6fe; color: #5b21b6; }
+        .category-badge.lipid { background: #fce7f3; color: #9f1239; }
+        .category-badge.blood { background: #ccfbf1; color: #115e59; }
+        .category-badge.mineral { background: #d1fae5; color: #065f46; }
+        .category-badge.carb { background: #fef3c7; color: #92400e; }
+        
+        .reference {
+            color: #6b7280;
+            font-size: 0.85em;
+        }
+        
+        .value-cell {
+            text-align: center;
+            font-weight: 600;
+            font-size: 1em;
+        }
+        
+        .value-cell.out-of-range {
+            color: #dc2626;
+            font-weight: 700;
+        }
+        
+        .value-cell.in-range {
+            color: #059669;
+        }
+        
+        .change-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.8em;
+            font-weight: 600;
+            margin-left: 5px;
+        }
+        
+        .change-badge.up {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+        
+        .change-badge.down {
+            background: #d1fae5;
+            color: #059669;
+        }
+        
+        .trend-cell {
+            font-size: 0.85em;
+            line-height: 1.4;
+            max-width: 300px;
+        }
+        
+        .trend-icon {
+            font-size: 1.2em;
+            margin-right: 5px;
+        }
+        
+        .trend-text {
+            color: #374151;
+        }
+        
+        .chart-mini {
+            width: 120px;
+            height: 40px;
+            cursor: pointer;
+        }
+        
+        .chart-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            animation: fadeIn 0.3s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .chart-modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 80%;
+            max-width: 800px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            animation: slideIn 0.3s;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .close-modal {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 20px;
+        }
+        
+        .close-modal:hover {
+            color: #000;
+        }
+        
+        .chart-modal-title {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #667eea;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            color: #666;
+            font-size: 0.9em;
+        }
+        
+        @media (max-width: 768px) {
+            .summary { grid-template-columns: repeat(2, 1fr); }
+            table { font-size: 0.8em; min-width: 700px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 Анализ динамики показателей крови Мамы</h1>
+            <p>Период наблюдения: 26.09.2025 - 28.10.2025 (4 точки измерения)</p>
+        </div>
+        
+        <div class="summary">
+            <div class="summary-card critical" onclick="scrollToGroup('critical')">
+                <h3>🔴 Критическое ухудшение</h3>
+                <div class="number" id="criticalCount">0</div>
+                <p>Требуют срочного внимания</p>
+            </div>
+            
+            <div class="summary-card warning" onclick="scrollToGroup('warning')">
+                <h3>⚠️ Умеренное ухудшение</h3>
+                <div class="number" id="warningCount">0</div>
+                <p>Требуют контроля</p>
+            </div>
+            
+            <div class="summary-card improving" onclick="scrollToGroup('improving')">
+                <h3>✅ Улучшение</h3>
+                <div class="number" id="improvingCount">0</div>
+                <p>Положительная динамика</p>
+            </div>
+            
+            <div class="summary-card stable" onclick="scrollToGroup('stable')">
+                <h3>➡️ Стабильные</h3>
+                <div class="number" id="stableCount">0</div>
+                <p>Без значимых изменений</p>
+            </div>
+        </div>
+        
+        <div class="content" id="mainContent">
+            <!-- Группы будут добавлены через JavaScript -->
+        </div>
+        
+        <div class="footer">
+            <p><strong>Обновлено:</strong> 28.10.2025 | <strong>Всего показателей:</strong> <span id="totalTests">31</span></p>
+        </div>
+    </div>
+    
+    <!-- Модальное окно для графиков -->
+    <div id="chartModal" class="chart-modal">
+        <div class="chart-modal-content">
+            <span class="close-modal">&times;</span>
+            <h3 class="chart-modal-title" id="modalTitle"></h3>
+            <canvas id="modalChart" style="max-height: 400px;"></canvas>
+        </div>
+    </div>
+    
+    <script>
+        const testsData = [
+            {name: "Интерлейкин-6", unit: "пг/мл", reference: "0 - 7", refMin: 0, refMax: 7, values: [52, 41.5, 29.8, 18.3], category: "inflammation"},
+            {name: "С-реактивный белок (СРБ)", unit: "mg/l", reference: "0 - 9", refMin: 0, refMax: 9, values: [21.27, 25.47, 5.38, 6.12], category: "inflammation"},
+            {name: "АЛТ (Аланин-аминотрансфераза)", unit: "U/L", reference: "0 - 33", refMin: 0, refMax: 33, values: [17, 38, 62, 37], category: "liver"},
+            {name: "АСТ (Аспартат-аминотрансфераза)", unit: "U/l", reference: "0 - 32", refMin: 0, refMax: 32, values: [53, 273, 118, 49], category: "liver"},
+            {name: "ГГТ (Гамма-глутамилтрансфераза)", unit: "U/L", reference: "6 - 42", refMin: 6, refMax: 42, values: [20, 60, 109, 91], category: "liver"},
+            {name: "ЛДГ (Лактатдегидрогеназа)", unit: "U/l", reference: "81 - 234", refMin: 81, refMax: 234, values: [275, 370, 276, 211], category: "liver"},
+            {name: "Щелочная фосфотаза", unit: "U/l", reference: "35 - 105", refMin: 35, refMax: 105, values: [43, 60, 61, 50], category: "liver"},
+            {name: "Альфа-Амилаза", unit: "U/L", reference: "28 - 100", refMin: 28, refMax: 100, values: [32, 27, 38, 44], category: "liver"},
+            {name: "Билирубин общий", unit: "мкмоль/л", reference: "0 - 19", refMin: 0, refMax: 19, values: [4.9, 6.3, 6.1, 6.1], category: "liver"},
+            {name: "Билирубин прямой", unit: "µmol/L", reference: "0 - 5", refMin: 0, refMax: 5, values: [1.66, 2.38, 0.86, 2.17], category: "liver"},
+            {name: "Билирубин непрямой", unit: "µmol/L", reference: "0 - 14", refMin: 0, refMax: 14, values: [3.24, 3.92, 5.24, 3.93], category: "liver"},
+            {name: "Общий белок", unit: "g/L", reference: "64 - 82", refMin: 64, refMax: 82, values: [60, 59, 62, 63], category: "protein"},
+            {name: "Альбумин", unit: "г/л", reference: "35 - 52", refMin: 35, refMax: 52, values: [31, 28, 32, 35], category: "protein"},
+            {name: "Креатинин", unit: "µmol/L", reference: "44 - 80", refMin: 44, refMax: 80, values: [78.24, 88.84, 85.91, 77.61], category: "kidney"},
+            {name: "Мочевина", unit: "мкмоль/л", reference: "2.5 - 6.4", refMin: 2.5, refMax: 6.4, values: [4.6, 4.0, 4.3, 6.0], category: "kidney"},
+            {name: "Мочевая кислота", unit: "mg/dl", reference: "2.4 - 5.7", refMin: 2.4, refMax: 5.7, values: [4.58, 6.35, 5.92, 5.44], category: "kidney"},
+            {name: "Триглицериды", unit: "µmol/L", reference: "0 - 2.25", refMin: 0, refMax: 2.25, values: [2.70, 2.08, 3.36, 2.66], category: "lipid"},
+            {name: "Холестерин", unit: "µmol/L", reference: "0 - 5.2", refMin: 0, refMax: 5.2, values: [3.6, 3.2, 4.4, 5.4], category: "lipid"},
+            {name: "Глюкоза", unit: "ммоль/л", reference: "4.1 - 6.1", refMin: 4.1, refMax: 6.1, values: [4.1, 3.8, 4.0, 4.6], category: "carb"},
+            {name: "Лейкоциты (WBC)", unit: "x10^9/L", reference: "4 - 10", refMin: 4, refMax: 10, values: [null, 3.38, 4.75, 4.00], category: "blood"},
+            {name: "Эритроциты (RBC)", unit: "х10^12/L", reference: "3.8 - 5.3", refMin: 3.8, refMax: 5.3, values: [null, 4.31, 4.40, 4.41], category: "blood"},
+            {name: "Гемоглобин (Hb)", unit: "г/дл", reference: "11.7 - 16", refMin: 11.7, refMax: 16, values: [null, 12.1, 12.5, 12.5], category: "blood"},
+            {name: "Гематокрит (Ht)", unit: "%", reference: "35 - 47", refMin: 35, refMax: 47, values: [null, 38.4, 38.8, 38.3], category: "blood"},
+            {name: "Тромбоциты (PLT)", unit: "x10^9/L", reference: "180 - 320", refMin: 180, refMax: 320, values: [null, 215, 220, 220], category: "blood"},
+            {name: "СОЭ", unit: "мм/ч", reference: "2 - 30", refMin: 2, refMax: 30, values: [null, 33, 22, 15], category: "blood"},
+            {name: "Нейтрофилы (%)", unit: "%", reference: "47 - 72", refMin: 47, refMax: 72, values: [null, 73.7, 74.0, 72.9], category: "blood"},
+            {name: "Лимфоциты (%)", unit: "%", reference: "19 - 37", refMin: 19, refMax: 37, values: [null, 18.6, 18.1, 17.5], category: "blood"},
+            {name: "Эозинофилы (%)", unit: "%", reference: "1 - 5", refMin: 1, refMax: 5, values: [null, 0.6, 0.6, 1.3], category: "blood"},
+            {name: "Железо", unit: "µmol/L", reference: "6.6 - 26", refMin: 6.6, refMax: 26, values: [11.9, 12.4, 20.7, 18.3], category: "mineral"},
+            {name: "Кальций", unit: "µmol/L", reference: "2.15 - 2.5", refMin: 2.15, refMax: 2.5, values: [2.15, 2.11, 2.14, 2.19], category: "mineral"},
+            {name: "Фосфор", unit: "mmol/l", reference: "0.84 - 1.52", refMin: 0.84, refMax: 1.52, values: [1.38, 1.39, 1.21, 1.41], category: "mineral"},
+        ];
+        
+        const categoryNames = {
+            inflammation: "Воспаление",
+            liver: "Печень",
+            kidney: "Почки",
+            protein: "Белки",
+            lipid: "Липиды",
+            blood: "Кровь",
+            mineral: "Минералы",
+            carb: "Углеводы"
+        };
+        
+        function isOutOfRange(value, refMin, refMax) {
+            if (value === null) return false;
+            return value < refMin || value > refMax;
+        }
+        
+        function calculateChange(val1, val2) {
+            if (val1 === null || val2 === null) return null;
+            return ((val2 - val1) / val1 * 100).toFixed(1);
+        }
+        
+        function getTrendGroup(test) {
+            const validValues = test.values.filter(v => v !== null);
+            if (validValues.length < 2) return 'stable';
+            
+            const firstVal = validValues[0];
+            const lastVal = validValues[validValues.length - 1];
+            const change = calculateChange(firstVal, lastVal);
+            
+            if (change === null) return 'stable';
+            
+            const absChange = Math.abs(parseFloat(change));
+            const changeNum = parseFloat(change);
+            const isOutNorm = isOutOfRange(lastVal, test.refMin, test.refMax);
+            const wasOutNorm = isOutOfRange(firstVal, test.refMin, test.refMax);
+            
+            if (absChange < 10) {
+                return 'stable';
+            }
+            
+            if (changeNum > 0) {
+                if (isOutNorm && absChange > 30) {
+                    return 'critical';
+                } else if (isOutNorm && absChange > 15) {
+                    return 'warning';
+                } else {
+                    return 'stable';
+                }
+            } else {
+                if (wasOutNorm && absChange > 20) {
+                    return 'improving';
+                } else {
+                    return 'stable';
+                }
+            }
+        }
+        
+        function getTrendDescription(test) {
+            const validValues = test.values.filter(v => v !== null);
+            if (validValues.length < 2) return "⚪ Недостаточно данных";
+            
+            const firstVal = validValues[0];
+            const lastVal = validValues[validValues.length - 1];
+            const change = calculateChange(firstVal, lastVal);
+            
+            if (change === null) return "⚪ Нет данных";
+            
+            const absChange = Math.abs(parseFloat(change));
+            const changeNum = parseFloat(change);
+            
+            let icon = "";
+            let trend = "";
+            
+            if (absChange < 10) {
+                icon = "➡️";
+                trend = "Стабильно (изменение <10%)";
+            } else if (changeNum > 0) {
+                icon = "📈";
+                const isOutOfNorm = lastVal > test.refMax || lastVal < test.refMin;
+                if (isOutOfNorm) {
+                    if (absChange > 50) {
+                        trend = `<strong style="color: #dc2626;">Критический рост на ${change}%</strong> - требует срочного внимания!`;
+                    } else if (absChange > 20) {
+                        trend = `<strong style="color: #dc2626;">Значительный рост на ${change}%</strong> - требует внимания`;
+                    } else {
+                        trend = `Рост на ${change}% (выше нормы)`;
+                    }
+                } else {
+                    trend = `Рост на ${change}%`;
+                }
+            } else {
+                icon = "📉";
+                const wasOutOfNorm = firstVal > test.refMax || firstVal < test.refMin;
+                if (wasOutOfNorm && !isOutOfRange(lastVal, test.refMin, test.refMax)) {
+                    trend = `<strong style="color: #059669;">Снижение на ${Math.abs(change)}%</strong> - нормализация показателя ✓`;
+                } else if (wasOutOfNorm) {
+                    trend = `<strong style="color: #059669;">Снижение на ${Math.abs(change)}%</strong> - положительная динамика`;
+                } else {
+                    trend = `Снижение на ${Math.abs(change)}%`;
+                }
+            }
+            
+            return `<span class="trend-icon">${icon}</span><span class="trend-text">${trend}</span>`;
+        }
+        
+        // Группировка тестов
+        const groups = {
+            critical: [],
+            warning: [],
+            improving: [],
+            stable: []
+        };
+        
+        testsData.forEach((test, index) => {
+            test.index = index;
+            const group = getTrendGroup(test);
+            groups[group].push(test);
+        });
+        
+        // Обновление счётчиков
+        document.getElementById('criticalCount').textContent = groups.critical.length;
+        document.getElementById('warningCount').textContent = groups.warning.length;
+        document.getElementById('improvingCount').textContent = groups.improving.length;
+        document.getElementById('stableCount').textContent = groups.stable.length;
+        document.getElementById('totalTests').textContent = testsData.length;
+        
+        // Создание групп
+        const groupConfigs = [
+            {
+                id: 'critical',
+                title: 'Критическое ухудшение',
+                icon: '🔴',
+                description: 'Показатели с резким ростом выше нормы - требуют срочного внимания'
+            },
+            {
+                id: 'warning',
+                title: 'Умеренное ухудшение',
+                icon: '⚠️',
+                description: 'Показатели с ростом выше нормы - требуют контроля'
+            },
+            {
+                id: 'improving',
+                title: 'Улучшение показателей',
+                icon: '✅',
+                description: 'Показатели снижаются и нормализуются - положительная динамика'
+            },
+            {
+                id: 'stable',
+                title: 'Стабильные показатели',
+                icon: '➡️',
+                description: 'Показатели без значимых изменений (<10%)'
+            }
+        ];
+        
+        const mainContent = document.getElementById('mainContent');
+        
+        groupConfigs.forEach(config => {
+            if (groups[config.id].length === 0) return;
+            
+            const section = document.createElement('div');
+            section.className = 'group-section';
+            section.id = `group-${config.id}`;
+            
+            const header = document.createElement('div');
+            header.className = `group-header ${config.id}`;
+            header.innerHTML = `
+                <div class="group-icon">${config.icon}</div>
+                <div class="group-title">
+                    <h2>${config.title}</h2>
+                    <p>${config.description}</p>
+                </div>
+                <div class="group-count ${config.id}">${groups[config.id].length}</div>
+                <div class="toggle-icon expanded">▼</div>
+            `;
+            
+            const content = document.createElement('div');
+            content.className = 'group-content';
+            
+            const tableContainer = document.createElement('div');
+            tableContainer.className = 'table-container';
+            
+            const table = document.createElement('table');
+            table.innerHTML = `
+                <thead>
+                    <tr>
+                        <th>Показатель</th>
+                        <th>Норма</th>
+                        <th style="text-align: center;">26.09</th>
+                        <th style="text-align: center;">08.10</th>
+                        <th style="text-align: center;">15.10</th>
+                        <th style="text-align: center;">28.10</th>
+                        <th>Динамика</th>
+                        <th style="text-align: center;">График</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody-${config.id}"></tbody>
+            `;
+            
+            tableContainer.appendChild(table);
+            content.appendChild(tableContainer);
+            section.appendChild(header);
+            section.appendChild(content);
+            mainContent.appendChild(section);
+            
+            // Toggle функциональность
+            header.onclick = () => {
+                const toggleIcon = header.querySelector('.toggle-icon');
+                if (content.classList.contains('collapsed')) {
+                    content.classList.remove('collapsed');
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    toggleIcon.classList.add('expanded');
+                } else {
+                    content.classList.add('collapsed');
+                    content.style.maxHeight = '0';
+                    toggleIcon.classList.remove('expanded');
+                }
+            };
+            
+            setTimeout(() => {
+                content.style.maxHeight = content.scrollHeight + 'px';
+            }, 100);
+            
+            // Заполнение таблицы
+            const tbody = document.getElementById(`tbody-${config.id}`);
+            groups[config.id].forEach(test => {
+                const row = document.createElement('tr');
+                
+                let valuesHTML = '';
+                test.values.forEach((val, idx) => {
+                    if (val === null) {
+                        valuesHTML += '<td class="value-cell">-</td>';
+                    } else {
+                        const outRange = isOutOfRange(val, test.refMin, test.refMax);
+                        const changeFromPrev = idx > 0 ? calculateChange(test.values[idx-1], val) : null;
+                        
+                        let changeBadge = '';
+                        if (changeFromPrev !== null && Math.abs(parseFloat(changeFromPrev)) >= 5) {
+                            const changeClass = parseFloat(changeFromPrev) > 0 ? 'up' : 'down';
+                            const arrow = parseFloat(changeFromPrev) > 0 ? '↑' : '↓';
+                            changeBadge = `<span class="change-badge ${changeClass}">${arrow}${Math.abs(changeFromPrev)}%</span>`;
+                        }
+                        
+                        valuesHTML += `
+                            <td class="value-cell ${outRange ? 'out-of-range' : 'in-range'}">
+                                ${val} ${test.unit}
+                                ${changeBadge}
+                            </td>
+                        `;
+                    }
+                });
+                
+                const trendDesc = getTrendDescription(test);
+                
+                row.innerHTML = `
+                    <td>
+                        <div class="test-name">${test.name}</div>
+                        <span class="category-badge ${test.category}">${categoryNames[test.category]}</span>
+                    </td>
+                    <td class="reference">${test.reference} ${test.unit}</td>
+                    ${valuesHTML}
+                    <td class="trend-cell">${trendDesc}</td>
+                    <td style="text-align: center;">
+                        <canvas class="chart-mini" id="miniChart${test.index}" data-index="${test.index}"></canvas>
+                    </td>
+                `;
+                
+                tbody.appendChild(row);
+                
+                // Создание мини-графика
+                setTimeout(() => {
+                    const ctx = document.getElementById(`miniChart${test.index}`);
+                    if (!ctx) return;
+                    
+                    const validValues = test.values.filter(v => v !== null);
+                    const validLabels = test.values.map((v, i) => v !== null ? ['26.09', '08.10', '15.10', '28.10'][i] : null).filter(l => l !== null);
+                    
+                    const lastVal = test.values[test.values.length - 1];
+                    const lineColor = isOutOfRange(lastVal, test.refMin, test.refMax) ? '#ef4444' : '#10b981';
+                    
+                    new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: validLabels,
+                            datasets: [{
+                                data: validValues,
+                                borderColor: lineColor,
+                                backgroundColor: lineColor + '20',
+                                borderWidth: 2,
+                                fill: true,
+                                tension: 0.4,
+                                pointRadius: 3,
+                                pointHoverRadius: 5
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: { legend: { display: false }, tooltip: { enabled: false } },
+                            scales: {
+                                x: { display: false },
+                                y: { display: false }
+                            },
+                            events: []
+                        }
+                    });
+                    
+                    ctx.style.cursor = 'pointer';
+                    ctx.onclick = () => openChartModal(test, test.index);
+                }, 200);
+            });
+        });
+        
+        function scrollToGroup(groupId) {
+            const element = document.getElementById(`group-${groupId}`);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+        
+        const modal = document.getElementById('chartModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const closeBtn = document.querySelector('.close-modal');
+        let currentModalChart = null;
+        
+        function openChartModal(test, index) {
+            modal.style.display = 'block';
+            modalTitle.textContent = test.name;
+            
+            if (currentModalChart) {
+                currentModalChart.destroy();
+            }
+            
+            const ctx = document.getElementById('modalChart').getContext('2d');
+            const validValues = test.values.filter(v => v !== null);
+            const validLabels = test.values.map((v, i) => v !== null ? ['26.09.2025', '08.10.2025', '15.10.2025', '28.10.2025'][i] : null).filter(l => l !== null);
+            
+            const lastVal = test.values[test.values.length - 1];
+            const lineColor = isOutOfRange(lastVal, test.refMin, test.refMax) ? '#ef4444' : '#10b981';
+            
+            currentModalChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: validLabels,
+                    datasets: [
+                        {
+                            label: 'Значение',
+                            data: validValues,
+                            borderColor: lineColor,
+                            backgroundColor: lineColor + '30',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 8,
+                            pointHoverRadius: 10
+                        },
+                        {
+                            label: 'Верхняя граница нормы',
+                            data: Array(validLabels.length).fill(test.refMax),
+                            borderColor: '#ef4444',
+                            borderWidth: 2,
+                            borderDash: [5, 5],
+                            pointRadius: 0,
+                            fill: false
+                        },
+                        {
+                            label: 'Нижняя граница нормы',
+                            data: Array(validLabels.length).fill(test.refMin),
+                            borderColor: '#ef4444',
+                            borderWidth: 2,
+                            borderDash: [5, 5],
+                            pointRadius: 0,
+                            fill: false
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ' + context.parsed.y + ' ' + test.unit;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + ' ' + test.unit;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        closeBtn.onclick = () => modal.style.display = 'none';
+        window.onclick = (event) => {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        };
+    </script>
+</body>
+</html>
