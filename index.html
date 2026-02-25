@@ -23,8 +23,8 @@
   <meta name="twitter:description" content="Удобный заказ для клиентов и релевантные заявки для водителей в Reyz+." />
   <meta name="twitter:image" content="https://www.reyz.app/site/Reyzapp.png" />
 
-  <meta name="theme-color" content="#0b63f6" media="(prefers-color-scheme: light)" />
-  <meta name="theme-color" content="#0f1f42" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#000000" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)" />
 
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="/site/icon-32x32.png" />
@@ -32,7 +32,10 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/site/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
 
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://yfycgikezcaqmppvscth.supabase.co" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" />
   <link rel="stylesheet" href="/site/index.css" />
 
   <script type="application/ld+json">
@@ -66,23 +69,31 @@
   <header class="site-header">
     <div class="container header-row">
       <a class="brand" href="/" aria-label="На главную Reyzapp">
-        <img src="/site/reyzapp-icon-v3.png" alt="Логотип Reyzapp" width="36" height="36" />
+        <img src="/site/reyzapp-icon-v3.png" alt="Логотип Reyzapp" width="36" height="36" decoding="async" />
         <span>Reyzapp</span>
       </a>
 
-      <nav class="header-nav" aria-label="Разделы страницы">
-        <a href="#for">Для кого</a>
-        <a href="#flow">Как работает</a>
-        <a href="#faq">FAQ</a>
-      </nav>
+      <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false">
+        <span class="burger-line"></span>
+      </button>
 
-      <div class="header-cta">
-        <a class="button button-secondary" href="https://play.google.com/store/apps/details?id=com.reyzapp.app" target="_blank" rel="noopener noreferrer" aria-label="Скачать Reyzapp в Google Play">
-          Reyzapp для клиентов
-        </a>
-        <a class="button button-primary" href="https://play.google.com/store/apps/details?id=com.reyzplus.driver" target="_blank" rel="noopener noreferrer" aria-label="Скачать Reyz+ в Google Play">
-          Reyz+ для водителей
-        </a>
+      <div class="header-collapse">
+        <div class="header-collapse-inner">
+          <nav class="header-nav" aria-label="Разделы страницы">
+            <a href="#for">Для кого</a>
+            <a href="#flow">Как работает</a>
+            <a href="#faq">FAQ</a>
+          </nav>
+
+          <div class="header-cta">
+            <a class="button button-secondary" href="https://play.google.com/store/apps/details?id=com.reyzapp.app" target="_blank" rel="noopener noreferrer" aria-label="Скачать Reyzapp в Google Play">
+              Reyzapp для клиентов
+            </a>
+            <a class="button button-primary" href="https://play.google.com/store/apps/details?id=com.reyzplus.driver" target="_blank" rel="noopener noreferrer" aria-label="Скачать Reyz+ в Google Play">
+              Reyz+ для водителей
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </header>
@@ -137,6 +148,10 @@
       </aside>
     </section>
 
+    <noscript>
+      <div class="no-js-banner">Для интерактивной галереи техники включите JavaScript в браузере.</div>
+    </noscript>
+
     <section id="for" class="section" aria-labelledby="for-title">
       <div class="section-head">
         <h2 id="for-title">Для кого Reyzapp</h2>
@@ -145,13 +160,13 @@
 
       <div class="grid grid-2">
         <article class="card">
-          <h3 class="app-label"><img src="/site/reyzapp-icon-v3.png" alt="Reyzapp" width="28" height="28" /> Клиентам (Reyzapp)</h3>
+          <h3 class="app-label"><img src="/site/reyzapp-icon-v3.png" alt="Reyzapp" width="28" height="28" loading="lazy" decoding="async" /> Клиентам (Reyzapp)</h3>
           <p>Создайте заявку за несколько минут, получите предложения и выберите лучшее по цене и условиям.</p>
           <a class="card-link" href="https://play.google.com/store/apps/details?id=com.reyzapp.app" target="_blank" rel="noopener noreferrer">Скачать приложение</a>
         </article>
 
         <article class="card">
-          <h3 class="app-label"><img src="/site/reyzplus-icon-v3.png" alt="Reyz+" width="28" height="28" /> Водителям (Reyz+)</h3>
+          <h3 class="app-label"><img src="/site/reyzplus-icon-v3.png" alt="Reyz+" width="28" height="28" loading="lazy" decoding="async" /> Водителям (Reyz+)</h3>
           <p>Получайте подходящие заказы, подавайте ставки и открывайте приложение из уведомлений одним нажатием.</p>
           <a class="card-link" href="https://play.google.com/store/apps/details?id=com.reyzplus.driver" target="_blank" rel="noopener noreferrer">Скачать приложение</a>
         </article>
@@ -198,47 +213,43 @@
       </div>
 
       <div class="faq">
-        <details>
+        <details name="faq">
           <summary>Нужно ли звонить каждому водителю вручную?</summary>
           <p>Нет. Система делает автоматический матчинг и уведомляет релевантных водителей сама.</p>
         </details>
 
-        <details>
+        <details name="faq">
           <summary>Можно ли отключить Telegram-уведомления у водителя?</summary>
           <p>Да. Водитель может выключить этот канал в настройках приложения.</p>
         </details>
 
-        <details>
+        <details name="faq">
           <summary>Где посмотреть юридические документы?</summary>
           <p>Актуальные ссылки на политику и условия находятся внизу страницы.</p>
         </details>
       </div>
-
-      <section class="cta-band" aria-labelledby="cta-title">
-        <div>
-          <h2 id="cta-title">Готовы начать?</h2>
-          <p>Выберите нужное приложение и подключитесь к платформе Reyzapp.</p>
-        </div>
-        <div class="header-cta">
-          <a class="button button-secondary" href="https://play.google.com/store/apps/details?id=com.reyzapp.app" target="_blank" rel="noopener noreferrer">Скачать Reyzapp</a>
-          <a class="button button-primary" href="https://play.google.com/store/apps/details?id=com.reyzplus.driver" target="_blank" rel="noopener noreferrer">Скачать Reyz+</a>
-        </div>
-      </section>
-
-      <noscript>
-        <div class="no-js-banner">Для интерактивной галереи техники включите JavaScript в браузере.</div>
-      </noscript>
     </section>
 
-    <footer>
-      <div>© <span id="year"></span> Reyz.app</div>
-      <div class="footer-links">
-        <a href="/client_app/ru/privacy.html">Политика конфиденциальности</a>
-        <a href="/client_app/ru/terms.html">Условия использования</a>
-        <a href="mailto:support@reyz.app">support@reyz.app</a>
+    <section class="cta-band" aria-labelledby="cta-title">
+      <div>
+        <h2 id="cta-title">Готовы начать?</h2>
+        <p>Выберите нужное приложение и подключитесь к платформе Reyzapp.</p>
       </div>
-    </footer>
+      <div class="header-cta">
+        <a class="button button-secondary" href="https://play.google.com/store/apps/details?id=com.reyzapp.app" target="_blank" rel="noopener noreferrer">Скачать Reyzapp</a>
+        <a class="button button-primary" href="https://play.google.com/store/apps/details?id=com.reyzplus.driver" target="_blank" rel="noopener noreferrer">Скачать Reyz+</a>
+      </div>
+    </section>
   </main>
+
+  <footer class="container">
+    <div>&copy; <span id="year">2026</span> Reyz.app</div>
+    <div class="footer-links">
+      <a href="/client_app/ru/privacy.html">Политика конфиденциальности</a>
+      <a href="/client_app/ru/terms.html">Условия использования</a>
+      <a href="mailto:support@reyz.app">support@reyz.app</a>
+    </div>
+  </footer>
 
   <script type="module" src="/site/index.js"></script>
 </body>

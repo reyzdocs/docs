@@ -98,11 +98,43 @@ function setCurrentYear() {
   }
 }
 
+function mountBurger() {
+  const burger = document.querySelector('.burger');
+  const collapse = document.querySelector('.header-collapse');
+  if (!burger || !collapse) return;
+
+  burger.addEventListener('click', () => {
+    const expanded = burger.getAttribute('aria-expanded') === 'true';
+    burger.setAttribute('aria-expanded', String(!expanded));
+    collapse.classList.toggle('open', !expanded);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && collapse.classList.contains('open')) {
+      burger.setAttribute('aria-expanded', 'false');
+      collapse.classList.remove('open');
+      burger.focus();
+    }
+  });
+
+  document.addEventListener('click', (e) => {
+    if (
+      collapse.classList.contains('open') &&
+      !collapse.contains(e.target) &&
+      !burger.contains(e.target)
+    ) {
+      burger.setAttribute('aria-expanded', 'false');
+      collapse.classList.remove('open');
+    }
+  });
+}
+
 function bootstrap() {
   document.documentElement.classList.add('js');
   setCurrentYear();
   renderEquipmentList();
   mountEquipmentControls();
+  mountBurger();
 }
 
 bootstrap();
