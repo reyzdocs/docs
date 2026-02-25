@@ -50,44 +50,46 @@ function renderEquipmentList() {
 }
 
 function mountEquipmentControls() {
-  const scroller = document.getElementById('equipment-scroller');
   const track = document.getElementById('equipment-track');
   const prev = document.getElementById('equipment-prev');
   const next = document.getElementById('equipment-next');
-  if (!scroller || !track || !prev || !next) return;
+  const scroller = document.getElementById('equipment-scroller');
+  if (!track || !prev || !next) return;
 
-  const behavior = isReducedMotion() ? 'auto' : 'smooth';
+  const cards = track.querySelectorAll('.equipment-card');
+  if (!cards.length) return;
 
-  function scrollByCard(direction) {
-    const firstCard = track.querySelector('.equipment-card');
-    const firstCardWidth = firstCard ? firstCard.getBoundingClientRect().width : 220;
-    const gap = 12;
-    scroller.scrollBy({ left: direction * (firstCardWidth + gap), behavior });
+  let current = 0;
+  cards[0].classList.add('active');
+
+  function show(index) {
+    cards[current].classList.remove('active');
+    current = (index + cards.length) % cards.length;
+    cards[current].classList.add('active');
+    updateButtons();
   }
 
   function updateButtons() {
-    const maxScroll = scroller.scrollWidth - scroller.clientWidth;
-    const left = Math.max(0, Math.round(scroller.scrollLeft));
-    prev.disabled = left <= 0;
-    next.disabled = left >= Math.max(0, maxScroll - 2);
+    prev.disabled = current <= 0;
+    next.disabled = current >= cards.length - 1;
   }
 
-  prev.addEventListener('click', () => scrollByCard(-1));
-  next.addEventListener('click', () => scrollByCard(1));
-  scroller.addEventListener('scroll', updateButtons, { passive: true });
+  prev.addEventListener('click', () => show(current - 1));
+  next.addEventListener('click', () => show(current + 1));
 
-  scroller.addEventListener('keydown', (event) => {
-    if (event.key === 'ArrowLeft') {
-      event.preventDefault();
-      scrollByCard(-1);
-    }
-    if (event.key === 'ArrowRight') {
-      event.preventDefault();
-      scrollByCard(1);
-    }
-  });
+  if (scroller) {
+    scroller.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        show(current - 1);
+      }
+      if (event.key === 'ArrowRight') {
+        event.preventDefault();
+        show(current + 1);
+      }
+    });
+  }
 
-  window.addEventListener('resize', updateButtons);
   updateButtons();
 }
 
