@@ -1,117 +1,345 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8" />
-    <title>Reyzapp — скоро запуск</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <style>
-        * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reyz — платформа заказов спецтехники</title>
+  <meta name="description" content="Reyz помогает быстро находить спецтехнику и управлять заказами: клиентам — удобный заказ, водителям — стабильные заявки." />
+  <link rel="canonical" href="https://reyz.app/" />
 
-        body {
-          min-height: 100vh;
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          align-items: center;
-          font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-          text-align: center;
-          background: linear-gradient(180deg, #ffffff 0%, #fff1e7 40%, #ffe1cc 100%);
-          padding: 40px 20px;
-        }
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Reyz — платформа заказов спецтехники" />
+  <meta property="og:description" content="Удобный заказ техники для клиентов и быстрый доступ к заказам для водителей." />
+  <meta property="og:url" content="https://reyz.app/" />
+  <meta property="og:image" content="https://reyz.app/site/Reyzapp.png" />
 
-        .content {
-          margin-top: 60px;
-          max-width: 600px;
-          width: 100%;
-        }
+  <meta name="theme-color" content="#f97316" />
 
-        .logo {
-          width: 150px;
-          height: auto;
-          margin: 0 auto 28px;
-          filter: drop-shadow(0px 8px 24px rgba(255, 102, 0, 0.35));
-        }
+  <style>
+    :root {
+      --bg: #0d1017;
+      --bg-soft: #131826;
+      --text: #eef2ff;
+      --muted: #9aa3b2;
+      --brand: #ff6a00;
+      --brand-2: #ff8b3d;
+      --line: rgba(255,255,255,.1);
+      --card: rgba(255,255,255,.04);
+      --radius: 18px;
+      --shadow: 0 18px 50px rgba(0,0,0,.35);
+    }
 
-        h1 {
-          font-size: clamp(28px, 5vw, 40px);
-          font-weight: 700;
-          line-height: 1.2;
-          margin-bottom: 16px;
-          background: linear-gradient(135deg, #ff6600, #ff8533, #cc5200);
-          -webkit-background-clip: text;
-          color: transparent;
-        }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
-        .subtitle {
-          font-size: 17px;
-          line-height: 1.55;
-          color: #444444;
-          margin-bottom: 26px;
-        }
+    body {
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background:
+        radial-gradient(1200px 500px at 10% -20%, rgba(255,106,0,.18), transparent),
+        radial-gradient(900px 400px at 90% 0%, rgba(255,139,61,.15), transparent),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.45;
+    }
 
-        .badge {
-          display: inline-block;
-          padding: 8px 18px;
-          border-radius: 999px;
-          background: linear-gradient(135deg, #ff6600, #ff8533);
-          color: #ffffff;
-          font-size: 14px;
-          font-weight: 600;
-          letter-spacing: 0.3px;
-          margin-bottom: 40px;
-          box-shadow: 0 8px 20px rgba(255, 102, 0, 0.35);
-        }
+    .wrap { max-width: 1140px; margin: 0 auto; padding: 24px 18px 72px; }
 
-        footer {
-          font-size: 12px;
-          color: #777777;
-          padding-bottom: 20px;
-        }
+    .topbar {
+      position: sticky; top: 10px; z-index: 20;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 14px; margin-bottom: 22px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(13,16,23,.72);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(8px);
+    }
 
-        footer span {
-          display: block;
-          margin-top: 4px;
-        }
+    .logo { display: inline-flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: .2px; }
+    .logo img { width: 34px; height: 34px; object-fit: contain; }
 
-        @media (max-width: 480px) {
-          body {
-            padding: 24px;
-          }
-          .logo {
-            width: 120px;
-          }
-          .subtitle {
-            font-size: 15px;
-          }
-        }
-    </style>
+    .nav { display: flex; gap: 10px; flex-wrap: wrap; }
+    .nav a {
+      color: var(--muted); text-decoration: none; font-size: 14px;
+      padding: 8px 11px; border: 1px solid var(--line); border-radius: 999px;
+      transition: .2s ease;
+    }
+    .nav a:hover { color: #fff; border-color: rgba(255,255,255,.25); }
+
+    .hero {
+      display: grid; grid-template-columns: 1.2fr .8fr; gap: 18px;
+      margin-bottom: 18px;
+      animation: fadeUp .45s ease;
+    }
+
+    .panel {
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(6px);
+    }
+
+    .hero-main { padding: 34px 28px; }
+
+    .badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 12px; color: #ffd6ba;
+      border: 1px solid rgba(255,138,61,.5);
+      padding: 6px 10px; border-radius: 999px; margin-bottom: 14px;
+    }
+
+    h1 {
+      font-size: clamp(30px, 5vw, 54px);
+      line-height: 1.08;
+      margin-bottom: 14px;
+      letter-spacing: -.8px;
+    }
+
+    .grad {
+      background: linear-gradient(135deg, #fff, #ffd8bf 45%, #ff9e63 100%);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .lead {
+      color: #d8deea;
+      font-size: clamp(16px, 2vw, 19px);
+      max-width: 700px;
+      margin-bottom: 20px;
+    }
+
+    .cta { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 14px; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      text-decoration: none; font-weight: 600; font-size: 14px;
+      border-radius: 12px; padding: 12px 16px;
+      border: 1px solid var(--line);
+      transition: .2s ease;
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      color: white; border-color: transparent;
+    }
+
+    .btn.secondary { color: #f4f7ff; background: rgba(255,255,255,.03); }
+    .btn:hover { transform: translateY(-2px); }
+
+    .hero-side { padding: 24px; display: grid; gap: 10px; align-content: start; }
+
+    .stat {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      transition: .2s ease;
+    }
+    .stat:hover { border-color: rgba(255,255,255,.24); }
+
+    .stat b { display: block; font-size: 20px; margin-bottom: 4px; }
+    .stat span { color: var(--muted); font-size: 13px; }
+
+    .trust-strip {
+      margin: 12px 0 16px;
+      display: flex; gap: 10px; flex-wrap: wrap;
+    }
+
+    .pill {
+      font-size: 12px;
+      color: #d9dfeb;
+      padding: 7px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,.02);
+    }
+
+    .grid {
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px;
+      margin: 18px 0;
+    }
+
+    .card {
+      background: var(--bg-soft);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    .card h3 { margin-bottom: 8px; font-size: 18px; }
+    .card p { color: var(--muted); font-size: 14px; }
+
+    .steps {
+      display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px;
+      margin: 4px 0 18px;
+    }
+
+    .step {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px;
+      background: rgba(255,255,255,.02);
+    }
+
+    .num {
+      width: 28px; height: 28px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      background: rgba(255,106,0,.2); color: #ffd8bf; font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .faq {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px 14px;
+      margin-bottom: 8px;
+      background: rgba(255,255,255,.02);
+    }
+
+    .faq summary { cursor: pointer; font-weight: 600; }
+    .faq p { color: var(--muted); margin-top: 8px; }
+
+    .final {
+      margin-top: 18px;
+      padding: 24px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: linear-gradient(135deg, rgba(255,106,0,.12), rgba(255,139,61,.08));
+      text-align: center;
+    }
+
+    footer {
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 13px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      justify-content: center;
+    }
+
+    footer a { color: #cfd7e7; text-decoration: none; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 980px) {
+      .hero { grid-template-columns: 1fr; }
+      .grid, .steps { grid-template-columns: 1fr; }
+      .hero-main { padding: 26px 20px; }
+      .topbar { top: 6px; }
+    }
+  </style>
 </head>
 <body>
+  <main class="wrap">
+    <header class="topbar">
+      <div class="logo">
+        <img src="site/Reyzapp.png" alt="Reyz logo" />
+        <span>Reyz</span>
+      </div>
+      <nav class="nav" aria-label="Навигация">
+        <a href="#how">Как это работает</a>
+        <a href="#for">Для кого</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+    </header>
 
-<div class="content">
-    <img src="Reyz.png" alt="Reyz Logo" class="logo" />
+    <section class="hero">
+      <article class="panel hero-main">
+        <span class="badge">⚡ Продовый контур уже в работе</span>
+        <h1><span class="grad">Заказ спецтехники</span><br/>без долгих звонков</h1>
+        <p class="lead">
+          Reyz связывает клиентов и водителей в одном потоке: быстрый поиск техники,
+          прозрачный тендер по цене и понятные статусы заказа.
+        </p>
+        <div class="cta">
+          <a class="btn primary" href="https://play.google.com/store/apps/details?id=com.reyzplus.driver" target="_blank" rel="noopener">Скачать для водителя</a>
+          <a class="btn secondary" href="https://t.me/Reyzapp_bot" target="_blank" rel="noopener">Открыть Telegram-бот</a>
+          <a class="btn secondary" href="mailto:support@reyz.app">Связаться с поддержкой</a>
+        </div>
 
-    <h1>Reyzapp</h1>
+        <div class="trust-strip" aria-label="Доверие">
+          <span class="pill">✅ Защищённый backend на VM</span>
+          <span class="pill">📡 Мониторинг и авто-алерты</span>
+          <span class="pill">💾 Ежедневные бэкапы БД</span>
+        </div>
+      </article>
 
-    <p class="subtitle">
-        Мы готовим удобный цифровой продукт для одной из важных отраслей экономики.
-        Современный, технологичный и созданный с вниманием к деталям.
-    </p>
+      <aside class="panel hero-side" aria-label="Преимущества">
+        <div class="stat"><b>24/7</b><span>Онлайн-заказы и статусы</span></div>
+        <div class="stat"><b>Тендер</b><span>Водители предлагают свою цену</span></div>
+        <div class="stat"><b>Прозрачно</b><span>Клиент видит все подходящие варианты</span></div>
+      </aside>
+    </section>
 
+    <section id="for" class="grid" aria-label="Для кого">
+      <article class="card">
+        <h3>Для клиентов</h3>
+        <p>Создайте заказ за минуты, сравните предложения и выберите водителя на своих условиях.</p>
+      </article>
+      <article class="card">
+        <h3>Для водителей</h3>
+        <p>Получайте подходящие заказы, отправляйте цену и быстро переходите в приложение из Telegram.</p>
+      </article>
+      <article class="card">
+        <h3>Для бизнеса</h3>
+        <p>Контроль статусов, прозрачные процессы и удобная операционная поддержка.</p>
+      </article>
+    </section>
 
-</div>
+    <section id="how" class="steps" aria-label="Как это работает">
+      <article class="step">
+        <span class="num">1</span>
+        <h3>Клиент создаёт заказ</h3>
+        <p class="lead" style="font-size:14px; margin:8px 0 0; color:var(--muted)">Тип техники, точка А/Б, параметры заказа.</p>
+      </article>
+      <article class="step">
+        <span class="num">2</span>
+        <h3>Водители получают уведомления</h3>
+        <p class="lead" style="font-size:14px; margin:8px 0 0; color:var(--muted)">Push + Telegram (по настройке), затем подача цены.</p>
+      </article>
+      <article class="step">
+        <span class="num">3</span>
+        <h3>Клиент выбирает предложение</h3>
+        <p class="lead" style="font-size:14px; margin:8px 0 0; color:var(--muted)">Дальше — выполнение заказа и подтверждение статусов.</p>
+      </article>
+    </section>
 
-<footer>
-    © <span id="year"></span> Reyz.app
-    <span>Все права защищены</span>
-</footer>
+    <section id="faq" aria-label="Частые вопросы">
+      <details class="faq">
+        <summary>Как быстро приходит заказ водителю?</summary>
+        <p>Обычно сразу после матчинга. Уведомление может прийти в app и в Telegram.</p>
+      </details>
+      <details class="faq">
+        <summary>Можно ли отключить Telegram-уведомления?</summary>
+        <p>Да, водитель может отключить этот канал в настройках профиля.</p>
+      </details>
+      <details class="faq">
+        <summary>Где посмотреть юридические документы?</summary>
+        <p>Ссылки внизу страницы: политика конфиденциальности и условия использования.</p>
+      </details>
+    </section>
 
-<script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-</script>
+    <section class="final" aria-label="Финальный призыв">
+      <h2 style="margin-bottom:8px">Готовы начать?</h2>
+      <p style="color:#d7deea; margin-bottom:14px">Подключайтесь к Reyz и управляйте заказами проще.</p>
+      <a class="btn primary" href="https://play.google.com/store/apps/details?id=com.reyzplus.driver" target="_blank" rel="noopener">Открыть Reyz+</a>
+    </section>
+
+    <footer>
+      <span>© <span id="year"></span> Reyz.app</span>
+      <a href="/client_app/ru/privacy.html">Политика конфиденциальности</a>
+      <a href="/client_app/ru/terms.html">Условия использования</a>
+      <a href="mailto:support@reyz.app">support@reyz.app</a>
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
