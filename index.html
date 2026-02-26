@@ -23,8 +23,8 @@
   <meta name="twitter:description" content="Удобный заказ для клиентов и релевантные заявки для водителей в Reyz+." />
   <meta name="twitter:image" content="https://www.reyz.app/site/Reyzapp.png" />
 
-  <meta name="theme-color" content="#000000" media="(prefers-color-scheme: light)" />
-  <meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#3b82f6" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1e3a5f" media="(prefers-color-scheme: dark)" />
 
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="/site/icon-32x32.png" />
@@ -35,7 +35,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://yfycgikezcaqmppvscth.supabase.co" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" />
   <link rel="stylesheet" href="/site/index.css" />
 
   <script type="application/ld+json">
@@ -66,210 +66,561 @@
 <body>
   <a class="skip-link" href="#content">Перейти к основному контенту</a>
 
-  <header class="site-header">
-    <div class="container header-row">
-      <a class="brand" href="/" aria-label="На главную Reyzapp">
-        <img src="/site/reyzapp-icon-v3.png" alt="Логотип Reyzapp" width="36" height="36" decoding="async" />
+  <!-- ── Navigation ── -->
+  <nav class="site-nav">
+    <div class="container nav-inner">
+      <a class="nav-brand" href="/" aria-label="На главную Reyzapp">
+        <img src="/site/reyzapp-icon-v3.png" alt="" width="32" height="32" decoding="async" />
         <span>Reyzapp</span>
       </a>
 
-      <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false">
-        <span class="burger-line"></span>
-      </button>
+      <div class="nav-links">
+        <a href="#features">Возможности</a>
+        <a href="#how">Как работает</a>
+        <a href="#catalog">Каталог</a>
+        <a href="#for">Для кого</a>
+        <a href="#faq">FAQ</a>
+      </div>
 
-      <div class="header-collapse">
-        <div class="header-collapse-inner">
-          <nav class="header-nav" aria-label="Разделы страницы">
-            <a href="#for">Для кого</a>
-            <a href="#flow">Как работает</a>
-            <a href="#faq">FAQ</a>
-          </nav>
+      <div class="nav-cta">
+        <a class="btn btn-secondary btn-sm" href="https://play.google.com/store/apps/details?id=com.reyzapp.app" target="_blank" rel="noopener noreferrer" style="display:none">Клиентам</a>
+        <a class="btn btn-primary btn-sm" href="https://play.google.com/store/apps/details?id=com.reyzplus.driver" target="_blank" rel="noopener noreferrer" style="display:none">Водителям</a>
+        <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false">
+          <span class="burger-line"></span>
+        </button>
+      </div>
+    </div>
 
-          <div class="header-cta">
-            <a class="button button-secondary" href="https://play.google.com/store/apps/details?id=com.reyzapp.app" target="_blank" rel="noopener noreferrer" aria-label="Скачать Reyzapp в Google Play">
-              Reyzapp для клиентов
+    <div class="mobile-menu container" id="mobile-menu">
+      <div class="mobile-menu-inner">
+        <a href="#features">Возможности</a>
+        <a href="#how">Как работает</a>
+        <a href="#catalog">Каталог</a>
+        <a href="#for">Для кого</a>
+        <a href="#faq">FAQ</a>
+        <div class="mobile-menu-cta">
+          <a class="btn btn-secondary" href="https://play.google.com/store/apps/details?id=com.reyzapp.app" target="_blank" rel="noopener noreferrer">Reyzapp</a>
+          <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.reyzplus.driver" target="_blank" rel="noopener noreferrer">Reyz+</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main id="content">
+
+    <!-- ── Hero ── -->
+    <section class="hero">
+      <div class="hero-grid-bg"></div>
+      <div class="container hero-content">
+        <div class="hero-text animate-on-scroll">
+          <h1>Спецтехника по заявке — быстро, прозрачно и без лишних звонков</h1>
+          <p>
+            Reyzapp объединяет клиентов и водителей в одном рабочем контуре: создание заявки,
+            автоматический матчинг, тендер по цене и контроль статусов в реальном времени.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-shiny" href="https://play.google.com/store/apps/details?id=com.reyzapp.app" target="_blank" rel="noopener noreferrer">
+              Скачать Reyzapp
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
             </a>
-            <a class="button button-primary" href="https://play.google.com/store/apps/details?id=com.reyzplus.driver" target="_blank" rel="noopener noreferrer" aria-label="Скачать Reyz+ в Google Play">
+            <a class="btn btn-secondary" href="https://play.google.com/store/apps/details?id=com.reyzplus.driver" target="_blank" rel="noopener noreferrer">
               Reyz+ для водителей
             </a>
           </div>
         </div>
-      </div>
-    </div>
-  </header>
 
-  <main id="content" class="container">
-    <section class="hero section" aria-labelledby="hero-title">
-      <div class="hero-copy">
-        <span class="hero-kicker">Цифровая платформа спецтехники</span>
-        <h1 id="hero-title">Техника по заявке быстро, прозрачно и без лишних звонков</h1>
-        <p>
-          Reyzapp объединяет клиентов и водителей в одном рабочем контуре: создание заявки,
-          автоматический матчинг, тендер по цене и контроль статусов в реальном времени.
-        </p>
-
-        <div class="hero-actions">
-          <a class="button button-primary" href="https://play.google.com/store/apps/details?id=com.reyzapp.app" target="_blank" rel="noopener noreferrer">Скачать Reyzapp</a>
-          <a class="button button-secondary" href="https://play.google.com/store/apps/details?id=com.reyzplus.driver" target="_blank" rel="noopener noreferrer">Скачать Reyz+</a>
+        <div class="hero-visual animate-on-scroll animate-delay-2">
+          <img class="hero-phone" src="/site/1.png" alt="Интерфейс Reyzapp с картой" width="810" height="1440" loading="eager" decoding="async" />
+          <img class="hero-phone" src="/site/3.png" alt="Отслеживание техники на карте" width="810" height="1440" loading="eager" decoding="async" />
         </div>
+      </div>
+    </section>
 
-        <div class="hero-metrics" aria-label="Ключевые преимущества">
-          <div class="metric">
-            <strong>55+ типов техники</strong>
-            <span>в одном каталоге</span>
+    <!-- ── Social Proof / Metrics ── -->
+    <section class="social-proof">
+      <div class="container">
+        <div class="metrics-grid">
+          <div class="metric-item animate-on-scroll">
+            <div class="metric-value">55+</div>
+            <div class="metric-label">типов техники</div>
           </div>
-          <div class="metric">
-            <strong>24/7 онлайн</strong>
-            <span>для клиентов и водителей</span>
+          <div class="metric-item animate-on-scroll animate-delay-1">
+            <div class="metric-value">24/7</div>
+            <div class="metric-label">онлайн-доступ</div>
           </div>
-          <div class="metric">
-            <strong>Тендер по цене</strong>
-            <span>для конкурентных ставок</span>
+          <div class="metric-item animate-on-scroll animate-delay-2">
+            <div class="metric-value">0%</div>
+            <div class="metric-label">комиссия на старте</div>
+          </div>
+          <div class="metric-item animate-on-scroll animate-delay-3">
+            <div class="metric-value">15 мин</div>
+            <div class="metric-label">окно для ставок</div>
           </div>
         </div>
       </div>
+    </section>
 
-      <aside class="hero-panel" aria-labelledby="equipment-title">
-        <div class="panel-head">
-          <h2 id="equipment-title" class="panel-title">Популярная техника в каталоге Reyzapp</h2>
-          <p class="panel-subtitle">Листайте примеры категорий. Полный список доступен в приложении.</p>
+    <!-- ── Features ── -->
+    <section class="features-section" id="features">
+      <div class="container">
+        <div class="features-header animate-on-scroll">
+          <div class="section-badge">Возможности</div>
+          <h2 class="section-title" style="margin-top:20px">Всё для заказа техники в одной платформе</h2>
+          <p class="section-subtitle">Мощные инструменты для клиентов и водителей — подбор, ставки, контроль и рейтинги.</p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card animate-on-scroll">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
+            <h3>Мгновенный матчинг</h3>
+            <p>Система автоматически находит водителей с подходящей техникой и отправляет уведомления за секунды.</p>
+          </div>
+
+          <div class="feature-card animate-on-scroll animate-delay-1">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3>Прозрачный тендер</h3>
+            <p>Водители подают ставки, формируя конкурентную цену. Клиент выбирает лучшее предложение.</p>
+          </div>
+
+          <div class="feature-card animate-on-scroll animate-delay-2">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <h3>Realtime трекинг</h3>
+            <p>Отслеживайте движение техники на карте и получайте обновления статусов в реальном времени.</p>
+          </div>
+
+          <div class="feature-card animate-on-scroll animate-delay-1">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <h3>Для всех участников</h3>
+            <p>Физлица, ИП и юрлица — платформа подходит клиентам и владельцам техники любого формата.</p>
+          </div>
+
+          <div class="feature-card animate-on-scroll animate-delay-2">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><path d="M1 10h22"/></svg>
+            </div>
+            <h3>Push и Telegram</h3>
+            <p>Водители получают уведомления о новых заказах через push, в приложении и через Telegram-бота.</p>
+          </div>
+
+          <div class="feature-card animate-on-scroll animate-delay-3">
+            <div class="feature-icon">
+              <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
+            <h3>Рейтинги и отзывы</h3>
+            <p>Система рейтингов помогает клиентам выбирать проверенных исполнителей, а водителям — получать больше заказов.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── How It Works ── -->
+    <section class="how-it-works" id="how">
+      <div class="container">
+        <div class="how-header animate-on-scroll">
+          <div class="section-badge">Процесс</div>
+          <h2 class="section-title" style="margin-top:20px">Как это работает</h2>
+          <p class="section-subtitle">От заявки до завершения заказа — три ключевых этапа</p>
+        </div>
+
+        <div class="steps-grid">
+          <!-- Step 1 -->
+          <div class="step-card animate-on-scroll">
+            <div class="step-visual">
+              <div class="step-visual-inner">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+                  <div style="display:flex;align-items:center;gap:8px">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+                    <span style="font-size:0.85rem;font-weight:600">Создание заявки</span>
+                  </div>
+                  <span style="font-size:0.75rem;color:var(--accent-green);font-weight:500">~ 2 мин</span>
+                </div>
+                <div class="step-item">
+                  <div class="step-item-icon">
+                    <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                  </div>
+                  <div>
+                    <div class="step-item-text">Тип техники выбран</div>
+                    <div class="step-item-sub">Экскаватор гусеничный</div>
+                  </div>
+                </div>
+                <div class="step-item">
+                  <div class="step-item-icon">
+                    <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                  </div>
+                  <div>
+                    <div class="step-item-text">Маршрут указан</div>
+                    <div class="step-item-sub">Точка A → Точка B</div>
+                  </div>
+                </div>
+                <div class="step-item">
+                  <div class="step-item-icon">
+                    <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+                  </div>
+                  <div>
+                    <div class="step-item-text">Требования заполнены</div>
+                    <div class="step-item-sub">Время, комментарий, оплата</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="step-header">
+              <div class="step-number">
+                <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              </div>
+              <h3>Создайте заявку</h3>
+            </div>
+            <p>Укажите тип техники, маршрут и требования. Система автоматически найдёт подходящих исполнителей.</p>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="step-card animate-on-scroll animate-delay-1">
+            <div class="step-visual">
+              <div class="step-visual-inner">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+                  <div style="display:flex;align-items:center;gap:8px">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                    <span style="font-size:0.85rem;font-weight:600">Тендер ставок</span>
+                  </div>
+                  <span style="font-size:0.75rem;color:var(--accent-green);font-weight:500">Активный</span>
+                </div>
+                <div class="step-item">
+                  <div class="step-item-icon">
+                    <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  </div>
+                  <div style="flex:1">
+                    <div class="step-item-text">Водитель А</div>
+                    <div class="step-item-sub">350 000 сум • ETA 20 мин</div>
+                  </div>
+                </div>
+                <div class="step-item">
+                  <div class="step-item-icon">
+                    <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  </div>
+                  <div style="flex:1">
+                    <div class="step-item-text">Водитель Б</div>
+                    <div class="step-item-sub">310 000 сум • ETA 35 мин</div>
+                  </div>
+                </div>
+                <div class="step-item">
+                  <div class="step-item-icon">
+                    <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  </div>
+                  <div style="flex:1">
+                    <div class="step-item-text">Водитель В</div>
+                    <div class="step-item-sub">295 000 сум • ETA 45 мин</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="step-header">
+              <div class="step-number">
+                <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+              <h3>Тендер по цене</h3>
+            </div>
+            <p>Водители подают ставки с ценой и временем прибытия. Выбирайте лучший вариант по условиям.</p>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="step-card animate-on-scroll animate-delay-2">
+            <div class="step-visual">
+              <div class="step-visual-inner">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+                  <div style="display:flex;align-items:center;gap:8px">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                    <span style="font-size:0.85rem;font-weight:600">Контроль</span>
+                  </div>
+                  <span style="font-size:0.75rem;color:var(--accent-green);font-weight:500">В процессе</span>
+                </div>
+                <div style="margin-bottom:12px">
+                  <div class="step-stat">
+                    <span>Назначен водитель</span>
+                    <span class="step-stat-val">Завершено</span>
+                  </div>
+                  <div class="step-bar"><div class="step-bar-fill" style="width:100%"></div></div>
+                </div>
+                <div style="margin-bottom:12px">
+                  <div class="step-stat">
+                    <span>Водитель в пути</span>
+                    <span class="step-stat-val">Завершено</span>
+                  </div>
+                  <div class="step-bar"><div class="step-bar-fill" style="width:100%"></div></div>
+                </div>
+                <div style="margin-bottom:12px">
+                  <div class="step-stat">
+                    <span>Работа выполняется</span>
+                    <span class="step-stat-val">72%</span>
+                  </div>
+                  <div class="step-bar"><div class="step-bar-fill" style="width:72%"></div></div>
+                </div>
+                <div class="step-separator">
+                  <div class="step-stat">
+                    <span>Трекинг на карте</span>
+                    <span class="step-stat-val" style="color:var(--primary)">Включён</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="step-header">
+              <div class="step-number">
+                <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              </div>
+              <h3>Контроль в реальном времени</h3>
+            </div>
+            <p>Отслеживайте каждый этап заказа на карте: от выезда водителя до завершения работы и рейтинга.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Showcase / App Screenshots ── -->
+    <section class="showcase-section" id="showcase">
+      <div class="container">
+        <div class="showcase-header animate-on-scroll">
+          <h2 class="section-title">Приложение для клиентов, партнёров и бизнеса</h2>
+        </div>
+
+        <div class="showcase-grid">
+          <div class="showcase-card animate-on-scroll">
+            <div class="showcase-card-img">
+              <img src="/site/1.png" alt="Удобный интерфейс Reyzapp с картой и каталогом техники" width="810" height="1440" loading="lazy" decoding="async" />
+            </div>
+            <h3>Клиенты</h3>
+            <p>Создайте заявку за минуту, получите ставки от водителей и отслеживайте заказ на карте.</p>
+          </div>
+
+          <div class="showcase-card animate-on-scroll animate-delay-1">
+            <div class="showcase-card-img">
+              <img src="/site/2.png" alt="Каталог из 55 категорий техники для стройки и логистики" width="810" height="1440" loading="lazy" decoding="async" />
+            </div>
+            <h3>Водители</h3>
+            <p>Получайте релевантные заказы, подавайте ставки и управляйте этапами выполнения прямо в приложении.</p>
+          </div>
+
+          <div class="showcase-card animate-on-scroll animate-delay-2">
+            <div class="showcase-card-img">
+              <img src="/site/3.png" alt="Отслеживание движения техники на карте в реальном времени" width="810" height="1440" loading="lazy" decoding="async" />
+            </div>
+            <h3>Бизнес</h3>
+            <p>Прозрачные ставки, контроль исполнения и рейтинги — всё для эффективного управления заказами.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Equipment Catalog ── -->
+    <section class="equipment-section" id="catalog">
+      <div class="container">
+        <div class="equipment-header animate-on-scroll">
+          <div class="section-badge" style="border-color:rgba(255,255,255,0.2);background:rgba(255,255,255,0.08);color:#999">Каталог</div>
+          <h2 class="section-title" style="margin-top:20px">55+ типов техники в одном каталоге</h2>
+          <p class="section-subtitle">Листайте примеры категорий. Полный список доступен в приложении.</p>
         </div>
 
         <div class="equipment-toolbar" aria-label="Управление списком техники">
-          <button id="equipment-prev" class="equipment-nav" type="button" aria-label="Прокрутить список влево">‹</button>
-          <button id="equipment-next" class="equipment-nav" type="button" aria-label="Прокрутить список вправо">›</button>
+          <button id="equipment-prev" class="equipment-nav" type="button" aria-label="Прокрутить список влево">&#8249;</button>
+          <button id="equipment-next" class="equipment-nav" type="button" aria-label="Прокрутить список вправо">&#8250;</button>
         </div>
 
         <div id="equipment-scroller" class="equipment-scroller" tabindex="0" aria-label="Галерея техники">
           <ul id="equipment-track" class="equipment-track"></ul>
         </div>
 
-        <div class="panel-foot">Матчинг учитывает тип и параметры техники, чтобы заявки получали релевантные водители.</div>
-      </aside>
+        <div class="equipment-foot">Матчинг учитывает тип и параметры техники, чтобы заявки получали релевантные водители.</div>
+      </div>
     </section>
 
     <noscript>
-      <div class="no-js-banner">Для интерактивной галереи техники включите JavaScript в браузере.</div>
+      <div class="container">
+        <div class="no-js-banner">Для интерактивной галереи техники включите JavaScript в браузере.</div>
+      </div>
     </noscript>
 
-    <section class="showcase section" aria-labelledby="showcase-title">
-      <div class="section-head">
-        <h2 id="showcase-title">Приложение в действии</h2>
-        <p class="lead">Интерфейс, каталог и отслеживание — всё в одном приложении.</p>
-      </div>
+    <!-- ── For Whom ── -->
+    <section class="for-section" id="for">
+      <div class="container">
+        <div class="for-header animate-on-scroll">
+          <div class="section-badge">Для кого</div>
+          <h2 class="section-title" style="margin-top:20px">Два приложения — одна платформа</h2>
+          <p class="section-subtitle">Reyzapp для клиентов и Reyz+ для водителей работают вместе, обеспечивая быстрый и прозрачный процесс.</p>
+        </div>
 
-      <div class="grid grid-3">
-        <figure class="showcase-card">
-          <img src="/site/1.png" alt="Удобный интерфейс Reyzapp с картой и каталогом техники" width="810" height="1440" loading="lazy" decoding="async" />
-          <figcaption>Удобный интерфейс</figcaption>
-        </figure>
-        <figure class="showcase-card">
-          <img src="/site/2.png" alt="Каталог из 55 категорий техники для стройки и логистики" width="810" height="1440" loading="lazy" decoding="async" />
-          <figcaption>55 категорий техники</figcaption>
-        </figure>
-        <figure class="showcase-card">
-          <img src="/site/3.png" alt="Отслеживание движения техники на карте в реальном времени" width="810" height="1440" loading="lazy" decoding="async" />
-          <figcaption>Контроль в реальном времени</figcaption>
-        </figure>
-      </div>
-    </section>
+        <div class="for-grid">
+          <div class="for-card animate-on-scroll">
+            <div class="for-card-header">
+              <img src="/site/reyzapp-icon-v3.png" alt="" width="40" height="40" loading="lazy" decoding="async" />
+              <h3>Клиентам — Reyzapp</h3>
+            </div>
+            <p>Создайте заявку за минуты, получите предложения от водителей и выберите лучшее по цене и условиям. Отслеживайте статусы и оставляйте рейтинги.</p>
+            <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.reyzapp.app" target="_blank" rel="noopener noreferrer">
+              Скачать Reyzapp
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+          </div>
 
-    <section id="for" class="section" aria-labelledby="for-title">
-      <div class="section-head">
-        <h2 id="for-title">Для кого Reyzapp</h2>
-        <p class="lead">Платформа подходит клиентам, водителям и операторам, которым важны скорость, прозрачность и контроль процесса.</p>
-      </div>
-
-      <div class="grid grid-2">
-        <article class="card">
-          <h3 class="app-label"><img src="/site/reyzapp-icon-v3.png" alt="Reyzapp" width="28" height="28" loading="lazy" decoding="async" /> Клиентам (Reyzapp)</h3>
-          <p>Создайте заявку за несколько минут, получите предложения и выберите лучшее по цене и условиям.</p>
-          <a class="card-link" href="https://play.google.com/store/apps/details?id=com.reyzapp.app" target="_blank" rel="noopener noreferrer">Скачать приложение</a>
-        </article>
-
-        <article class="card">
-          <h3 class="app-label"><img src="/site/reyzplus-icon-v3.png" alt="Reyz+" width="28" height="28" loading="lazy" decoding="async" /> Водителям (Reyz+)</h3>
-          <p>Получайте подходящие заказы, подавайте ставки и открывайте приложение из уведомлений одним нажатием.</p>
-          <a class="card-link" href="https://play.google.com/store/apps/details?id=com.reyzplus.driver" target="_blank" rel="noopener noreferrer">Скачать приложение</a>
-        </article>
+          <div class="for-card animate-on-scroll animate-delay-1">
+            <div class="for-card-header">
+              <img src="/site/reyzplus-icon-v3.png" alt="" width="40" height="40" loading="lazy" decoding="async" />
+              <h3>Водителям — Reyz+</h3>
+            </div>
+            <p>Получайте подходящие заказы автоматически, подавайте ставки, ведите заказ по этапам. Push, Telegram и WS уведомления не дадут пропустить заявку.</p>
+            <a class="btn btn-primary" href="https://play.google.com/store/apps/details?id=com.reyzplus.driver" target="_blank" rel="noopener noreferrer">
+              Скачать Reyz+
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section id="flow" class="section" aria-labelledby="flow-title">
-      <div class="section-head">
-        <h2 id="flow-title">Как это работает</h2>
-      </div>
+    <!-- ── FAQ ── -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+        <div class="faq-header animate-on-scroll">
+          <div class="section-badge">FAQ</div>
+          <h2 class="section-title" style="margin-top:20px">Частые вопросы</h2>
+          <p class="section-subtitle">Всё, что нужно знать о платформе Reyzapp.</p>
+        </div>
 
-      <ol class="flow">
-        <li>
-          <span class="flow-number">1</span>
-          <h3>Создание заявки</h3>
-          <p>Клиент указывает тип техники и ключевые параметры заказа.</p>
-        </li>
-        <li>
-          <span class="flow-number">2</span>
-          <h3>Матчинг</h3>
-          <p>Система находит водителей с подходящей техникой и отправляет им уведомления.</p>
-        </li>
-        <li>
-          <span class="flow-number">3</span>
-          <h3>Тендер по цене</h3>
-          <p>Водители подают свои ставки, формируя прозрачную конкурентную цену.</p>
-        </li>
-        <li>
-          <span class="flow-number">4</span>
-          <h3>Выбор исполнителя</h3>
-          <p>Клиент подтверждает подходящий вариант по цене, срокам и условиям.</p>
-        </li>
-        <li>
-          <span class="flow-number">5</span>
-          <h3>Контроль статусов</h3>
-          <p>Клиент отслеживает исполнение заказа и ключевые этапы в реальном времени.</p>
-        </li>
-      </ol>
+        <div class="faq-list animate-on-scroll animate-delay-1">
+          <div class="faq-item">
+            <button class="faq-trigger" type="button" aria-expanded="false">
+              <span>Сколько стоит использование платформы?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-content">
+              <div class="faq-content-inner">
+                <p>На период запуска комиссия платформы составляет 0%, абонентской платы нет. Расчёты за услуги идут напрямую между клиентом и исполнителем.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-trigger" type="button" aria-expanded="false">
+              <span>Нужно ли звонить каждому водителю вручную?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-content">
+              <div class="faq-content-inner">
+                <p>Нет. Система делает автоматический матчинг по типу и параметрам техники и уведомляет релевантных водителей сама — через push, inbox и Telegram.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-trigger" type="button" aria-expanded="false">
+              <span>Как происходит авторизация?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-content">
+              <div class="faq-content-inner">
+                <p>Авторизация происходит через Telegram OAuth — быстро, безопасно и без лишних паролей. Просто откройте приложение и войдите через Telegram.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-trigger" type="button" aria-expanded="false">
+              <span>Можно ли отключить Telegram-уведомления?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-content">
+              <div class="faq-content-inner">
+                <p>Да. Водитель может выключить Telegram-уведомления о новых заказах в настройках приложения Reyz+.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-trigger" type="button" aria-expanded="false">
+              <span>Кто может стать партнёром (водителем)?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-content">
+              <div class="faq-content-inner">
+                <p>Физические лица, ИП и юридические лица — владельцы спецтехники. Партнёр является независимым исполнителем, не сотрудником платформы.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <button class="faq-trigger" type="button" aria-expanded="false">
+              <span>Где посмотреть юридические документы?</span>
+              <svg class="faq-chevron" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="faq-content">
+              <div class="faq-content-inner">
+                <p>Ссылки на политику конфиденциальности и условия использования находятся внизу этой страницы в разделе «Правовая информация».</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section id="faq" class="section" aria-labelledby="faq-title">
-      <div class="section-head">
-        <h2 id="faq-title">Частые вопросы</h2>
-      </div>
-
-      <div class="faq">
-        <details name="faq">
-          <summary>Нужно ли звонить каждому водителю вручную?</summary>
-          <p>Нет. Система делает автоматический матчинг и уведомляет релевантных водителей сама.</p>
-        </details>
-
-        <details name="faq">
-          <summary>Можно ли отключить Telegram-уведомления у водителя?</summary>
-          <p>Да. Водитель может выключить этот канал в настройках приложения.</p>
-        </details>
-
-        <details name="faq">
-          <summary>Где посмотреть юридические документы?</summary>
-          <p>Актуальные ссылки на политику и условия находятся внизу страницы.</p>
-        </details>
-      </div>
-    </section>
-
-    <section class="cta-band" aria-labelledby="cta-title">
-      <div>
-        <h2 id="cta-title">Готовы начать?</h2>
-        <p>Выберите нужное приложение и подключитесь к платформе Reyzapp.</p>
-      </div>
-      <div class="header-cta">
-        <a class="button button-secondary" href="https://play.google.com/store/apps/details?id=com.reyzapp.app" target="_blank" rel="noopener noreferrer">Скачать Reyzapp</a>
-        <a class="button button-primary" href="https://play.google.com/store/apps/details?id=com.reyzplus.driver" target="_blank" rel="noopener noreferrer">Скачать Reyz+</a>
+    <!-- ── CTA ── -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-band animate-on-scroll">
+          <h2>Готовы начать?</h2>
+          <p>Скачайте приложение и подключитесь к платформе Reyzapp уже сегодня.</p>
+          <div class="cta-actions">
+            <a class="btn btn-shiny" href="https://play.google.com/store/apps/details?id=com.reyzapp.app" target="_blank" rel="noopener noreferrer">
+              Скачать Reyzapp
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+            <a class="btn btn-secondary" href="https://play.google.com/store/apps/details?id=com.reyzplus.driver" target="_blank" rel="noopener noreferrer">Скачать Reyz+</a>
+          </div>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="container">
-    <div>&copy; <span id="year">2026</span> Reyz.app</div>
-    <div class="footer-links">
-      <a href="/client_app/ru/privacy.html">Политика конфиденциальности</a>
-      <a href="/client_app/ru/terms.html">Условия использования</a>
-      <a href="mailto:support@reyz.app">support@reyz.app</a>
+  <!-- ── Footer ── -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">
+            <img src="/site/reyzapp-icon-v3.png" alt="" width="28" height="28" decoding="async" />
+            <span>Reyzapp</span>
+          </div>
+          <p class="footer-desc">Цифровая платформа для заказа спецтехники. Матчинг, тендер по цене и realtime-контроль.</p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Приложения</h4>
+          <a href="https://play.google.com/store/apps/details?id=com.reyzapp.app" target="_blank" rel="noopener noreferrer">Reyzapp для клиентов</a>
+          <a href="https://play.google.com/store/apps/details?id=com.reyzplus.driver" target="_blank" rel="noopener noreferrer">Reyz+ для водителей</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Разделы</h4>
+          <a href="#features">Возможности</a>
+          <a href="#how">Как работает</a>
+          <a href="#catalog">Каталог</a>
+          <a href="#faq">FAQ</a>
+        </div>
+
+        <div class="footer-col">
+          <h4>Правовая информация</h4>
+          <a href="/client_app/ru/privacy.html">Политика конфиденциальности</a>
+          <a href="/client_app/ru/terms.html">Условия использования</a>
+          <a href="mailto:support@reyz.app">support@reyz.app</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        &copy; <span id="year">2026</span> Reyz.app. Все права защищены.
+      </div>
     </div>
   </footer>
 
