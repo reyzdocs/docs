@@ -43,7 +43,7 @@ ul, ol {
 
 /* ── CSS Variables ── */
 :root {
-  --primary: #3b82f6;
+  --primary: #000000;
   --primary-light: rgba(59, 130, 246, 0.1);
   --primary-medium: rgba(59, 130, 246, 0.15);
   --primary-strong: #2563eb;
@@ -444,15 +444,13 @@ ul, ol {
 
 /* ── Hero Visual — App screenshots ── */
 .hero-visual {
-  position: relative;
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 16px;
+  align-items: start;
 }
 
 .hero-phone {
-  width: 200px;
-  flex-shrink: 0;
   border-radius: 24px;
   box-shadow: var(--shadow-lg);
   overflow: hidden;
@@ -474,13 +472,6 @@ ul, ol {
 .hero-phone img {
   width: 100%;
   height: auto;
-}
-
-@media (max-width: 639px) {
-  .hero-phone {
-    width: 150px;
-    border-radius: 18px;
-  }
 }
 
 /* ── Social Proof / Metrics ── */
