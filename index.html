@@ -37,6 +37,7 @@
   <link rel="preconnect" href="https://yfycgikezcaqmppvscth.supabase.co" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" />
   <link rel="stylesheet" href="/site/index.css" />
+  <link rel="stylesheet" href="/site/chat-widget.css" />
 
   <script type="application/ld+json">
     {
@@ -795,6 +796,32 @@
     </div>
   </footer>
 
+  <div class="web-chat-widget" id="web-chat-widget">
+    <button class="web-chat-launch" id="web-chat-launch" type="button" aria-expanded="false" aria-controls="web-chat-panel">
+      <span class="web-chat-launch-dot" aria-hidden="true"></span>
+      Чат поддержки
+    </button>
+
+    <section class="web-chat-panel" id="web-chat-panel" aria-live="polite" aria-label="Чат поддержки">
+      <header class="web-chat-header">
+        <div>
+          <strong>Reyz Support</strong>
+          <p>Обычно отвечаем в течение нескольких минут</p>
+        </div>
+        <button class="web-chat-close" id="web-chat-close" type="button" aria-label="Закрыть чат">✕</button>
+      </header>
+
+      <div class="web-chat-messages" id="web-chat-messages"></div>
+
+      <form class="web-chat-form" id="web-chat-form">
+        <label class="web-chat-sr-only" for="web-chat-input">Ваше сообщение</label>
+        <textarea id="web-chat-input" maxlength="2000" placeholder="Напишите вопрос..." rows="2"></textarea>
+        <button type="submit">Отправить</button>
+      </form>
+    </section>
+  </div>
+
   <script type="module" src="/site/index.js"></script>
+  <script type="module" src="/site/chat-widget.js"></script>
 </body>
 </html>
