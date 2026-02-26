@@ -451,6 +451,8 @@ ul, ol {
 }
 
 .hero-phone {
+  width: 200px;
+  flex-shrink: 0;
   border-radius: 24px;
   box-shadow: var(--shadow-lg);
   overflow: hidden;
@@ -472,11 +474,11 @@ ul, ol {
 .hero-phone img {
   width: 100%;
   height: auto;
-  aspect-ratio: 2304 / 4096;
 }
 
 @media (max-width: 639px) {
   .hero-phone {
+    width: 150px;
     border-radius: 18px;
   }
 }
