@@ -37,22 +37,23 @@ ul, ol {
 }
 
 :focus-visible {
-  outline: 3px solid #3b82f6;
+  outline: 3px solid rgba(228, 116, 24, 0.45);
   outline-offset: 2px;
 }
 
 /* ── CSS Variables ── */
 :root {
   --primary: #E47418;
-  --primary-light: rgba(59, 130, 246, 0.1);
-  --primary-medium: rgba(59, 130, 246, 0.15);
-  --primary-strong: #2563eb;
+  --primary-light: rgba(228, 116, 24, 0.12);
+  --primary-medium: rgba(228, 116, 24, 0.2);
+  --primary-strong: #FF7300;
+  --primary-soft: #FFE1C9;
   --primary-foreground: #ffffff;
   --background: #ffffff;
   --foreground: #0f172a;
   --card: #ffffff;
   --card-border: #e5e7eb;
-  --card-border-hover: rgba(59, 130, 246, 0.5);
+  --card-border-hover: rgba(228, 116, 24, 0.5);
   --muted: #6b7280;
   --muted-bg: #f9fafb;
   --section-border: #e5e7eb;
@@ -74,7 +75,7 @@ ul, ol {
     --foreground: #f5f5f5;
     --card: #141414;
     --card-border: #262626;
-    --card-border-hover: rgba(59, 130, 246, 0.4);
+    --card-border-hover: rgba(255, 115, 0, 0.45);
     --muted: #a3a3a3;
     --muted-bg: #141414;
     --section-border: #262626;
@@ -134,14 +135,12 @@ ul, ol {
   top: 0;
   z-index: 50;
   border-bottom: 1px solid var(--section-border);
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
   .site-nav {
-    background: rgba(10, 10, 10, 0.8);
+    background: #0a0a0a;
   }
 }
 
@@ -269,6 +268,35 @@ ul, ol {
 
 .mobile-menu-cta .btn {
   flex: 1;
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.mobile-menu-cta .btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--primary-strong));
+  border-color: var(--primary-strong);
+  color: var(--primary-foreground);
+}
+
+.mobile-menu-cta .btn-primary:hover {
+  background: var(--primary-strong);
+  border-color: var(--primary-strong);
+}
+
+.mobile-menu-cta .btn-secondary {
+  background: var(--primary-soft);
+  border-color: rgba(228, 116, 24, 0.35);
+  color: #8a3d00;
+}
+
+.mobile-menu-cta .btn-secondary:hover {
+  background: #ffd6b7;
+  border-color: rgba(228, 116, 24, 0.45);
 }
 
 @media (min-width: 768px) {
@@ -1225,6 +1253,56 @@ ul, ol {
 }
 
 .footer-col a:hover {
+  color: var(--foreground);
+}
+
+.legal-group {
+  border-top: 1px solid var(--section-border);
+  border-bottom: 1px solid var(--section-border);
+  padding: 8px 0;
+  margin-bottom: 8px;
+}
+
+.legal-group summary {
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 0.875rem;
+  font-weight: 600;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.legal-group summary::-webkit-details-marker {
+  display: none;
+}
+
+.legal-group summary::after {
+  content: "▾";
+  font-size: 0.78rem;
+  color: var(--muted);
+  transition: transform 0.2s ease;
+}
+
+.legal-group[open] summary::after {
+  transform: rotate(180deg);
+}
+
+.legal-links {
+  margin-top: 8px;
+  padding-left: 8px;
+}
+
+.legal-links a {
+  display: block;
+  color: var(--muted);
+  font-size: 0.84rem;
+  padding: 3px 0;
+}
+
+.legal-links a:hover {
   color: var(--foreground);
 }
 
