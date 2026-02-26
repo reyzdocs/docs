@@ -23,12 +23,37 @@
   box-shadow: 0 12px 24px rgba(228, 116, 24, 0.35);
 }
 
+.web-chat-launch {
+  position: relative;
+}
+
 .web-chat-launch-dot {
   width: 9px;
   height: 9px;
   border-radius: 50%;
   background: #fff;
   box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.2);
+}
+
+/* ── Unread badge ── */
+.web-chat-badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  background: #ef4444;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+  border: 2px solid #fff;
+  line-height: 1;
+  pointer-events: none;
 }
 
 .web-chat-panel {
@@ -173,6 +198,50 @@
   font-size: 0.78rem;
   color: #64748b;
   text-align: center;
+}
+
+/* ── Typing indicator ── */
+.web-chat-typing {
+  display: none;
+  align-self: flex-start;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  max-width: 88%;
+}
+
+.web-chat-typing-dots {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.web-chat-typing-dots span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #94a3b8;
+  animation: web-chat-bounce 1.4s ease-in-out infinite;
+}
+
+.web-chat-typing-dots span:nth-child(2) {
+  animation-delay: 0.16s;
+}
+
+.web-chat-typing-dots span:nth-child(3) {
+  animation-delay: 0.32s;
+}
+
+@keyframes web-chat-bounce {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-5px);
+    opacity: 1;
+  }
 }
 
 .web-chat-sr-only {

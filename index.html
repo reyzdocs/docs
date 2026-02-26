@@ -800,6 +800,7 @@
     <button class="web-chat-launch" id="web-chat-launch" type="button" aria-expanded="false" aria-controls="web-chat-panel">
       <span class="web-chat-launch-dot" aria-hidden="true"></span>
       Чат поддержки
+      <span class="web-chat-badge" id="web-chat-badge" style="display:none" aria-live="polite"></span>
     </button>
 
     <section class="web-chat-panel" id="web-chat-panel" aria-live="polite" aria-label="Чат поддержки">
@@ -811,7 +812,11 @@
         <button class="web-chat-close" id="web-chat-close" type="button" aria-label="Закрыть чат">✕</button>
       </header>
 
-      <div class="web-chat-messages" id="web-chat-messages"></div>
+      <div class="web-chat-messages" id="web-chat-messages">
+        <div class="web-chat-typing" id="web-chat-typing" style="display:none" aria-label="Оператор печатает">
+          <div class="web-chat-typing-dots"><span></span><span></span><span></span></div>
+        </div>
+      </div>
 
       <form class="web-chat-form" id="web-chat-form">
         <label class="web-chat-sr-only" for="web-chat-input">Ваше сообщение</label>
