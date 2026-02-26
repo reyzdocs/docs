@@ -43,7 +43,7 @@ ul, ol {
 
 /* ── CSS Variables ── */
 :root {
-  --primary: #000000;
+  --primary: #E47418;
   --primary-light: rgba(59, 130, 246, 0.1);
   --primary-medium: rgba(59, 130, 246, 0.15);
   --primary-strong: #2563eb;
@@ -451,6 +451,11 @@ ul, ol {
 }
 
 .hero-phone {
+  width: min(100%, 300px);
+  max-height: 560px;
+  height: auto;
+  object-fit: contain;
+  justify-self: center;
   border-radius: 24px;
   box-shadow: var(--shadow-lg);
   overflow: hidden;
@@ -472,6 +477,21 @@ ul, ol {
 .hero-phone img {
   width: 100%;
   height: auto;
+}
+
+@media (max-width: 767px) {
+  .hero-phone {
+    width: min(100%, 180px);
+    max-height: 360px;
+  }
+
+  .hero-phone:nth-child(2) {
+    transform: translateY(12px);
+  }
+
+  .hero-phone:nth-child(2):hover {
+    transform: translateY(8px);
+  }
 }
 
 /* ── Social Proof / Metrics ── */
