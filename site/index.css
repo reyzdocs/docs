@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap");
-
 /* ── Reset ── */
 *,
 *::before,
@@ -108,6 +106,19 @@ ul, ol {
   .container {
     width: min(100% - 64px, var(--container));
   }
+}
+
+/* ── Rendering performance (Core Web Vitals helper) ── */
+.features-section,
+.how-it-works,
+.showcase-section,
+.equipment-section,
+.for-section,
+.testimonials-section,
+.faq-section,
+.cta-section {
+  content-visibility: auto;
+  contain-intrinsic-size: 900px;
 }
 
 /* ── Scroll Animations ── */
@@ -404,10 +415,10 @@ ul, ol {
 }
 
 .section-subtitle {
-  font-size: 1.125rem;
+  font-size: 1.0625rem;
   color: var(--muted);
   max-width: 640px;
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 .text-center { text-align: center; }
@@ -1515,4 +1526,72 @@ html.js .no-js-banner {
   clip: rect(0,0,0,0);
   white-space: nowrap;
   border: 0;
+}
+
+/* ── Content hierarchy polish ── */
+.feature-card p,
+.step-card > p,
+.showcase-card p,
+.for-card p,
+.faq-content p {
+  line-height: 1.65;
+}
+
+
+/* ── Stage 2: design-system harmonization ── */
+:root {
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg2: 18px;
+}
+
+.section-title { letter-spacing: -0.018em; }
+.section-subtitle { max-width: 700px; }
+
+.feature-card,
+.step-card,
+.showcase-card,
+.for-card,
+.testimonial-card,
+.faq-item,
+.cta-band {
+  border-radius: var(--radius-lg2);
+}
+
+.feature-card,
+.showcase-card,
+.for-card,
+.testimonial-card {
+  padding: 22px;
+}
+
+.btn {
+  min-height: 44px;
+  border-radius: 12px;
+  font-weight: 650;
+}
+
+.btn-sm {
+  min-height: 40px;
+  border-radius: 10px;
+}
+
+.faq-trigger {
+  min-height: 52px;
+  padding: 14px 16px;
+}
+
+@media (max-width: 767px) {
+  .section-title { line-height: 1.2; }
+  .hero { padding: 64px 0 44px; }
+  .hero-content { gap: 28px; }
+  .feature-card,
+  .showcase-card,
+  .for-card,
+  .testimonial-card { padding: 18px; }
 }

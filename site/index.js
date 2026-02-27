@@ -1,6 +1,7 @@
 import { EQUIPMENT_ITEMS } from './equipment-list.js';
 
 const MAX_EQUIPMENT_RENDER = Number.POSITIVE_INFINITY;
+const EQUIPMENT_BATCH_SIZE = 20;
 
 function toHumanEquipmentName(slug) {
   return slug
@@ -47,32 +48,45 @@ function renderEquipmentList() {
   const track = document.getElementById('equipment-track');
   if (!track) return;
 
-  const fragment = document.createDocumentFragment();
   const items = EQUIPMENT_ITEMS.slice(0, MAX_EQUIPMENT_RENDER);
+  let rendered = 0;
 
-  for (const item of items) {
-    const li = document.createElement('li');
-    li.className = 'equipment-card';
+  function renderChunk() {
+    const fragment = document.createDocumentFragment();
+    const end = Math.min(rendered + EQUIPMENT_BATCH_SIZE, items.length);
 
-    const figure = document.createElement('figure');
-    const img = document.createElement('img');
-    img.src = item.image;
-    img.alt = toHumanEquipmentName(item.slug);
-    img.width = 256;
-    img.height = 256;
-    img.loading = 'lazy';
-    img.decoding = 'async';
-    img.referrerPolicy = 'no-referrer';
+    for (let i = rendered; i < end; i += 1) {
+      const item = items[i];
+      const li = document.createElement('li');
+      li.className = 'equipment-card';
 
-    const caption = document.createElement('figcaption');
-    caption.textContent = toHumanEquipmentName(item.slug);
+      const figure = document.createElement('figure');
+      const img = document.createElement('img');
+      img.src = item.image;
+      img.alt = toHumanEquipmentName(item.slug);
+      img.width = 256;
+      img.height = 256;
+      img.loading = 'lazy';
+      img.decoding = 'async';
+      img.referrerPolicy = 'no-referrer';
 
-    figure.append(img, caption);
-    li.append(figure);
-    fragment.append(li);
+      const caption = document.createElement('figcaption');
+      caption.textContent = toHumanEquipmentName(item.slug);
+
+      figure.append(img, caption);
+      li.append(figure);
+      fragment.append(li);
+    }
+
+    track.append(fragment);
+    rendered = end;
+
+    if (rendered < items.length) {
+      window.requestAnimationFrame(renderChunk);
+    }
   }
 
-  track.append(fragment);
+  renderChunk();
 }
 
 /* ── Equipment Scroller Controls ── */
