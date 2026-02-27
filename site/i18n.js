@@ -38,6 +38,7 @@ const COPY = {
       statusSendFailed: 'Сообщение не отправлено. Попробуйте еще раз.',
       statusClosedSupport: 'Чат закрыт. Напишите в support@reyz.app',
       statusClosedOperator: 'Чат закрыт оператором.',
+      welcome: 'Здравствуйте! Напишите ваш вопрос. Мы ответим в Telegram-чате поддержки.',
     },
     testimonials: [
       [
@@ -128,6 +129,7 @@ const COPY = {
       statusSendFailed: "Xabar yuborilmadi. Qayta urinib ko'ring.",
       statusClosedSupport: 'Chat yopilgan. support@reyz.app manziliga yozing',
       statusClosedOperator: 'Chat operator tomonidan yopildi.',
+      welcome: "Salom! Savolingizni yozing. Telegram qo'llab-quvvatlash chatida javob beramiz.",
     },
     testimonials: [
       [

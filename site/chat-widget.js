@@ -121,6 +121,28 @@ function appendStatus(text) {
   messagesEl.scrollTop = messagesEl.scrollHeight;
 }
 
+function clearStatusContains(text) {
+  if (!text) return;
+  messagesEl.querySelectorAll('.web-chat-status').forEach((row) => {
+    if (String(row.textContent || '').includes(text)) row.remove();
+  });
+}
+
+function ensureWelcomeMessageVisible() {
+  const hasAnyMessage = Boolean(messagesEl.querySelector('.web-chat-message'));
+  if (hasAnyMessage) return;
+
+  appendMessages([
+    {
+      id: 'local_welcome_v1',
+      direction: 'outgoing',
+      text: t('chat.welcome') || 'Здравствуйте! Напишите ваш вопрос. Мы ответим в Telegram-чате поддержки.',
+      senderLabel: t('chat.senderSupport'),
+      createdAt: new Date().toISOString(),
+    },
+  ]);
+}
+
 function makeMessageNode(message) {
   const isUserMessage = message.direction === 'incoming';
 
@@ -231,7 +253,9 @@ async function loadMessages() {
   }
 
   const payload = await request(`/messages?${query.toString()}`);
+  clearStatusContains(t('chat.statusConnecting'));
   appendMessages(payload.messages || []);
+  ensureWelcomeMessageVisible();
 
   const status = String(payload.session?.status || 'open').toLowerCase();
   if (status !== 'open') {
