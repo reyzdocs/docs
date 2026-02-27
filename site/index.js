@@ -1,7 +1,10 @@
 import { EQUIPMENT_ITEMS } from './equipment-list.js';
+import { EQUIPMENT_UZ_NAMES } from './equipment-i18n.js';
+import { getCurrentLanguage, initI18n, onLanguageChange } from './i18n.js';
 
 const MAX_EQUIPMENT_RENDER = Number.POSITIVE_INFINITY;
 const EQUIPMENT_BATCH_SIZE = 20;
+const EQUIPMENT_BY_SLUG = new Map(EQUIPMENT_ITEMS.map((item) => [item.slug, item]));
 
 function toHumanEquipmentName(slug) {
   return slug
@@ -16,6 +19,14 @@ function toHumanEquipmentName(slug) {
 
 function isReducedMotion() {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
+function getEquipmentLabel(item, language = 'ru') {
+  if (!item) return '';
+  if (language === 'uz') {
+    return EQUIPMENT_UZ_NAMES[item.slug] || item.name || toHumanEquipmentName(item.slug);
+  }
+  return item.name || toHumanEquipmentName(item.slug);
 }
 
 /* ── Scroll Animations (IntersectionObserver) ── */
@@ -57,13 +68,15 @@ function renderEquipmentList() {
 
     for (let i = rendered; i < end; i += 1) {
       const item = items[i];
+      const lang = getCurrentLanguage();
       const li = document.createElement('li');
       li.className = 'equipment-card';
+      li.dataset.equipmentSlug = item.slug;
 
       const figure = document.createElement('figure');
       const img = document.createElement('img');
       img.src = item.image;
-      img.alt = item.name || toHumanEquipmentName(item.slug);
+      img.alt = getEquipmentLabel(item, lang);
       img.width = 256;
       img.height = 256;
       img.loading = 'lazy';
@@ -71,7 +84,7 @@ function renderEquipmentList() {
       img.referrerPolicy = 'no-referrer';
 
       const caption = document.createElement('figcaption');
-      caption.textContent = item.name || toHumanEquipmentName(item.slug);
+      caption.textContent = getEquipmentLabel(item, lang);
 
       figure.append(img, caption);
       li.append(figure);
@@ -87,6 +100,23 @@ function renderEquipmentList() {
   }
 
   renderChunk();
+}
+
+function applyEquipmentLanguage(language) {
+  const cards = document.querySelectorAll('#equipment-track .equipment-card');
+  cards.forEach((card) => {
+    const slug = card.getAttribute('data-equipment-slug');
+    if (!slug) return;
+    const item = EQUIPMENT_BY_SLUG.get(slug);
+    if (!item) return;
+
+    const localized = getEquipmentLabel(item, language);
+    const img = card.querySelector('img');
+    const caption = card.querySelector('figcaption');
+
+    if (img) img.alt = localized;
+    if (caption) caption.textContent = localized;
+  });
 }
 
 /* ── Equipment Scroller Controls ── */
@@ -226,11 +256,13 @@ function setCurrentYear() {
 
 /* ── Bootstrap ── */
 function bootstrap() {
+  initI18n();
   document.documentElement.classList.add('js');
   setCurrentYear();
   showNavCTA();
   mountScrollAnimations();
   renderEquipmentList();
+  onLanguageChange((language) => applyEquipmentLanguage(language));
   mountEquipmentControls();
   mountFAQ();
   mountBurger();

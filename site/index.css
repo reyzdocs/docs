@@ -199,6 +199,40 @@ ul, ol {
   gap: 12px;
 }
 
+.lang-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px;
+  border: 1px solid var(--card-border);
+  border-radius: 999px;
+  background: var(--muted-bg);
+}
+
+.lang-btn {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.76rem;
+  font-weight: 700;
+  line-height: 1;
+  min-width: 40px;
+  min-height: 30px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.lang-btn:hover {
+  color: var(--foreground);
+}
+
+.lang-btn.active {
+  background: linear-gradient(135deg, var(--primary), var(--primary-strong));
+  color: var(--primary-foreground);
+}
+
 /* ── Burger ── */
 .burger {
   display: flex;
@@ -257,6 +291,10 @@ ul, ol {
 .mobile-menu-inner {
   min-height: 0;
   overflow: hidden;
+}
+
+.lang-switch-mobile {
+  margin: 12px 0 8px;
 }
 
 .mobile-menu-inner a {

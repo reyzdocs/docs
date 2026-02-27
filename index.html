@@ -4,23 +4,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Reyzapp — заказы спецтехники для заказчиков и водителей</title>
-  <meta name="description" content="Reyzapp помогает заказчикам быстро заказывать спецтехнику, а водителям в Reyz+ получать подходящие заявки и участвовать в тендере по цене." />
+  <meta name="description" id="meta-description" content="Reyzapp помогает заказчикам быстро заказывать спецтехнику, а водителям в Reyz+ получать подходящие заявки и участвовать в тендере по цене." />
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
-  <link rel="canonical" href="https://www.reyz.app/" />
+  <link rel="canonical" id="canonical-link" href="https://www.reyz.app/" />
+  <link rel="alternate" id="alt-ru" hreflang="ru" href="https://www.reyz.app/?lang=ru" />
+  <link rel="alternate" id="alt-uz" hreflang="uz" href="https://www.reyz.app/?lang=uz" />
+  <link rel="alternate" id="alt-x-default" hreflang="x-default" href="https://www.reyz.app/?lang=ru" />
 
   <meta property="og:type" content="website" />
-  <meta property="og:locale" content="ru_RU" />
+  <meta property="og:locale" id="og-locale" content="ru_RU" />
   <meta property="og:site_name" content="Reyzapp" />
-  <meta property="og:title" content="Reyzapp — заказы спецтехники для заказчиков и водителей" />
-  <meta property="og:description" content="Платформа для заказа спецтехники: подбор исполнителей, тендер по цене и прозрачные статусы." />
-  <meta property="og:url" content="https://www.reyz.app/" />
+  <meta property="og:title" id="og-title" content="Reyzapp — заказы спецтехники для заказчиков и водителей" />
+  <meta property="og:description" id="og-description" content="Платформа для заказа спецтехники: подбор исполнителей, тендер по цене и прозрачные статусы." />
+  <meta property="og:url" id="og-url" content="https://www.reyz.app/" />
   <meta property="og:image" content="https://www.reyz.app/site/Reyzapp.png" />
-  <meta property="og:image:alt" content="Reyzapp — сервис заказа спецтехники" />
+  <meta property="og:image:alt" id="og-image-alt" content="Reyzapp — сервис заказа спецтехники" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Reyzapp — заказы спецтехники" />
-  <meta name="twitter:description" content="Удобный заказ для заказчиков и релевантные заявки для водителей в Reyz+." />
+  <meta name="twitter:title" id="twitter-title" content="Reyzapp — заказы спецтехники" />
+  <meta name="twitter:description" id="twitter-description" content="Удобный заказ для заказчиков и релевантные заявки для водителей в Reyz+." />
   <meta name="twitter:image" content="https://www.reyz.app/site/Reyzapp.png" />
 
   <meta name="theme-color" content="#3b82f6" media="(prefers-color-scheme: light)" />
@@ -39,7 +42,7 @@
   <link rel="stylesheet" href="/site/index.css" />
   <link rel="stylesheet" href="/site/chat-widget.css" />
 
-  <script type="application/ld+json">
+  <script id="schema-ld" type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@graph": [
@@ -84,6 +87,10 @@
       </div>
 
       <div class="nav-cta">
+        <div class="lang-switch" data-lang-switch role="group" aria-label="Выбор языка">
+          <button class="lang-btn" type="button" data-lang="ru" aria-pressed="false">RU</button>
+          <button class="lang-btn" type="button" data-lang="uz" aria-pressed="false">UZ</button>
+        </div>
         <a class="btn btn-secondary btn-sm" href="https://play.google.com/store/apps/details?id=com.reyzapp.app" target="_blank" rel="noopener noreferrer" style="display:none">Заказчикам</a>
         <a class="btn btn-primary btn-sm" href="https://play.google.com/store/apps/details?id=com.reyzplus.driver" target="_blank" rel="noopener noreferrer" style="display:none">Водителям</a>
         <button class="burger" type="button" aria-label="Открыть меню" aria-expanded="false">
@@ -94,6 +101,10 @@
 
     <div class="mobile-menu container" id="mobile-menu">
       <div class="mobile-menu-inner">
+        <div class="lang-switch lang-switch-mobile" data-lang-switch role="group" aria-label="Выбор языка">
+          <button class="lang-btn" type="button" data-lang="ru" aria-pressed="false">RU</button>
+          <button class="lang-btn" type="button" data-lang="uz" aria-pressed="false">UZ</button>
+        </div>
         <a href="#features">Возможности</a>
         <a href="#how">Как работает</a>
         <a href="#catalog">Каталог</a>
@@ -709,7 +720,7 @@
     </section>
   </div>
 
-  <script defer src="/site/testimonials.js"></script>
+  <script defer type="module" src="/site/testimonials.js"></script>
   <script defer type="module" src="/site/index.js"></script>
   <script defer type="module" src="/site/chat-widget.js"></script>
 </body>

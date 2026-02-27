@@ -1,23 +1,4 @@
-const TESTIMONIALS = [
-  // Column 1 — Заказчики
-  [
-    { text: 'Раньше на поиск техники уходило до часа. Сейчас запускаем заявку за пару минут и быстро видим ставки.', name: 'Нодира Саидова', role: 'Заказчик, стройподряд' },
-    { text: 'Стало намного прозрачнее: видно кто откликнулся, какая цена и на каком этапе сейчас заказ.', name: 'Руслан Ташматов', role: 'Координатор объектов' },
-    { text: 'Удобно, что всё в одном месте: заказ, выбор исполнителя, трекинг и рейтинг после завершения.', name: 'Ирина Пак', role: 'Закупщик' },
-  ],
-  // Column 2 — Исполнители
-  [
-    { text: 'В Reyz+ получаю релевантные заявки, а не случайные. Это сократило простой техники и повысило загрузку.', name: 'Шерзод Каримов', role: 'Водитель спецтехники' },
-    { text: 'Push и Telegram-уведомления реально помогают — хорошие заказы не пропускаются.', name: 'Алишер Мавлонов', role: 'Партнер-исполнитель' },
-    { text: 'Процесс понятный: ставка, подтверждение, этапы выполнения. Заказчики видят, что происходит, и меньше звонят.', name: 'Фарход Рахимов', role: 'Владелец техники' },
-  ],
-  // Column 3 — Бизнес
-  [
-    { text: 'Для нашей компании Reyz стал рабочим стандартом: меньше ручных операций и больше контроля по срокам.', name: 'Дилором Абдуллаева', role: 'Руководитель логистики' },
-    { text: 'На крупных объектах ценим прозрачность: всё фиксируется по статусам, есть история и понятная ответственность.', name: 'Сардор Хасанов', role: 'Производственный менеджер' },
-    { text: 'Отдельный плюс — быстрое подключение новых водителей и техники без потери качества обслуживания заказчиков.', name: 'Мухаммад Комилов', role: 'Операционный директор' },
-  ],
-];
+import { initI18n, onLanguageChange, t } from './i18n.js';
 
 const COLUMN_CLASSES = [
   'testimonials-column animate-on-scroll',
@@ -34,8 +15,10 @@ function initials(name) {
 function renderTestimonials() {
   const container = document.getElementById('testimonials-columns');
   if (!container) return;
+  container.innerHTML = '';
 
-  TESTIMONIALS.forEach((column, colIdx) => {
+  const testimonials = t('testimonials') || [];
+  testimonials.forEach((column, colIdx) => {
     const col = document.createElement('div');
     col.className = COLUMN_CLASSES[colIdx] || COLUMN_CLASSES[0];
 
@@ -46,22 +29,22 @@ function renderTestimonials() {
     // Duplicate cards for infinite scroll effect
     const cards = [...column, ...column];
 
-    cards.forEach((t) => {
+    cards.forEach((testimonial) => {
       const article = document.createElement('article');
       article.className = 'testimonial-card';
 
       const p = document.createElement('p');
-      p.textContent = t.text;
+      p.textContent = testimonial.text;
 
       const author = document.createElement('div');
       author.className = 'testimonial-author';
 
       const avatar = document.createElement('div');
       avatar.className = 'testimonial-avatar';
-      avatar.textContent = initials(t.name);
+      avatar.textContent = initials(testimonial.name);
 
       const info = document.createElement('div');
-      info.innerHTML = `<strong>${t.name}</strong><span>${t.role}</span>`;
+      info.innerHTML = `<strong>${testimonial.name}</strong><span>${testimonial.role}</span>`;
 
       author.append(avatar, info);
       article.append(p, author);
@@ -73,4 +56,6 @@ function renderTestimonials() {
   });
 }
 
+initI18n();
 renderTestimonials();
+onLanguageChange(renderTestimonials);

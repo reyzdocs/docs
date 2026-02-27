@@ -1,3 +1,5 @@
+import { getCurrentLanguage, initI18n, onLanguageChange, t } from './i18n.js';
+
 const STORAGE_KEY = 'reyz_web_chat_v1';
 const POLL_INTERVAL_MS = 5000; // Fallback polling (Socket.IO is primary)
 const MAX_RENDERED_MESSAGES = 200;
@@ -31,6 +33,8 @@ const chipsEl = document.getElementById('web-chat-chips');
 if (!widget || !launchBtn || !panel || !closeBtn || !form || !input || !messagesEl) {
   throw new Error('Web chat widget DOM is missing');
 }
+
+initI18n();
 
 let pollTimer = null;
 let sessionId = null;
@@ -70,7 +74,7 @@ function loadState() {
 function formatTime(iso) {
   const date = new Date(iso);
   if (!Number.isFinite(date.getTime())) return '';
-  return date.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+  return date.toLocaleTimeString(t('locale') || getCurrentLanguage(), { hour: '2-digit', minute: '2-digit' });
 }
 
 function isWidgetOpen() {
@@ -130,7 +134,7 @@ function makeMessageNode(message) {
 
   const meta = document.createElement('div');
   meta.className = 'web-chat-meta';
-  meta.textContent = `${message.senderLabel || (isUserMessage ? 'Вы' : 'Поддержка')} · ${formatTime(message.createdAt)}`;
+  meta.textContent = `${message.senderLabel || (isUserMessage ? t('chat.senderYou') : t('chat.senderSupport'))} · ${formatTime(message.createdAt)}`;
   item.append(meta);
 
   return item;
@@ -232,7 +236,7 @@ async function loadMessages() {
   const status = String(payload.session?.status || 'open').toLowerCase();
   if (status !== 'open') {
     disableInput();
-    appendStatus('Чат закрыт. Напишите в support@reyz.app');
+    appendStatus(t('chat.statusClosedSupport'));
   }
 }
 
@@ -308,7 +312,7 @@ function _initSocket() {
 
     socket.on('webchat:closed', () => {
       disableInput();
-      appendStatus('Чат закрыт оператором.');
+      appendStatus(t('chat.statusClosedOperator'));
     });
   } catch (error) {
     console.warn('[WebChat] Socket.IO init failed:', error.message);
@@ -395,7 +399,7 @@ launchBtn.addEventListener('click', async () => {
 
   if (!openOnce) {
     openOnce = true;
-    appendStatus('Подключаем чат...');
+    appendStatus(t('chat.statusConnecting'));
   }
 
   try {
@@ -403,7 +407,7 @@ launchBtn.addEventListener('click', async () => {
     await loadMessages();
     connectSocket();
   } catch (error) {
-    appendStatus('Не удалось подключить чат. Попробуйте позже.');
+    appendStatus(t('chat.statusOpenFailed'));
     console.error('[WebChat] Open failed:', error);
   }
 });
@@ -432,7 +436,7 @@ form.addEventListener('submit', async (event) => {
     input.value = '';
     hideChips();
   } catch (error) {
-    appendStatus('Сообщение не отправлено. Попробуйте еще раз.');
+    appendStatus(t('chat.statusSendFailed'));
     console.error('[WebChat] Send failed:', error);
   } finally {
     input.disabled = false;
@@ -461,7 +465,7 @@ if (chipsEl) {
       await ensureSession();
       await sendMessage(text);
     } catch (error) {
-      appendStatus('Сообщение не отправлено. Попробуйте еще раз.');
+      appendStatus(t('chat.statusSendFailed'));
       console.error('[WebChat] Chip send failed:', error);
     }
   });
@@ -483,7 +487,33 @@ window.addEventListener('beforeunload', () => {
 
 // ── Init ──
 
+function applyLocalizedUi() {
+  const headerTitle = panel.querySelector('.web-chat-header strong');
+  if (headerTitle) headerTitle.textContent = t('chat.headerTitle');
+
+  const headerSubtitle = panel.querySelector('.web-chat-header p');
+  if (headerSubtitle) headerSubtitle.textContent = t('chat.headerSubtitle');
+
+  const inputLabel = form.querySelector('label[for="web-chat-input"]');
+  if (inputLabel) inputLabel.textContent = t('chat.inputLabel');
+
+  input.placeholder = t('chat.inputPlaceholder');
+
+  const submit = form.querySelector('button[type="submit"]');
+  if (submit) submit.textContent = t('chat.sendButton');
+
+  const chips = chipsEl ? [...chipsEl.querySelectorAll('.web-chat-chip')] : [];
+  const chipTexts = [t('chat.chip1'), t('chat.chip2'), t('chat.chip3')];
+  chips.forEach((chip, index) => {
+    if (!chipTexts[index]) return;
+    chip.textContent = chipTexts[index];
+    chip.dataset.text = chipTexts[index];
+  });
+}
+
 loadState();
+applyLocalizedUi();
+onLanguageChange(applyLocalizedUi);
 
 // If we have a saved session, connect socket immediately for background notifications
 if (sessionId && clientToken) {
