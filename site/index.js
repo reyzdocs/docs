@@ -63,7 +63,7 @@ function renderEquipmentList() {
       const figure = document.createElement('figure');
       const img = document.createElement('img');
       img.src = item.image;
-      img.alt = toHumanEquipmentName(item.slug);
+      img.alt = item.name || toHumanEquipmentName(item.slug);
       img.width = 256;
       img.height = 256;
       img.loading = 'lazy';
@@ -71,7 +71,7 @@ function renderEquipmentList() {
       img.referrerPolicy = 'no-referrer';
 
       const caption = document.createElement('figcaption');
-      caption.textContent = toHumanEquipmentName(item.slug);
+      caption.textContent = item.name || toHumanEquipmentName(item.slug);
 
       figure.append(img, caption);
       li.append(figure);
