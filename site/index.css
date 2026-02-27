@@ -294,7 +294,28 @@ ul, ol {
 }
 
 .lang-switch-mobile {
-  margin: 12px 0 8px;
+  margin: 12px 0 10px;
+}
+
+@media (max-width: 767px) {
+  .lang-switch-mobile {
+    width: 100%;
+    padding: 4px;
+    gap: 6px;
+    border-radius: 12px;
+  }
+
+  .lang-switch-mobile .lang-btn {
+    flex: 1;
+    min-width: 0;
+    min-height: 44px;
+    font-size: 0.9rem;
+    border-radius: 10px;
+  }
+
+  .lang-switch-mobile .lang-btn.active {
+    box-shadow: 0 2px 10px rgba(228, 116, 24, 0.35);
+  }
 }
 
 .mobile-menu-inner a {
