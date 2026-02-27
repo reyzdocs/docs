@@ -191,15 +191,15 @@ ul, ol {
 /* ── Burger ── */
 .burger {
   display: flex;
-  width: 40px;
-  height: 40px;
-  border: 1px solid var(--card-border);
-  border-radius: 10px;
-  background: var(--card);
+  width: auto;
+  height: auto;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
   cursor: pointer;
   align-items: center;
   justify-content: center;
-  padding: 0;
+  padding: 6px 2px;
 }
 
 .burger-line,
@@ -663,13 +663,29 @@ ul, ol {
   }
 }
 
+@media (max-width: 767px) {
+  .step-visual {
+    min-height: 0;
+    height: auto;
+    align-items: flex-start;
+  }
+
+  .step-visual-inner {
+    padding: 16px;
+  }
+
+  .step-item {
+    align-items: flex-start;
+  }
+}
+
 .step-card {
   display: flex;
   flex-direction: column;
 }
 
 .step-visual {
-  height: 280px;
+  min-height: 280px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1355,8 +1371,8 @@ ul, ol {
 }
 
 .legal-group {
-  border-top: 1px solid var(--section-border);
-  border-bottom: 1px solid var(--section-border);
+  border-top: 0;
+  border-bottom: 0;
   padding: 8px 0;
   margin-bottom: 8px;
 }
