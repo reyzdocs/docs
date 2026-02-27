@@ -26,6 +26,7 @@ const input = document.getElementById('web-chat-input');
 const messagesEl = document.getElementById('web-chat-messages');
 const badge = document.getElementById('web-chat-badge');
 const typingEl = document.getElementById('web-chat-typing');
+const chipsEl = document.getElementById('web-chat-chips');
 
 if (!widget || !launchBtn || !panel || !closeBtn || !form || !input || !messagesEl) {
   throw new Error('Web chat widget DOM is missing');
@@ -429,6 +430,7 @@ form.addEventListener('submit', async (event) => {
     await ensureSession();
     await sendMessage(text);
     input.value = '';
+    hideChips();
   } catch (error) {
     appendStatus('Сообщение не отправлено. Попробуйте еще раз.');
     console.error('[WebChat] Send failed:', error);
@@ -438,6 +440,32 @@ form.addEventListener('submit', async (event) => {
     input.focus();
   }
 });
+
+// ── Quick-reply chips ──
+
+function hideChips() {
+  if (chipsEl) chipsEl.hidden = true;
+}
+
+if (chipsEl) {
+  chipsEl.addEventListener('click', async (e) => {
+    const chip = e.target.closest('.web-chat-chip');
+    if (!chip) return;
+
+    const text = chip.dataset.text;
+    if (!text) return;
+
+    hideChips();
+
+    try {
+      await ensureSession();
+      await sendMessage(text);
+    } catch (error) {
+      appendStatus('Сообщение не отправлено. Попробуйте еще раз.');
+      console.error('[WebChat] Chip send failed:', error);
+    }
+  });
+}
 
 // Handle Enter key in textarea (send on Enter, newline on Shift+Enter)
 input.addEventListener('keydown', (e) => {
