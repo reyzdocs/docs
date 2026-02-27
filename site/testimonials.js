@@ -60,6 +60,7 @@ function renderTestimonials() {
   testimonials.forEach((column, colIdx) => {
     const col = document.createElement('div');
     col.className = COLUMN_CLASSES[colIdx] || COLUMN_CLASSES[0];
+    col.classList.add('visible');
 
     const track = document.createElement('div');
     track.className = 'testimonials-track';
