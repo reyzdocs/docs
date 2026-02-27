@@ -40,6 +40,7 @@ let socket = null;
 let socketConnected = false;
 let typingTimer = null;
 let unreadCount = 0;
+let lockScrollY = 0;
 
 // ── State persistence ──
 
@@ -219,7 +220,7 @@ async function ensureSession() {
 async function loadMessages() {
   if (!sessionId || !clientToken) return;
 
-  const query = new URLSearchParams({ sessionId });
+  const query = new URLSearchParams({ sessionId, clientToken });
   if (lastMessageAt) {
     query.set('after', lastMessageAt);
   }
@@ -243,7 +244,7 @@ function disableInput() {
 async function sendMessage(text) {
   const payload = await request('/message', {
     method: 'POST',
-    body: JSON.stringify({ sessionId, text }),
+    body: JSON.stringify({ sessionId, clientToken, text }),
   });
 
   if (payload && payload.message) {
@@ -346,16 +347,38 @@ function stopPolling() {
 
 // ── Widget open/close ──
 
+function isMobileViewport() {
+  return window.matchMedia('(max-width: 640px)').matches;
+}
+
+function lockBackgroundScroll() {
+  lockScrollY = window.scrollY || window.pageYOffset || 0;
+  document.documentElement.classList.add('web-chat-no-scroll');
+  document.body.classList.add('web-chat-no-scroll');
+  document.body.style.top = `-${lockScrollY}px`;
+}
+
+function unlockBackgroundScroll() {
+  document.documentElement.classList.remove('web-chat-no-scroll');
+  document.body.classList.remove('web-chat-no-scroll');
+  document.body.style.removeProperty('top');
+  window.scrollTo(0, lockScrollY);
+}
+
 function setOpen(isOpen) {
   widget.classList.toggle('open', isOpen);
   launchBtn.setAttribute('aria-expanded', String(isOpen));
+
   if (isOpen) {
-    input.focus();
+    if (isMobileViewport()) {
+      lockBackgroundScroll();
+    }
     unreadCount = 0;
     updateBadge();
     startPolling();
     connectSocket();
   } else {
+    unlockBackgroundScroll();
     stopPolling();
     // Keep socket alive for background notifications
   }
@@ -385,6 +408,7 @@ launchBtn.addEventListener('click', async () => {
 });
 
 closeBtn.addEventListener('click', () => setOpen(false));
+
 
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
@@ -424,6 +448,7 @@ input.addEventListener('keydown', (e) => {
 });
 
 window.addEventListener('beforeunload', () => {
+  unlockBackgroundScroll();
   stopPolling();
   disconnectSocket();
 });
