@@ -1,6 +1,6 @@
 import { EQUIPMENT_ITEMS } from './equipment-list.js';
 
-const MAX_EQUIPMENT_RENDER = 36;
+const MAX_EQUIPMENT_RENDER = Number.POSITIVE_INFINITY;
 
 function toHumanEquipmentName(slug) {
   return slug
