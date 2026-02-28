@@ -199,7 +199,7 @@ const STATIC_TEXT_UZ = {
     "Buyurtma asosida yuk tashish va maxsus texnika - tez, shaffof va ortiqcha qo'ng'iroqlarsiz",
   'Reyzapp объединяет заказчиков и водителей в одном рабочем контуре: создание заявки, автоматический матчинг, тендер по цене и контроль статусов в реальном времени.':
     "Reyzapp buyurtmachi va haydovchilarni bitta ish konturida birlashtiradi: so'rov yaratish, avtomatik matching, narx tenderi va statuslarni real vaqtda nazorat qilish.",
-  'Скачать Reyzapp': "Reyzapp'ni yuklab olish",
+  'Пробовать Reyzapp': "Reyzapp'ni Sinab ko'ring",
   'Reyz+ для водителей': 'Haydovchilar uchun Reyz+',
   'типов техники': 'texnika turlari',
   'онлайн-доступ': 'onlayn kirish',
@@ -298,7 +298,7 @@ const STATIC_TEXT_UZ = {
   'Водителям — Reyz+': 'Haydovchilar uchun - Reyz+',
   'Получайте подходящие заказы автоматически, подавайте ставки, ведите заказ по этапам. Push, Telegram и WS уведомления не дадут пропустить заявку.':
     "Mos buyurtmalarni avtomatik oling, taklif bering va buyurtmani bosqichma-bosqich yuriting. Push, Telegram va WS xabarnomalari so'rovni o'tkazib yubormaslikka yordam beradi.",
-  'Скачать Reyz+': "Reyz+'ni yuklab olish",
+  'Пробовать Reyz+': "Reyz+'ni Sinab ko'ring",
   'Отзывы': 'Sharhlar',
   'Что говорят заказчики и партнёры': 'Buyurtmachi va hamkorlar nima deydi',
   'Реальные впечатления от работы с платформой Reyzapp и Reyz+.':
