@@ -70,7 +70,7 @@ const COPY = {
           role: 'Партнер-исполнитель',
         },
         {
-          text: 'Процесс понятный: ставка, подтверждение, этапы выполнения. Заказчики видят, что происходит, и меньше звонят.',
+          text: 'Процесс понятный: цена, подтверждение, этапы выполнения. Заказчики видят, что происходит, и меньше звонят.',
           name: 'Фарход Рахимов',
           role: 'Владелец техники',
         },
@@ -207,13 +207,13 @@ const STATIC_TEXT_UZ = {
   'прозрачность': 'shaffoflik',
   'Всё для заказа техники в одной платформе': "Texnika buyurtmasi uchun hammasi bitta platformada",
   'Мощные инструменты для заказчиков и водителей — подбор, ставки, контроль и рейтинги.':
-    "Buyurtmachi va haydovchilar uchun kuchli vositalar - tanlash, stavkalar, nazorat va reytinglar.",
+    "Buyurtmachi va haydovchilar uchun kuchli vositalar - tanlash, narx takliflari, nazorat va reytinglar.",
   'Мгновенный матчинг': 'Tezkor matching',
   'Система автоматически находит водителей с подходящей техникой и отправляет уведомления за секунды.':
     'Tizim mos texnikaga ega haydovchilarni avtomatik topadi va soniyalarda bildirishnoma yuboradi.',
   'Прозрачный тендер': 'Shaffof tender',
   'Водители подают ставки, формируя конкурентную цену. Заказчик выбирает лучшее предложение.':
-    "Haydovchilar stavka beradi va raqobat narxini shakllantiradi. Buyurtmachi eng yaxshi taklifni tanlaydi.",
+    "Haydovchilar taklif beradi va raqobat narxini shakllantiradi. Buyurtmachi eng yaxshi taklifni tanlaydi.",
   'Realtime трекинг': 'Realtime tracking',
   'Отслеживайте движение техники на карте и получайте обновления статусов в реальном времени.':
     "Texnika harakatini xaritada kuzating va status yangilanishlarini real vaqtda oling.",
@@ -241,7 +241,7 @@ const STATIC_TEXT_UZ = {
   'Создайте заявку': "So'rov yarating",
   'Укажите тип техники, маршрут и требования. Система автоматически найдёт подходящих исполнителей.':
     "Texnika turi, yo'nalish va talablarni kiriting. Tizim mos ijrochilarni avtomatik topadi.",
-  'Тендер ставок': 'Stavkalar tenderi',
+  'Тендер ставок': 'Narxlar tenderi',
   'Активный': 'Faol',
   'Предложение No1': 'Taklif No1',
   'Рейтинг: ★★★★☆': 'Reyting: ★★★★☆',
@@ -259,7 +259,7 @@ const STATIC_TEXT_UZ = {
   'Цена: 4 000 000 сум': "Narx: 4 000 000 so'm",
   'Тендер по цене': "Narx bo'yicha tender",
   'Водители подают ставки с ценой и временем прибытия. Выбирайте лучший вариант по условиям.':
-    "Haydovchilar narx va yetib kelish vaqti bilan stavka beradi. Shartlarga ko'ra eng yaxshi variantni tanlang.",
+    "Haydovchilar narx va yetib kelish vaqti bilan taklif beradi. Shartlarga ko'ra eng yaxshi variantni tanlang.",
   'Контроль': 'Nazorat',
   'В процессе': 'Jarayonda',
   'Назначен водитель': 'Haydovchi tayinlandi',
@@ -275,13 +275,13 @@ const STATIC_TEXT_UZ = {
     "Buyurtmachi, hamkor va biznes uchun ilova",
   'Заказчики': 'Buyurtmachilar',
   'Создайте заявку за минуту, получите ставки от водителей и отслеживайте заказ на карте.':
-    "Bir daqiqada so'rov yarating, haydovchilardan stavkalar oling va buyurtmani xaritada kuzating.",
+    "Bir daqiqada so'rov yarating, haydovchilardan takliflar oling va buyurtmani xaritada kuzating.",
   'Водители': 'Haydovchilar',
   'Получайте релевантные заказы, подавайте ставки и управляйте этапами выполнения прямо в приложении.':
-    "Mos buyurtmalarni oling, stavka bering va bajarish bosqichlarini ilovaning o'zida boshqaring.",
+    "Mos buyurtmalarni oling, narx bering va bajarish bosqichlarini ilovaning o'zida boshqaring.",
   'Бизнес': 'Biznes',
   'Прозрачные ставки, контроль исполнения и рейтинги — всё для эффективного управления заказами.':
-    "Shaffof stavkalar, bajarilishni nazorat qilish va reytinglar - buyurtmalarni samarali boshqarish uchun hammasi.",
+    "Shaffof narxlar, bajarilishni nazorat qilish va reytinglar - buyurtmalarni samarali boshqarish uchun hammasi.",
   '55+ типов техники в одном каталоге': 'Bitta katalogda 55+ turdagi texnika',
   'Листайте примеры категорий. Полный список доступен в приложении.':
     "Kategoriya namunalari bilan tanishing. To'liq ro'yxat ilovada mavjud.",
@@ -297,7 +297,7 @@ const STATIC_TEXT_UZ = {
     "Bir necha daqiqada so'rov yarating, haydovchilardan taklif oling va narx hamda shartlar bo'yicha eng yaxshisini tanlang. Statuslarni kuzating va reyting qoldiring.",
   'Водителям — Reyz+': 'Haydovchilar uchun - Reyz+',
   'Получайте подходящие заказы автоматически, подавайте ставки, ведите заказ по этапам. Push, Telegram и WS уведомления не дадут пропустить заявку.':
-    "Mos buyurtmalarni avtomatik oling, stavka bering va buyurtmani bosqichma-bosqich yuriting. Push, Telegram va WS xabarnomalari so'rovni o'tkazib yubormaslikka yordam beradi.",
+    "Mos buyurtmalarni avtomatik oling, taklif bering va buyurtmani bosqichma-bosqich yuriting. Push, Telegram va WS xabarnomalari so'rovni o'tkazib yubormaslikka yordam beradi.",
   'Скачать Reyz+': "Reyz+'ni yuklab olish",
   'Отзывы': 'Sharhlar',
   'Что говорят заказчики и партнёры': 'Buyurtmachi va hamkorlar nima deydi',
