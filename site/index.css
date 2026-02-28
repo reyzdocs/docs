@@ -41,7 +41,7 @@ ul, ol {
 
 /* ── CSS Variables ── */
 :root {
-  --primary: #E47418;
+  --primary: #000000;
   --primary-light: rgba(228, 116, 24, 0.12);
   --primary-medium: rgba(228, 116, 24, 0.2);
   --primary-strong: #FF7300;
