@@ -216,6 +216,8 @@ const STATIC_TEXT_UZ = {
   'Прозрачный тендер': 'Shaffof tender',
   'Водители подают ставки, формируя конкурентную цену. Заказчик выбирает лучшее предложение.':
     "Haydovchilar taklif beradi va raqobat narxini shakllantiradi. Buyurtmachi eng yaxshi taklifni tanlaydi.",
+  'Водители отправлают предложений, формируя конкурентную цену. Заказчик выбирает лучшее предложение.':
+    "Haydovchilar takliflarni yuborib, raqobatbardosh narxni shakllantiradi. Buyurtmachi eng yaxshi taklifni tanlaydi.",
   'Realtime трекинг': 'Realtime tracking',
   'Отслеживайте движение техники на карте и получайте обновления статусов в реальном времени.':
     "Texnika harakatini xaritada kuzating va status yangilanishlarini real vaqtda oling.",
@@ -262,6 +264,8 @@ const STATIC_TEXT_UZ = {
   'Тендер по цене': "Narx bo'yicha tender",
   'Водители подают ставки с ценой и временем прибытия. Выбирайте лучший вариант по условиям.':
     "Haydovchilar narx va yetib kelish vaqti bilan taklif beradi. Shartlarga ko'ra eng yaxshi variantni tanlang.",
+  'Водители отпраляют предложений с ценой и временем прибытия. Выбирайте лучший вариант по условиям.':
+    "Haydovchilar narx va yetib kelish vaqti bilan takliflarni yuboradi. Shartlarga ko'ra eng yaxshi variantni tanlang.",
   'Контроль': 'Nazorat',
   'В процессе': 'Jarayonda',
   'Назначен водитель': 'Haydovchi tayinlandi',

@@ -230,6 +230,30 @@ function mountBurger() {
   });
 }
 
+/* ── Clickable for-cards ── */
+function mountForCards() {
+  const cards = document.querySelectorAll('.for-card-link[data-card-href]');
+  cards.forEach((card) => {
+    const href = card.getAttribute('data-card-href');
+    if (!href) return;
+
+    card.setAttribute('role', 'link');
+    card.setAttribute('tabindex', '0');
+
+    card.addEventListener('click', (event) => {
+      if (event.target.closest('a, button, input, textarea, select, label')) return;
+      window.open(href, '_blank', 'noopener,noreferrer');
+    });
+
+    card.addEventListener('keydown', (event) => {
+      if (event.target !== card) return;
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+      event.preventDefault();
+      window.open(href, '_blank', 'noopener,noreferrer');
+    });
+  });
+}
+
 /* ── Show nav CTA buttons on desktop ── */
 function showNavCTA() {
   const navCta = document.querySelectorAll('.nav-cta .btn');
@@ -266,6 +290,7 @@ function bootstrap() {
   mountEquipmentControls();
   mountFAQ();
   mountBurger();
+  mountForCards();
 }
 
 bootstrap();

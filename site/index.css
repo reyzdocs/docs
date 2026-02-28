@@ -1127,6 +1127,15 @@ ul, ol {
   box-shadow: 0 8px 24px rgba(59,130,246,0.1);
 }
 
+.for-card-link {
+  cursor: pointer;
+}
+
+.for-card-link:focus-visible {
+  outline: 3px solid rgba(228, 116, 24, 0.38);
+  outline-offset: 2px;
+}
+
 .for-card-header {
   display: flex;
   align-items: center;
@@ -1153,6 +1162,48 @@ ul, ol {
 
 .for-card .btn {
   margin-top: auto;
+}
+
+.btn-pulse {
+  position: relative;
+  animation: btn-heartbeat 1.9s ease-in-out infinite;
+  transform-origin: center;
+  will-change: transform, box-shadow;
+}
+
+.btn-pulse::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+  border: 2px solid rgba(228, 116, 24, 0.42);
+  opacity: 0;
+  pointer-events: none;
+  animation: btn-pulse-ring 1.9s ease-out infinite;
+}
+
+.btn-pulse:hover,
+.btn-pulse:focus-visible {
+  animation-play-state: paused;
+}
+
+.btn-pulse:hover::after,
+.btn-pulse:focus-visible::after {
+  animation-play-state: paused;
+}
+
+@keyframes btn-heartbeat {
+  0%, 100% { transform: scale(1); }
+  10% { transform: scale(1.03); }
+  20% { transform: scale(1); }
+  30% { transform: scale(1.03); }
+  45%, 80% { transform: scale(1); }
+}
+
+@keyframes btn-pulse-ring {
+  0% { transform: scale(0.95); opacity: 0.55; }
+  70% { transform: scale(1.12); opacity: 0; }
+  100% { transform: scale(1.12); opacity: 0; }
 }
 
 /* ── Testimonials ── */
