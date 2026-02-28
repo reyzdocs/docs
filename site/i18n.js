@@ -208,6 +208,8 @@ const STATIC_TEXT_UZ = {
   'Всё для заказа техники в одной платформе': "Texnika buyurtmasi uchun hammasi bitta platformada",
   'Мощные инструменты для заказчиков и водителей — подбор, ставки, контроль и рейтинги.':
     "Buyurtmachi va haydovchilar uchun kuchli vositalar - tanlash, narx takliflari, nazorat va reytinglar.",
+  'Мощные инструменты для заказчиков и водителей — подбор, предложений цены, контроль и рейтинги.':
+    "Buyurtmachi va haydovchilar uchun kuchli vositalar - narx takliflarini tanlash, nazorat va reytinglar.",
   'Мгновенный матчинг': 'Tezkor matching',
   'Система автоматически находит водителей с подходящей техникой и отправляет уведомления за секунды.':
     'Tizim mos texnikaga ega haydovchilarni avtomatik topadi va soniyalarda bildirishnoma yuboradi.',
@@ -276,11 +278,17 @@ const STATIC_TEXT_UZ = {
   'Заказчики': 'Buyurtmachilar',
   'Создайте заявку за минуту, получите ставки от водителей и отслеживайте заказ на карте.':
     "Bir daqiqada so'rov yarating, haydovchilardan takliflar oling va buyurtmani xaritada kuzating.",
+  'Создайте заявку за минуту, получите цены от водителей и отслеживайте заказ на карте.':
+    "Bir daqiqada so'rov yarating, haydovchilardan narx takliflarini oling va buyurtmani xaritada kuzating.",
   'Водители': 'Haydovchilar',
   'Получайте релевантные заказы, подавайте ставки и управляйте этапами выполнения прямо в приложении.':
     "Mos buyurtmalarni oling, narx bering va bajarish bosqichlarini ilovaning o'zida boshqaring.",
+  'Получайте релевантные заказы, подавайте цены и управляйте этапами выполнения прямо в приложении.':
+    "Mos buyurtmalarni oling, narx bering va bajarish bosqichlarini ilovaning o'zida boshqaring.",
   'Бизнес': 'Biznes',
   'Прозрачные ставки, контроль исполнения и рейтинги — всё для эффективного управления заказами.':
+    "Shaffof narxlar, bajarilishni nazorat qilish va reytinglar - buyurtmalarni samarali boshqarish uchun hammasi.",
+  'Прозрачные цены, контроль исполнения и рейтинги — всё для эффективного управления заказами.':
     "Shaffof narxlar, bajarilishni nazorat qilish va reytinglar - buyurtmalarni samarali boshqarish uchun hammasi.",
   '55+ типов техники в одном каталоге': 'Bitta katalogda 55+ turdagi texnika',
   'Листайте примеры категорий. Полный список доступен в приложении.':
@@ -298,6 +306,8 @@ const STATIC_TEXT_UZ = {
   'Водителям — Reyz+': 'Haydovchilar uchun - Reyz+',
   'Получайте подходящие заказы автоматически, подавайте ставки, ведите заказ по этапам. Push, Telegram и WS уведомления не дадут пропустить заявку.':
     "Mos buyurtmalarni avtomatik oling, taklif bering va buyurtmani bosqichma-bosqich yuriting. Push, Telegram va WS xabarnomalari so'rovni o'tkazib yubormaslikka yordam beradi.",
+  'Получайте подходящие заказы автоматически, подавайте цены, ведите заказ по этапам. Push, Telegram и WS уведомления не дадут пропустить заявку.':
+    "Mos buyurtmalarni avtomatik oling, narx taklif qiling va buyurtmani bosqichma-bosqich yuriting. Push, Telegram va WS xabarnomalari so'rovni o'tkazib yubormaslikka yordam beradi.",
   'Пробовать Reyz+': "Reyz+'ni Sinab ko'ring",
   'Отзывы': 'Sharhlar',
   'Что говорят заказчики и партнёры': 'Buyurtmachi va hamkorlar nima deydi',
