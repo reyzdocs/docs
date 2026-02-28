@@ -229,7 +229,7 @@ ul, ol {
 }
 
 .lang-btn.active {
-  background: linear-gradient(135deg, var(--primary), var(--primary-strong));
+  background: #000000;
   color: var(--primary-foreground);
 }
 
