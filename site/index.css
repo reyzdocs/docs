@@ -534,6 +534,37 @@ ul, ol {
   margin-bottom: 32px;
 }
 
+
+.hero-rotator-line {
+  min-height: 1.25em;
+  margin: 0 0 14px;
+}
+
+.hero-rotator-word {
+  display: inline-block;
+  color: #ff8a00;
+  font-weight: 800;
+  font-size: clamp(2.25rem, 5vw, 3.75rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 320ms ease, transform 320ms ease;
+  will-change: opacity, transform;
+  cursor: pointer;
+}
+
+.hero-rotator-word.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 767px) {
+  .hero-rotator-line {
+    margin: 0 0 10px;
+  }
+}
+
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
@@ -1700,6 +1731,17 @@ html.js .no-js-banner {
   .section-title { line-height: 1.2; }
   .hero { padding: 64px 0 44px; }
   .hero-content { gap: 28px; }
+  .hero-text {
+    text-align: center;
+    margin: 0 auto;
+  }
+  .hero-text p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-actions {
+    justify-content: center;
+  }
   .feature-card,
   .showcase-card,
   .for-card,

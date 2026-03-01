@@ -270,6 +270,92 @@ function showNavCTA() {
   });
 }
 
+
+function trackMetaEvent(eventName, params = {}) {
+  if (typeof window.fbq !== 'function') return;
+  try {
+    window.fbq('trackCustom', eventName, params);
+  } catch (_) { /* ignore */ }
+}
+
+window.reyzTrackMeta = trackMetaEvent;
+
+function mountMetaTracking() {
+  document.addEventListener('click', (event) => {
+    const link = event.target.closest('a[href*="play.google.com/store/apps/details"]');
+    if (!link) return;
+
+    const href = link.getAttribute('href') || '';
+    const app = href.includes('com.reyzplus.driver') ? 'driver' : 'client';
+    trackMetaEvent('PlayStoreClick', { app, href });
+  });
+}
+
+
+function mountHeroEquipmentRotator() {
+  const wordEl = document.getElementById('hero-rotator-word');
+  if (!wordEl) return;
+
+  let idx = 0;
+  let timer = null;
+
+  const buildWords = () => {
+    const lang = getCurrentLanguage();
+    return EQUIPMENT_ITEMS
+      .map((item) => getEquipmentLabel(item, lang))
+      .filter((label) => {
+        if (!label) return false;
+        const normalized = String(label).trim();
+        return normalized.length > 0 && !/\s/.test(normalized);
+      });
+  };
+
+  let words = buildWords();
+  if (!words.length) words = ['Самосвала'];
+
+  const showWord = (next) => {
+    wordEl.classList.remove('is-visible');
+    window.setTimeout(() => {
+      wordEl.textContent = next;
+      wordEl.classList.add('is-visible');
+    }, 180);
+  };
+
+  const goToCatalog = () => {
+    const catalog = document.getElementById('catalog');
+    if (!catalog) return;
+    catalog.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  wordEl.addEventListener('click', goToCatalog);
+  wordEl.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      goToCatalog();
+    }
+  });
+
+  showWord(words[idx]);
+
+  timer = window.setInterval(() => {
+    words = buildWords();
+    if (!words.length) return;
+    idx = (idx + 1) % words.length;
+    showWord(words[idx]);
+  }, 3000);
+
+  onLanguageChange(() => {
+    words = buildWords();
+    idx = 0;
+    if (!words.length) return;
+    showWord(words[idx]);
+  });
+
+  window.addEventListener('beforeunload', () => {
+    if (timer) window.clearInterval(timer);
+  });
+}
+
 /* ── Year ── */
 function setCurrentYear() {
   const year = document.getElementById('year');
@@ -291,6 +377,8 @@ function bootstrap() {
   mountFAQ();
   mountBurger();
   mountForCards();
+  mountMetaTracking();
+  mountHeroEquipmentRotator();
 }
 
 bootstrap();
