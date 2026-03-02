@@ -376,6 +376,21 @@ const STATIC_TEXT = {
   uz: STATIC_TEXT_UZ,
 };
 
+const HERO_SUBLINE_COPY = {
+  ru: {
+    before: 'прозрачные цены • понятные заявки • автоподбор грузов и техники • ',
+    tender: 'тендер по цене',
+    middle: ' • трекинг • два отдельные приложения ',
+    audience: 'для заказчиков и для исполнителей.',
+  },
+  uz: {
+    before: "shaffof narxlar • tushunarli buyurtmalar • yuk va texnikani avtomatik tanlash • ",
+    tender: "narx bo'yicha tender",
+    middle: ' • tracking • ikkita alohida ilova ',
+    audience: 'buyurtmachi va ijrochilar uchun.',
+  },
+};
+
 const ATTRIBUTE_BINDINGS = [
   { selector: '.nav-brand', attr: 'aria-label', ru: 'На главную Reyzapp', uz: 'Reyzapp bosh sahifasiga' },
   { selector: '.burger', attr: 'aria-label', ru: 'Открыть меню', uz: 'Menyuni ochish' },
@@ -500,6 +515,28 @@ function applyAttributeTranslations(language) {
   }
 }
 
+function applyHeroSubline(language) {
+  const node = document.getElementById('hero-subline');
+  if (!node) return;
+
+  const copy = HERO_SUBLINE_COPY[language] || HERO_SUBLINE_COPY.ru;
+  node.textContent = '';
+
+  node.append(document.createTextNode(copy.before));
+
+  const tender = document.createElement('span');
+  tender.className = 'hero-copy-accent';
+  tender.textContent = copy.tender;
+  node.append(tender);
+
+  node.append(document.createTextNode(copy.middle));
+
+  const audience = document.createElement('span');
+  audience.className = 'hero-copy-accent';
+  audience.textContent = copy.audience;
+  node.append(audience);
+}
+
 function buildCanonicalForLanguage(language) {
   const url = new URL(window.location.origin + window.location.pathname);
   url.searchParams.set('lang', language);
@@ -616,6 +653,7 @@ function notify() {
 function applyLanguage(language) {
   currentLanguage = language;
   applyStaticText(language);
+  applyHeroSubline(language);
   applyAttributeTranslations(language);
   applySeo(language);
   applyLegalLinks(language);

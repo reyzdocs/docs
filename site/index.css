@@ -534,6 +534,11 @@ ul, ol {
   margin-bottom: 32px;
 }
 
+.hero-copy-accent {
+  color: #ff8a00;
+  font-weight: 700;
+}
+
 
 .hero-rotator-line {
   min-height: 1.25em;
@@ -1713,13 +1718,13 @@ html.js .no-js-banner {
 
 .btn {
   min-height: 44px;
-  border-radius: 12px;
+  border-radius: 16px;
   font-weight: 650;
 }
 
 .btn-sm {
   min-height: 40px;
-  border-radius: 10px;
+  border-radius: 14px;
 }
 
 .faq-trigger {
