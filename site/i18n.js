@@ -316,6 +316,10 @@ const STATIC_TEXT_UZ = {
     "Mos buyurtmalarni avtomatik oling, taklif bering va buyurtmani bosqichma-bosqich yuriting. Push, Telegram va WS xabarnomalari so'rovni o'tkazib yubormaslikka yordam beradi.",
   'Получайте подходящие заказы автоматически, подавайте цены, ведите заказ по этапам. Push, Telegram и WS уведомления не дадут пропустить заявку.':
     "Mos buyurtmalarni avtomatik oling, narx taklif qiling va buyurtmani bosqichma-bosqich yuriting. Push, Telegram va WS xabarnomalari so'rovni o'tkazib yubormaslikka yordam beradi.",
+  'Получайте подходящие заказы автоматически, подавайте ставки, ведите заказ по этапам. Push и Telegram уведомления не дадут пропустить заявку.':
+    "Mos buyurtmalarni avtomatik oling, taklif bering va buyurtmani bosqichma-bosqich yuriting. Push va Telegram xabarnomalari so'rovni o'tkazib yubormaslikka yordam beradi.",
+  'Получайте подходящие заказы автоматически, подавайте цены, ведите заказ по этапам. Push и Telegram уведомления не дадут пропустить заявку.':
+    "Mos buyurtmalarni avtomatik oling, narx taklif qiling va buyurtmani bosqichma-bosqich yuriting. Push va Telegram xabarnomalari so'rovni o'tkazib yubormaslikka yordam beradi.",
   'Пробовать Reyz+': "Reyz+'ni Sinab ko'ring",
   'Отзывы': 'Sharhlar',
   'Что говорят заказчики и партнёры': 'Buyurtmachi va hamkorlar nima deydi',
@@ -388,6 +392,23 @@ const HERO_SUBLINE_COPY = {
     tender: "narx bo'yicha tender",
     middle: ' • tracking • ikkita alohida ilova ',
     audience: 'buyurtmachi va ijrochilar uchun.',
+  },
+};
+
+const FOR_SUBTITLE_COPY = {
+  ru: {
+    before: '',
+    reyzapp: 'Reyzapp',
+    middle: ' для заказчиков и ',
+    reyzplus: 'Reyz+',
+    after: ' для водителей работают вместе, обеспечивая быстрый и прозрачный процесс.',
+  },
+  uz: {
+    before: 'Buyurtmachilar uchun ',
+    reyzapp: 'Reyzapp',
+    middle: ' va haydovchilar uchun ',
+    reyzplus: 'Reyz+',
+    after: " birga ishlaydi, tez va shaffof jarayonni ta'minlaydi.",
   },
 };
 
@@ -537,6 +558,30 @@ function applyHeroSubline(language) {
   node.append(audience);
 }
 
+function applyForSubtitle(language) {
+  const node = document.getElementById('for-subtitle');
+  if (!node) return;
+
+  const copy = FOR_SUBTITLE_COPY[language] || FOR_SUBTITLE_COPY.ru;
+  node.textContent = '';
+
+  node.append(document.createTextNode(copy.before));
+
+  const app = document.createElement('span');
+  app.className = 'hero-copy-accent';
+  app.textContent = copy.reyzapp;
+  node.append(app);
+
+  node.append(document.createTextNode(copy.middle));
+
+  const plus = document.createElement('span');
+  plus.className = 'hero-copy-accent';
+  plus.textContent = copy.reyzplus;
+  node.append(plus);
+
+  node.append(document.createTextNode(copy.after));
+}
+
 function buildCanonicalForLanguage(language) {
   const url = new URL(window.location.origin + window.location.pathname);
   url.searchParams.set('lang', language);
@@ -654,6 +699,7 @@ function applyLanguage(language) {
   currentLanguage = language;
   applyStaticText(language);
   applyHeroSubline(language);
+  applyForSubtitle(language);
   applyAttributeTranslations(language);
   applySeo(language);
   applyLegalLinks(language);
