@@ -197,6 +197,10 @@ const STATIC_TEXT_UZ = {
   'Водителям': 'Haydovchilar',
   'Грузоперевозка и спецтехника по заявке — быстро, прозрачно и без лишних звонков':
     "Buyurtma asosida yuk tashish va maxsus texnika - tez, shaffof va ortiqcha qo'ng'iroqlarsiz",
+  'Грузоперевозки и спецтехника':
+    'Yuk tashish va maxsus texnika',
+  'прозрачные цены • понятные заявки • автоподбор грузов и техники • тендер по цене • трекинг • два отдельные приложения для заказчиков и для исполнителей.':
+    "shaffof narxlar • tushunarli buyurtmalar • yuk va texnikani avtomatik tanlash • narx bo'yicha tender • tracking • buyurtmachi va ijrochilar uchun ikki alohida ilova.",
   'Reyzapp объединяет заказчиков и водителей в одном рабочем контуре: создание заявки, автоматический матчинг, тендер по цене и контроль статусов в реальном времени.':
     "Reyzapp buyurtmachi va haydovchilarni bitta ish konturida birlashtiradi: so'rov yaratish, avtomatik matching, narx tenderi va statuslarni real vaqtda nazorat qilish.",
   'Пробовать Reyzapp': "Reyzapp'ni Sinab ko'ring",
