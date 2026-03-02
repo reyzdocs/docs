@@ -136,7 +136,7 @@ function ensureWelcomeMessageVisible() {
     {
       id: 'local_welcome_v1',
       direction: 'outgoing',
-      text: t('chat.welcome') || 'Здравствуйте! Напишите ваш вопрос. Мы ответим в Telegram-чате поддержки.',
+      text: t('chat.welcome') || 'Здравствуйте! Чем помочь?',
       senderLabel: t('chat.senderSupport'),
       createdAt: new Date().toISOString(),
     },
@@ -235,7 +235,7 @@ async function ensureSession() {
 
   const payload = await request('/start', {
     method: 'POST',
-    body: JSON.stringify({}),
+    body: JSON.stringify({ lang: getCurrentLanguage() }),
   });
 
   sessionId = payload.sessionId;
