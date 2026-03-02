@@ -296,8 +296,8 @@ function mountHeroEquipmentRotator() {
   const wordEl = document.getElementById('hero-rotator-word');
   if (!wordEl) return;
 
-  let idx = 0;
   let timer = null;
+  let currentWord = '';
 
   const buildWords = () => {
     const lang = getCurrentLanguage();
@@ -312,6 +312,28 @@ function mountHeroEquipmentRotator() {
 
   let words = buildWords();
   if (!words.length) words = ['Самосвала'];
+
+  const pickRandomWord = () => {
+    words = buildWords();
+    if (!words.length) return null;
+    if (words.length === 1) return words[0];
+
+    let next = currentWord;
+    let attempts = 0;
+    while (next === currentWord && attempts < 12) {
+      next = words[Math.floor(Math.random() * words.length)];
+      attempts += 1;
+    }
+
+    if (next === currentWord) {
+      const pool = words.filter((word) => word !== currentWord);
+      if (pool.length) {
+        next = pool[Math.floor(Math.random() * pool.length)];
+      }
+    }
+
+    return next;
+  };
 
   const showWord = (next) => {
     wordEl.classList.remove('is-visible');
@@ -335,20 +357,21 @@ function mountHeroEquipmentRotator() {
     }
   });
 
-  showWord(words[idx]);
+  currentWord = words[Math.floor(Math.random() * words.length)];
+  showWord(currentWord);
 
   timer = window.setInterval(() => {
-    words = buildWords();
-    if (!words.length) return;
-    idx = (idx + 1) % words.length;
-    showWord(words[idx]);
-  }, 3000);
+    const nextWord = pickRandomWord();
+    if (!nextWord) return;
+    currentWord = nextWord;
+    showWord(nextWord);
+  }, 2000);
 
   onLanguageChange(() => {
     words = buildWords();
-    idx = 0;
     if (!words.length) return;
-    showWord(words[idx]);
+    currentWord = words[Math.floor(Math.random() * words.length)];
+    showWord(currentWord);
   });
 
   window.addEventListener('beforeunload', () => {
