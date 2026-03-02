@@ -351,6 +351,8 @@ const STATIC_TEXT_UZ = {
     "Ilovani yuklab oling va bugunoq Reyzapp platformasiga qo'shiling.",
   'Цифровая платформа для заказа спецтехники. Матчинг, тендер по цене и realtime-контроль.':
     "Maxsus texnika buyurtmasi uchun raqamli platforma. Matching, narx tenderi va realtime nazorat.",
+  'Платформа для грузоперевозок и заказа спецтехники. Автоподбор (матчинг), тендер по цене и контроль в реальном времени. Два приложения: Заказчик и Водитель.':
+    "Yuk tashish va maxsus texnika buyurtmasi platformasi. Avtomatik tanlash (matching), narx bo'yicha tender va real vaqt nazorati. Ikki ilova: Buyurtmachi va Haydovchi.",
   'Приложения': 'Ilovalar',
   'Reyzapp для заказчиков': 'Buyurtmachilar uchun Reyzapp',
   'Разделы': "Bo'limlar",
