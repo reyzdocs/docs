@@ -1578,16 +1578,26 @@ ul, ol {
   color: var(--foreground);
 }
 
+.footer-actions-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 24px;
+  flex-wrap: nowrap;
+}
+
 .footer-socials {
   display: flex;
-  justify-content: center;
-  gap: 12px;
-  margin-top: 32px;
+  justify-content: flex-start;
+  gap: 8px;
+  margin-top: 0;
+  flex: 0 0 auto;
 }
 
 .footer-social-link {
-  width: 40px;
-  height: 40px;
+  width: clamp(28px, 8vw, 40px);
+  height: clamp(28px, 8vw, 40px);
   border-radius: 50%;
   background: #0f172a;
   color: #fff;
@@ -1604,17 +1614,18 @@ ul, ol {
 
 .footer-store-badges {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 20px;
+  flex-wrap: nowrap;
+  gap: 6px;
+  margin-top: 0;
+  flex: 0 0 auto;
 }
 
 .footer-store-badges img {
   display: block;
   width: auto;
-  height: 40px;
+  height: clamp(24px, 7vw, 40px);
   border-radius: 8px;
 }
 
