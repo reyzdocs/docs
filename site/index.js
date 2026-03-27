@@ -5,6 +5,13 @@ import { getCurrentLanguage, initI18n, onLanguageChange } from './i18n.js';
 const MAX_EQUIPMENT_RENDER = Number.POSITIVE_INFINITY;
 const EQUIPMENT_BATCH_SIZE = 20;
 const EQUIPMENT_BY_SLUG = new Map(EQUIPMENT_ITEMS.map((item) => [item.slug, item]));
+const loadedModules = new Map();
+const loadedStylesheets = new Set();
+let equipmentRendered = false;
+let equipmentLanguageListenerAttached = false;
+let equipmentControlsMounted = false;
+let testimonialsLoaded = false;
+let chatWidgetLoaded = false;
 
 function toHumanEquipmentName(slug) {
   return slug
@@ -19,6 +26,66 @@ function toHumanEquipmentName(slug) {
 
 function isReducedMotion() {
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
+function onIdle(callback, timeout = 1500) {
+  if ('requestIdleCallback' in window) {
+    window.requestIdleCallback(callback, { timeout });
+    return;
+  }
+  window.setTimeout(callback, timeout);
+}
+
+function whenVisible(element, callback, rootMargin = '200px 0px') {
+  if (!element) return;
+
+  if (!('IntersectionObserver' in window)) {
+    callback();
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        observer.disconnect();
+        callback();
+      });
+    },
+    { rootMargin },
+  );
+
+  observer.observe(element);
+}
+
+function loadModuleOnce(path) {
+  if (!loadedModules.has(path)) {
+    loadedModules.set(path, import(path));
+  }
+  return loadedModules.get(path);
+}
+
+function loadStylesheetOnce(href) {
+  if (loadedStylesheets.has(href)) return Promise.resolve();
+
+  return new Promise((resolve, reject) => {
+    const existing = document.querySelector(`link[href="${href}"]`);
+    if (existing) {
+      loadedStylesheets.add(href);
+      resolve();
+      return;
+    }
+
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = href;
+    link.onload = () => {
+      loadedStylesheets.add(href);
+      resolve();
+    };
+    link.onerror = reject;
+    document.head.append(link);
+  });
 }
 
 function getEquipmentLabel(item, language = 'ru') {
@@ -56,6 +123,8 @@ function mountScrollAnimations() {
 
 /* ── Equipment List ── */
 function renderEquipmentList() {
+  if (equipmentRendered) return;
+
   const track = document.getElementById('equipment-track');
   if (!track) return;
 
@@ -100,6 +169,12 @@ function renderEquipmentList() {
   }
 
   renderChunk();
+  equipmentRendered = true;
+
+  if (!equipmentLanguageListenerAttached) {
+    onLanguageChange((language) => applyEquipmentLanguage(language));
+    equipmentLanguageListenerAttached = true;
+  }
 }
 
 function applyEquipmentLanguage(language) {
@@ -121,6 +196,8 @@ function applyEquipmentLanguage(language) {
 
 /* ── Equipment Scroller Controls ── */
 function mountEquipmentControls() {
+  if (equipmentControlsMounted) return;
+
   const scroller = document.getElementById('equipment-scroller');
   const track = document.getElementById('equipment-track');
   const prev = document.getElementById('equipment-prev');
@@ -160,6 +237,104 @@ function mountEquipmentControls() {
 
   window.addEventListener('resize', updateButtons);
   updateButtons();
+  equipmentControlsMounted = true;
+}
+
+function mountDeferredImages() {
+  const deferredImages = document.querySelectorAll('img[data-src]');
+  if (!deferredImages.length) return;
+
+  const loadImage = (img) => {
+    if (!img || img.getAttribute('src')) return;
+    const source = img.getAttribute('data-src');
+    if (!source) return;
+    img.src = source;
+  };
+
+  deferredImages.forEach((img) => {
+    if (img.classList.contains('hero-phone-secondary') && window.innerWidth < 768) {
+      return;
+    }
+
+    if (!('IntersectionObserver' in window)) {
+      loadImage(img);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          observer.unobserve(entry.target);
+          loadImage(entry.target);
+        });
+      },
+      { rootMargin: '300px 0px' },
+    );
+
+    observer.observe(img);
+  });
+}
+
+function mountDeferredSections() {
+  const catalogSection = document.getElementById('catalog');
+  whenVisible(catalogSection, () => {
+    renderEquipmentList();
+    mountEquipmentControls();
+  }, '500px 0px');
+
+  const testimonialsSection = document.getElementById('testimonials');
+  whenVisible(testimonialsSection, () => {
+    if (testimonialsLoaded) return;
+    testimonialsLoaded = true;
+    loadModuleOnce('/site/testimonials.js').catch(() => {
+      testimonialsLoaded = false;
+    });
+  }, '600px 0px');
+
+  onIdle(() => {
+    renderEquipmentList();
+    mountEquipmentControls();
+  }, 2200);
+
+  onIdle(() => {
+    if (testimonialsLoaded) return;
+    testimonialsLoaded = true;
+    loadModuleOnce('/site/testimonials.js').catch(() => {
+      testimonialsLoaded = false;
+    });
+  }, 3200);
+}
+
+async function loadChatWidget() {
+  if (chatWidgetLoaded) return;
+  chatWidgetLoaded = true;
+
+  try {
+    await loadStylesheetOnce('/site/chat-widget.css');
+    await loadModuleOnce('/site/chat-widget.js');
+    const widget = document.getElementById('web-chat-widget');
+    if (widget) widget.hidden = false;
+  } catch (_) {
+    chatWidgetLoaded = false;
+  }
+}
+
+function mountDeferredChatWidget() {
+  const triggerLoad = () => {
+    window.removeEventListener('pointerdown', triggerLoad);
+    window.removeEventListener('keydown', triggerLoad);
+    window.removeEventListener('scroll', triggerLoad);
+    void loadChatWidget();
+  };
+
+  window.addEventListener('pointerdown', triggerLoad, { passive: true, once: true });
+  window.addEventListener('keydown', triggerLoad, { once: true });
+  window.addEventListener('scroll', triggerLoad, { passive: true, once: true });
+
+  onIdle(() => {
+    void loadChatWidget();
+  }, 4500);
 }
 
 /* ── FAQ Accordion ── */
@@ -394,14 +569,14 @@ function bootstrap() {
   setCurrentYear();
   showNavCTA();
   mountScrollAnimations();
-  renderEquipmentList();
-  onLanguageChange((language) => applyEquipmentLanguage(language));
-  mountEquipmentControls();
+  mountDeferredImages();
+  mountDeferredSections();
   mountFAQ();
   mountBurger();
   mountForCards();
   mountMetaTracking();
   mountHeroEquipmentRotator();
+  mountDeferredChatWidget();
 }
 
 bootstrap();

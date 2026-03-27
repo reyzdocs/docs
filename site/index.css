@@ -586,17 +586,19 @@ ul, ol {
 
 .hero-phone {
   width: min(100%, 300px);
+  aspect-ratio: 9 / 16;
   max-height: 560px;
   height: auto;
   object-fit: contain;
   justify-self: center;
   border-radius: 24px;
+  background: linear-gradient(180deg, rgba(228, 116, 24, 0.08), rgba(15, 23, 42, 0.04));
   box-shadow: var(--shadow-lg);
   overflow: hidden;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.hero-phone:nth-child(2) {
+.hero-phone-secondary {
   transform: translateY(24px);
 }
 
@@ -604,27 +606,22 @@ ul, ol {
   transform: translateY(-8px);
 }
 
-.hero-phone:nth-child(2):hover {
+.hero-phone-secondary:hover {
   transform: translateY(16px);
 }
 
-.hero-phone img {
-  width: 100%;
-  height: auto;
-}
-
 @media (max-width: 767px) {
+  .hero-visual {
+    grid-template-columns: 1fr;
+  }
+
   .hero-phone {
     width: min(100%, 180px);
     max-height: 360px;
   }
 
-  .hero-phone:nth-child(2) {
-    transform: translateY(12px);
-  }
-
-  .hero-phone:nth-child(2):hover {
-    transform: translateY(8px);
+  .hero-phone-secondary {
+    display: none;
   }
 }
 
@@ -986,6 +983,7 @@ ul, ol {
   overflow: hidden;
   margin-bottom: 20px;
   background: var(--muted-bg);
+  aspect-ratio: 9 / 16;
 }
 
 .showcase-card-img img {
@@ -993,6 +991,10 @@ ul, ol {
   height: auto;
   object-fit: cover;
   transition: transform 0.4s ease;
+}
+
+img[data-src]:not([src]) {
+  visibility: hidden;
 }
 
 .showcase-card:hover .showcase-card-img img {

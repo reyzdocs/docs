@@ -415,11 +415,11 @@ const FOR_SUBTITLE_COPY = {
 const ATTRIBUTE_BINDINGS = [
   { selector: '.nav-brand', attr: 'aria-label', ru: 'На главную Reyzapp', uz: 'Reyzapp bosh sahifasiga' },
   { selector: '.burger', attr: 'aria-label', ru: 'Открыть меню', uz: 'Menyuni ochish' },
-  { selector: '.hero-phone:nth-child(1)', attr: 'src', ru: '/public/1.png', uz: '/public/1_uz.png' },
-  { selector: '.hero-phone:nth-child(2)', attr: 'src', ru: '/public/3.png', uz: '/public/3_uz.png' },
-  { selector: '.showcase-card:nth-child(1) img', attr: 'src', ru: '/public/1.png', uz: '/public/1_uz.png' },
-  { selector: '.showcase-card:nth-child(2) img', attr: 'src', ru: '/public/2.png', uz: '/public/2_uz.png' },
-  { selector: '.showcase-card:nth-child(3) img', attr: 'src', ru: '/public/3.png', uz: '/public/3_uz.png' },
+  { selector: '.hero-phone:nth-child(1)', attr: 'src', ru: '/public/1-hero.webp', uz: '/public/1-hero-uz.webp' },
+  { selector: '.hero-phone:nth-child(2)', attr: 'data-src', ru: '/public/3-hero.webp', uz: '/public/3-hero-uz.webp' },
+  { selector: '.showcase-card:nth-child(1) img', attr: 'data-src', ru: '/public/1-showcase.webp', uz: '/public/1-showcase-uz.webp' },
+  { selector: '.showcase-card:nth-child(2) img', attr: 'data-src', ru: '/public/2-showcase.webp', uz: '/public/2-showcase-uz.webp' },
+  { selector: '.showcase-card:nth-child(3) img', attr: 'data-src', ru: '/public/3-showcase.webp', uz: '/public/3-showcase-uz.webp' },
   { selector: '.hero-phone:nth-child(1)', attr: 'alt', ru: 'Интерфейс Reyzapp с картой', uz: "Reyzapp interfeysi va xarita" },
   { selector: '.hero-phone:nth-child(2)', attr: 'alt', ru: 'Отслеживание техники на карте', uz: 'Texnikani xaritada kuzatish' },
   { selector: '.showcase-card:nth-child(1) img', attr: 'alt', ru: 'Удобный интерфейс Reyzapp с картой и каталогом техники', uz: 'Reyzapp qulay interfeysi: xarita va texnika katalogi' },
@@ -532,6 +532,9 @@ function applyAttributeTranslations(language) {
     if (!value) continue;
     document.querySelectorAll(binding.selector).forEach((node) => {
       node.setAttribute(binding.attr, value);
+      if (binding.attr === 'data-src' && node.getAttribute('src')) {
+        node.setAttribute('src', value);
+      }
     });
   }
 }

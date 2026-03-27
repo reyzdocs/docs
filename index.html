@@ -37,10 +37,9 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preconnect" href="https://yfycgikezcaqmppvscth.supabase.co" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" /></noscript>
   <link rel="stylesheet" href="/site/index.css" />
-  <link rel="stylesheet" href="/site/chat-widget.css" />
 
   <!-- Meta Pixel Code -->
   <script>
@@ -92,7 +91,7 @@
   <nav class="site-nav">
     <div class="container nav-inner">
       <a class="nav-brand" href="/" aria-label="На главную Reyzapp">
-        <img src="/public/reyzapp-icon-v3.png" alt="" width="32" height="32" decoding="async" />
+        <img src="/public/reyzapp-icon-v3-128.webp" alt="" width="32" height="32" decoding="async" />
         <span>Reyzapp</span>
       </a>
 
@@ -154,8 +153,8 @@
         </div>
 
         <div class="hero-visual animate-on-scroll animate-delay-2">
-          <img class="hero-phone" src="/public/1.png" alt="Интерфейс Reyzapp с картой" width="2304" height="4096" loading="eager" decoding="async" />
-          <img class="hero-phone" src="/public/3.png" alt="Отслеживание техники на карте" width="2304" height="4096" loading="lazy" decoding="async" />
+          <img class="hero-phone" src="/public/1-hero.webp" alt="Интерфейс Reyzapp с картой" width="640" height="1138" loading="eager" fetchpriority="high" decoding="async" />
+          <img class="hero-phone hero-phone-secondary" data-src="/public/3-hero.webp" alt="Отслеживание техники на карте" width="640" height="1138" loading="lazy" fetchpriority="low" decoding="async" />
         </div>
       </div>
     </section>
@@ -196,7 +195,7 @@
         <div class="for-grid">
           <div class="for-card for-card-link animate-on-scroll" data-card-href="https://play.google.com/store/apps/details?id=com.reyzapp.app">
             <div class="for-card-header">
-              <img src="/public/reyzapp-icon-v3.png" alt="" width="40" height="40" loading="lazy" decoding="async" />
+              <img src="/public/reyzapp-icon-v3-128.webp" alt="" width="40" height="40" loading="lazy" decoding="async" />
               <h3>Заказчикам — Reyzapp</h3>
             </div>
             <p>Создайте заявку за минуты, получите предложения от водителей и выберите лучшее по цене и условиям. Отслеживайте статусы и оставляйте рейтинги.</p>
@@ -208,7 +207,7 @@
 
           <div class="for-card for-card-link animate-on-scroll animate-delay-1" data-card-href="https://play.google.com/store/apps/details?id=com.reyzplus.driver">
             <div class="for-card-header">
-              <img src="/public/reyzplus-icon-v3.png" alt="" width="40" height="40" loading="lazy" decoding="async" />
+              <img src="/public/reyzplus-icon-v3-128.webp" alt="" width="40" height="40" loading="lazy" decoding="async" />
               <h3>Водителям — Reyz+</h3>
             </div>
             <p>Получайте подходящие заказы автоматически, подавайте цены, ведите заказ по этапам. Push и Telegram уведомления не дадут пропустить заявку.</p>
@@ -458,7 +457,7 @@
         <div class="showcase-grid">
           <div class="showcase-card animate-on-scroll">
             <div class="showcase-card-img">
-              <img src="/public/1.png" alt="Удобный интерфейс Reyzapp с картой и каталогом техники" width="810" height="1440" loading="lazy" decoding="async" />
+              <img data-src="/public/1-showcase.webp" alt="Удобный интерфейс Reyzapp с картой и каталогом техники" width="810" height="1440" loading="lazy" fetchpriority="low" decoding="async" />
             </div>
             <h3>Заказчики</h3>
             <p>Создайте заявку за минуту, получите цены от водителей и отслеживайте заказ на карте.</p>
@@ -466,7 +465,7 @@
 
           <div class="showcase-card animate-on-scroll animate-delay-1">
             <div class="showcase-card-img">
-              <img src="/public/2.png" alt="Каталог из 55 категорий техники для стройки и логистики" width="810" height="1440" loading="lazy" decoding="async" />
+              <img data-src="/public/2-showcase.webp" alt="Каталог из 55 категорий техники для стройки и логистики" width="810" height="1440" loading="lazy" fetchpriority="low" decoding="async" />
             </div>
             <h3>Водители</h3>
             <p>Получайте релевантные заказы, подавайте цены и управляйте этапами выполнения прямо в приложении.</p>
@@ -474,7 +473,7 @@
 
           <div class="showcase-card animate-on-scroll animate-delay-2">
             <div class="showcase-card-img">
-              <img src="/public/3.png" alt="Отслеживание движения техники на карте в реальном времени" width="810" height="1440" loading="lazy" decoding="async" />
+              <img data-src="/public/3-showcase.webp" alt="Отслеживание движения техники на карте в реальном времени" width="810" height="1440" loading="lazy" fetchpriority="low" decoding="async" />
             </div>
             <h3>Бизнес</h3>
             <p>Прозрачные цены, контроль исполнения и рейтинги — всё для эффективного управления заказами.</p>
@@ -633,7 +632,7 @@
       <div class="footer-grid">
         <div>
           <div class="footer-brand">
-            <img src="/public/reyzapp-icon-v3.png" alt="" width="28" height="28" decoding="async" />
+            <img src="/public/reyzapp-icon-v3-128.webp" alt="" width="28" height="28" decoding="async" />
             <span>Reyzapp</span>
           </div>
           <p class="footer-desc">Платформа для грузоперевозок и заказа спецтехники. Автоподбор (матчинг), тендер по цене и контроль в реальном времени. Два приложения: Заказчик и Водитель.</p>
@@ -700,7 +699,7 @@
     </div>
   </footer>
 
-  <div class="web-chat-widget" id="web-chat-widget">
+  <div class="web-chat-widget" id="web-chat-widget" hidden>
     <button class="web-chat-launch" id="web-chat-launch" type="button" aria-expanded="false" aria-controls="web-chat-panel" aria-label="Открыть чат поддержки">
       <svg class="web-chat-launch-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M4 12a8 8 0 0 1 16 0"/>
@@ -743,8 +742,6 @@
     </section>
   </div>
 
-  <script defer type="module" src="/site/testimonials.js"></script>
   <script defer type="module" src="/site/index.js"></script>
-  <script defer type="module" src="/site/chat-widget.js"></script>
 </body>
 </html>
