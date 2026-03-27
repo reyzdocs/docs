@@ -12,6 +12,7 @@ let equipmentLanguageListenerAttached = false;
 let equipmentControlsMounted = false;
 let testimonialsLoaded = false;
 let chatWidgetLoaded = false;
+let metaPixelLoaded = false;
 
 function toHumanEquipmentName(slug) {
   return slug
@@ -466,6 +467,57 @@ function mountMetaTracking() {
   });
 }
 
+function loadMetaPixel() {
+  if (metaPixelLoaded) return;
+  metaPixelLoaded = true;
+
+  try {
+    if (typeof window.fbq !== 'function') {
+      const fbq = function fbqShim(...args) {
+        fbq.queue.push(args);
+      };
+      fbq.queue = [];
+      fbq.loaded = true;
+      fbq.version = '2.0';
+      window.fbq = fbq;
+      window._fbq = fbq;
+    }
+
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://connect.facebook.net/en_US/fbevents.js';
+    script.onload = () => {
+      try {
+        window.fbq('init', '919065787391921');
+        window.fbq('track', 'PageView');
+      } catch (_) { /* ignore */ }
+    };
+    script.onerror = () => {
+      metaPixelLoaded = false;
+    };
+    document.head.append(script);
+  } catch (_) {
+    metaPixelLoaded = false;
+  }
+}
+
+function mountDeferredMetaPixel() {
+  const triggerLoad = () => {
+    window.removeEventListener('pointerdown', triggerLoad);
+    window.removeEventListener('keydown', triggerLoad);
+    window.removeEventListener('scroll', triggerLoad);
+    loadMetaPixel();
+  };
+
+  window.addEventListener('pointerdown', triggerLoad, { passive: true, once: true });
+  window.addEventListener('keydown', triggerLoad, { once: true });
+  window.addEventListener('scroll', triggerLoad, { passive: true, once: true });
+
+  onIdle(() => {
+    loadMetaPixel();
+  }, 3500);
+}
+
 
 function mountHeroEquipmentRotator() {
   const wordEl = document.getElementById('hero-rotator-word');
@@ -575,6 +627,7 @@ function bootstrap() {
   mountBurger();
   mountForCards();
   mountMetaTracking();
+  mountDeferredMetaPixel();
   mountHeroEquipmentRotator();
   mountDeferredChatWidget();
 }
