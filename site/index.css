@@ -1666,25 +1666,22 @@ body.landing-modal-open {
   right: 18px;
   z-index: 115;
   border: 0;
-  border-radius: 999px;
-  padding: 12px 16px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  padding: 0;
   display: inline-flex;
   align-items: center;
-  gap: 10px;
-  background: linear-gradient(135deg, #e47418, #ff8a00);
+  justify-content: center;
+  background: #0070F0;
   color: #ffffff;
   font: inherit;
-  font-size: 0.88rem;
-  font-weight: 800;
-  letter-spacing: 0.01em;
-  box-shadow: 0 16px 32px rgba(228, 116, 24, 0.24);
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
 .prize-fab:hover {
   transform: translateY(-1px);
-  box-shadow: 0 20px 36px rgba(228, 116, 24, 0.32);
 }
 
 .prize-fab:active {
@@ -1693,6 +1690,8 @@ body.landing-modal-open {
 
 .prize-fab-icon {
   flex-shrink: 0;
+  width: 20px;
+  height: 20px;
 }
 
 .prize-modal {
@@ -1734,40 +1733,19 @@ body.landing-modal-open {
   align-items: flex-start;
   justify-content: space-between;
   gap: 18px;
-  padding: 26px 28px 22px;
+  padding: 22px 28px 18px;
   border-bottom: 1px solid var(--section-border);
   background:
-    radial-gradient(circle at top right, rgba(255, 138, 0, 0.18), transparent 36%),
-    linear-gradient(135deg, rgba(228, 116, 24, 0.1), rgba(59, 130, 246, 0.02));
+    radial-gradient(circle at top right, rgba(0, 112, 240, 0.12), transparent 38%),
+    linear-gradient(135deg, rgba(0, 112, 240, 0.08), rgba(59, 130, 246, 0.02));
 }
 
 .prize-modal-kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 12px;
-  border-radius: 999px;
-  background: var(--primary-light);
-  color: var(--primary-strong);
-  font-size: 0.78rem;
+  font-size: clamp(1.35rem, 2.8vw, 2rem);
   font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 12px;
-}
-
-.prize-modal-title {
-  font-size: clamp(1.6rem, 3vw, 2.3rem);
   line-height: 1.08;
   letter-spacing: -0.03em;
-  margin-bottom: 10px;
-}
-
-.prize-modal-subtitle {
-  max-width: 760px;
-  color: var(--muted);
-  line-height: 1.6;
-  font-size: 0.98rem;
+  margin: 0;
 }
 
 .prize-modal-close {
@@ -1840,6 +1818,7 @@ body.landing-modal-open {
   justify-content: space-between;
   gap: 16px;
   margin-bottom: 18px;
+  margin-top: 6px;
 }
 
 .prize-catalog-title {
@@ -1878,6 +1857,7 @@ body.landing-modal-open {
   min-height: 100%;
   display: flex;
   flex-direction: column;
+  cursor: pointer;
 }
 
 .prize-equipment-media {
@@ -1908,17 +1888,28 @@ body.landing-modal-open {
   line-height: 1.35;
 }
 
-.prize-equipment-slug {
+.prize-equipment-counter {
   display: inline-flex;
   align-items: center;
   align-self: flex-start;
   padding: 6px 10px;
   border-radius: 999px;
-  background: var(--muted-bg);
+  border: 1px solid rgba(0, 112, 240, 0.18);
+  background: rgba(0, 112, 240, 0.08);
+  color: #0070F0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.prize-equipment-note {
   color: var(--muted);
-  font-size: 0.76rem;
-  font-weight: 600;
-  word-break: break-all;
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+.prize-equipment-note[hidden] {
+  display: none;
 }
 
 @media (max-width: 1023px) {
@@ -1935,9 +1926,8 @@ body.landing-modal-open {
   .prize-fab {
     top: 76px;
     right: 12px;
-    padding: 11px 14px;
-    font-size: 0.82rem;
-    gap: 8px;
+    width: 46px;
+    height: 46px;
   }
 
   .prize-modal-dialog {
@@ -1981,18 +1971,23 @@ body.landing-modal-open {
 
   .prize-modal-header {
     background:
-      radial-gradient(circle at top right, rgba(255, 138, 0, 0.18), transparent 36%),
-      linear-gradient(135deg, rgba(255, 138, 0, 0.12), rgba(15, 23, 42, 0.92));
+      radial-gradient(circle at top right, rgba(0, 112, 240, 0.18), transparent 36%),
+      linear-gradient(135deg, rgba(0, 112, 240, 0.12), rgba(15, 23, 42, 0.92));
   }
 
   .prize-modal-close,
-  .prize-catalog-count,
-  .prize-equipment-slug {
+  .prize-catalog-count {
     background: #111827;
   }
 
   .prize-equipment-media {
-    background: linear-gradient(180deg, rgba(255, 138, 0, 0.1), rgba(15, 23, 42, 0.28));
+    background: linear-gradient(180deg, rgba(0, 112, 240, 0.12), rgba(15, 23, 42, 0.28));
+  }
+
+  .prize-equipment-counter {
+    border-color: rgba(96, 165, 250, 0.26);
+    background: rgba(0, 112, 240, 0.18);
+    color: #93c5fd;
   }
 }
 

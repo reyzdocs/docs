@@ -13,49 +13,53 @@ let equipmentControlsMounted = false;
 let testimonialsLoaded = false;
 let chatWidgetLoaded = false;
 let metaPixelLoaded = false;
+const PRIZE_CURRENT_COUNT = 4;
+const PRIZE_TARGET_COUNT = 20;
+const REYZ_PLUS_PLAY_URL = 'https://play.google.com/store/apps/details?id=com.reyzplus.driver';
+const REYZ_PLUS_APP_STORE_URL = REYZ_PLUS_PLAY_URL;
 
 const PRIZE_PROGRAM_COPY = {
   ru: {
-    fabLabel: 'Розыгрыш',
+    fabAria: 'Открыть розыгрыш среди водителей',
     closeAria: 'Закрыть окно розыгрыша',
-    kicker: 'Идёт набор категорий',
-    title: 'Приз за запуск категорий',
-    subtitle:
-      'Первые исполнители, которые попадут в порог запуска категории, участвуют в розыгрыше приза.',
-    rule1Title: 'Подключитесь к категории',
+    kicker: 'Розыгрыш среди водителей',
+    title: '',
+    subtitle: '',
+    rule1Title: 'Загрузите Reyz+',
     rule1Text:
-      'У каждой техники свой порог запуска. Чем раньше вы подключитесь, тем выше шанс попасть в набор участников.',
-    rule2Title: 'Попадите в первые места',
+      'Скачайте приложение Reyz+ и войдите в аккаунт водителя.',
+    rule2Title: 'Добавьте свою технику',
     rule2Text:
-      'Например, если порог категории 20, в розыгрыш попадают первые 20 подключившихся исполнителей этой техники.',
-    rule3Title: 'Категория откроется автоматически',
+      'Перейдите во вкладку "Добавить технику" в приложении и добавьте свою технику.',
+    rule3Title: 'Вы стали участником розыгрыша',
     rule3Text:
-      'После достижения порога категория становится доступной для заказов, а победитель выбирается случайным образом.',
+      'Вы участвуете в розыгрыше телефона Honor. Количество участников розыгрыша указано на карточках.',
     catalogTitle: 'Категории техники',
-    catalogSubtitle: 'Все текущие категории каталога и их slug.',
+    catalogSubtitle: 'Нажмите на карточку техники, чтобы перейти в Reyz+.',
     countLabel: (count) => `${count} категорий`,
-    slugLabel: 'slug',
+    cardCounter: (current, target) => `${current}/${target}`,
+    cardHint: (current, target) => `Собрана ${current} из ${target}, при достижении начнется розыгрыш.`,
   },
   uz: {
-    fabLabel: "Sovrin",
+    fabAria: "Haydovchilar o'rtasidagi sovrinni ochish",
     closeAria: "Sovrin oynasini yopish",
-    kicker: "Kategoriyalar bo'yicha qabul",
-    title: "Kategoriya ishga tushishi uchun sovrin",
-    subtitle:
-      "Kategoriya chegarasiga kirgan birinchi ijrochilar sovrin o'yinida qatnashadi.",
-    rule1Title: "Kategoriyaga ulanib oling",
+    kicker: "Haydovchilar o'rtasidagi sovrin",
+    title: '',
+    subtitle: '',
+    rule1Title: "Reyz+ ni yuklab oling",
     rule1Text:
-      "Har bir texnikaning o'z ishga tushish chegarasi bor. Qanchalik erta ulansangiz, ishtirokchilar ro'yxatiga kirish imkoniyati shunchalik yuqori bo'ladi.",
-    rule2Title: "Birinchi o'rinlarga kiring",
+      "Reyz+ ilovasini yuklab oling va haydovchi akkauntiga kiring.",
+    rule2Title: "Texnikangizni qo'shing",
     rule2Text:
-      "Masalan, kategoriya chegarasi 20 bo'lsa, aynan shu texnikaga birinchi ulangan 20 ijrochi sovrin o'yiniga kiradi.",
-    rule3Title: "Kategoriya avtomatik ochiladi",
+      "Ilovadagi \"Texnika qo'shish\" bo'limiga o'ting va texnikangizni qo'shing.",
+    rule3Title: "Siz sovrin ishtirokchisiga aylandingiz",
     rule3Text:
-      "Chegara to'lgach kategoriya buyurtmalar uchun ochiladi, g'olib esa ishtirokchilar orasidan tasodifiy tanlanadi.",
+      "Siz Honor telefoni sovrini uchun ishtirokchisiz. Ishtirokchilar soni kartochkalarda ko'rsatiladi.",
     catalogTitle: 'Texnika kategoriyalari',
-    catalogSubtitle: "Joriy katalogdagi barcha texnikalar va ularning sluglari.",
+    catalogSubtitle: "Reyz+ ga o'tish uchun texnika kartasini bosing.",
     countLabel: (count) => `${count} kategoriya`,
-    slugLabel: 'slug',
+    cardCounter: (current, target) => `${current}/${target}`,
+    cardHint: (current, target) => `${target} tadan ${current} tasi yig'ildi, chegaraga yetganda sovrin boshlanadi.`,
   },
 };
 
@@ -655,16 +659,26 @@ function getPrizeProgramCopy(language = 'ru') {
   return PRIZE_PROGRAM_COPY[language] || PRIZE_PROGRAM_COPY.ru;
 }
 
+function getReyzPlusStoreUrl() {
+  const ua = navigator.userAgent || navigator.vendor || '';
+  const isApple = /iPad|iPhone|iPod|Macintosh/i.test(ua);
+  return isApple ? REYZ_PLUS_APP_STORE_URL : REYZ_PLUS_PLAY_URL;
+}
+
 function renderPrizeCatalog(language = getCurrentLanguage()) {
   const grid = document.getElementById('prize-catalog-grid');
   if (!grid) return;
 
   grid.textContent = '';
   const fragment = document.createDocumentFragment();
+  const copy = getPrizeProgramCopy(language);
+  const storeUrl = getReyzPlusStoreUrl();
 
   EQUIPMENT_ITEMS.forEach((item) => {
     const card = document.createElement('article');
     card.className = 'prize-equipment-card';
+    card.tabIndex = 0;
+    card.setAttribute('role', 'link');
 
     const media = document.createElement('div');
     media.className = 'prize-equipment-media';
@@ -686,11 +700,33 @@ function renderPrizeCatalog(language = getCurrentLanguage()) {
     name.className = 'prize-equipment-name';
     name.textContent = getEquipmentLabel(item, language);
 
-    const slug = document.createElement('div');
-    slug.className = 'prize-equipment-slug';
-    slug.textContent = item.slug;
+    const counter = document.createElement('button');
+    counter.className = 'prize-equipment-counter';
+    counter.type = 'button';
+    counter.textContent = copy.cardCounter(PRIZE_CURRENT_COUNT, PRIZE_TARGET_COUNT);
 
-    body.append(name, slug);
+    const note = document.createElement('div');
+    note.className = 'prize-equipment-note';
+    note.hidden = true;
+    note.textContent = copy.cardHint(PRIZE_CURRENT_COUNT, PRIZE_TARGET_COUNT);
+
+    const openStore = () => {
+      window.open(storeUrl, '_blank', 'noopener,noreferrer');
+    };
+
+    card.addEventListener('click', openStore);
+    card.addEventListener('keydown', (event) => {
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+      event.preventDefault();
+      openStore();
+    });
+
+    counter.addEventListener('click', (event) => {
+      event.stopPropagation();
+      note.hidden = !note.hidden;
+    });
+
+    body.append(name, counter, note);
     card.append(media, body);
     fragment.append(card);
   });
@@ -706,10 +742,9 @@ function applyPrizeProgramLanguage(language = getCurrentLanguage()) {
     if (node) node.textContent = value;
   };
 
-  setText('prize-fab-label', copy.fabLabel);
-  setText('prize-modal-kicker', copy.kicker);
-  setText('prize-modal-title', copy.title);
-  setText('prize-modal-subtitle', copy.subtitle);
+  const fab = document.getElementById('prize-fab');
+  if (fab) fab.setAttribute('aria-label', copy.fabAria);
+  setText('prize-modal-title', copy.kicker);
   setText('prize-rule-title-1', copy.rule1Title);
   setText('prize-rule-text-1', copy.rule1Text);
   setText('prize-rule-title-2', copy.rule2Title);
