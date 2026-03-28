@@ -46,6 +46,7 @@ ul, ol {
   --primary-medium: rgba(228, 116, 24, 0.2);
   --primary-strong: #FF7300;
   --primary-soft: #FFE1C9;
+  --accent-text: #8a3d00;
   --primary-foreground: #ffffff;
   --background: #ffffff;
   --foreground: #0f172a;
@@ -72,6 +73,10 @@ ul, ol {
     --background: #0a0a0a;
     --foreground: #f5f5f5;
     --card: #141414;
+    --primary-light: rgba(255, 138, 0, 0.16);
+    --primary-medium: rgba(255, 138, 0, 0.28);
+    --primary-soft: rgba(255, 138, 0, 0.16);
+    --accent-text: #ffd4ad;
     --card-border: #262626;
     --card-border-hover: rgba(255, 115, 0, 0.45);
     --muted: #a3a3a3;
@@ -360,13 +365,13 @@ ul, ol {
 
 .mobile-menu-cta .btn-secondary {
   background: var(--primary-soft);
-  border-color: rgba(228, 116, 24, 0.35);
-  color: #8a3d00;
+  border-color: var(--primary-medium);
+  color: var(--accent-text);
 }
 
 .mobile-menu-cta .btn-secondary:hover {
-  background: #ffd6b7;
-  border-color: rgba(228, 116, 24, 0.45);
+  background: var(--primary-light);
+  border-color: var(--primary-medium);
 }
 
 @media (min-width: 768px) {
@@ -652,7 +657,7 @@ ul, ol {
 .metric-value {
   font-size: 2rem;
   font-weight: 800;
-  color: var(--primary);
+  color: var(--foreground);
   line-height: 1.2;
 }
 
@@ -722,8 +727,8 @@ ul, ol {
 .feature-icon svg {
   width: 24px;
   height: 24px;
-  color: var(--primary);
-  stroke: var(--primary);
+  color: var(--primary-strong);
+  stroke: var(--primary-strong);
   fill: none;
 }
 
@@ -824,7 +829,7 @@ ul, ol {
 .step-number svg {
   width: 20px;
   height: 20px;
-  stroke: var(--primary);
+  stroke: var(--primary-strong);
   fill: none;
 }
 
@@ -870,7 +875,7 @@ ul, ol {
 .step-item-icon svg {
   width: 16px;
   height: 16px;
-  stroke: var(--primary);
+  stroke: var(--primary-strong);
   fill: none;
 }
 
@@ -908,8 +913,12 @@ ul, ol {
 
 .step-bar-fill {
   height: 100%;
-  background: var(--primary);
+  background: var(--primary-strong);
   border-radius: 999px;
+}
+
+.step-stat-val-accent {
+  color: var(--primary-strong) !important;
 }
 
 .step-separator {
@@ -1305,10 +1314,16 @@ img[data-src]:not([src]) {
   align-items: center;
   justify-content: center;
   background: var(--primary-light);
-  color: var(--primary);
+  color: var(--primary-strong);
   font-size: 0.8rem;
   font-weight: 700;
   flex-shrink: 0;
+}
+
+.equipment-section-badge {
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.08);
+  color: #c7d2fe;
 }
 
 .testimonial-author strong {
@@ -1684,6 +1699,40 @@ img[data-src]:not([src]) {
   color: #6a3601;
   padding: 10px 12px;
   font-size: 0.9rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .site-nav {
+    background: var(--background);
+  }
+
+  .step-item {
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  .step-item-text,
+  .step-card h3,
+  .feature-card h3,
+  .for-card-header h3,
+  .testimonial-author strong {
+    color: var(--foreground);
+  }
+
+  .equipment-section-badge {
+    border-color: rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.06);
+    color: #d6deff;
+  }
+
+  .footer-social-link {
+    background: #1f2937;
+  }
+
+  .no-js-banner {
+    border-color: rgba(255, 138, 0, 0.35);
+    background: rgba(255, 138, 0, 0.12);
+    color: #ffd7b8;
+  }
 }
 
 html.js .no-js-banner {

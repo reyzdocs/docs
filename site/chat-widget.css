@@ -323,6 +323,71 @@ body.web-chat-no-scroll {
   overflow: hidden;
 }
 
+@media (prefers-color-scheme: dark) {
+  .web-chat-badge {
+    border-color: #0f172a;
+  }
+
+  .web-chat-panel {
+    border-color: #334155;
+    background: #0f172a;
+    box-shadow: 0 20px 38px rgba(2, 6, 23, 0.45);
+  }
+
+  .web-chat-header {
+    border-bottom-color: #334155;
+    background: linear-gradient(135deg, rgba(255, 138, 0, 0.18), rgba(15, 23, 42, 0.96));
+  }
+
+  .web-chat-header strong {
+    color: #f8fafc;
+  }
+
+  .web-chat-header p,
+  .web-chat-close,
+  .web-chat-status {
+    color: #cbd5e1;
+  }
+
+  .web-chat-close:hover {
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .web-chat-messages {
+    background: #111827;
+  }
+
+  .web-chat-message.incoming,
+  .web-chat-typing {
+    border-color: #334155;
+    background: #1f2937;
+    color: #f8fafc;
+  }
+
+  .web-chat-chips,
+  .web-chat-form {
+    border-top-color: #334155;
+    background: #0f172a;
+  }
+
+  .web-chat-chip {
+    border-color: #334155;
+    color: #e5e7eb;
+    background: #111827;
+  }
+
+  .web-chat-form textarea {
+    border-color: #334155;
+    background: #111827;
+    color: #f8fafc;
+  }
+
+  .web-chat-form button {
+    background: #ff7300;
+    color: #ffffff;
+  }
+}
+
 @media (max-width: 640px) {
   .web-chat-widget {
     right: max(16px, env(safe-area-inset-right));
