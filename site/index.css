@@ -1666,16 +1666,20 @@ body.landing-modal-open {
   right: 18px;
   z-index: 115;
   border: 0;
-  width: 52px;
   height: 52px;
-  border-radius: 50%;
-  padding: 0;
+  padding: 0 16px 0 14px;
+  gap: 8px;
+  width: auto;
+  height: 52px;
+  border-radius: 999px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   background: #0070F0;
   color: #ffffff;
   font: inherit;
+  font-size: 0.86rem;
+  font-weight: 800;
   cursor: pointer;
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
@@ -1861,6 +1865,7 @@ body.landing-modal-open {
 }
 
 .prize-equipment-media {
+  position: relative;
   aspect-ratio: 1 / 1;
   background: linear-gradient(180deg, rgba(228, 116, 24, 0.08), rgba(59, 130, 246, 0.03));
   display: flex;
@@ -1889,9 +1894,11 @@ body.landing-modal-open {
 }
 
 .prize-equipment-counter {
+  position: absolute;
+  top: 10px;
+  left: 10px;
   display: inline-flex;
   align-items: center;
-  align-self: flex-start;
   padding: 6px 10px;
   border-radius: 999px;
   border: 1px solid rgba(0, 112, 240, 0.18);
@@ -1902,14 +1909,58 @@ body.landing-modal-open {
   cursor: pointer;
 }
 
-.prize-equipment-note {
-  color: var(--muted);
-  font-size: 0.8rem;
-  line-height: 1.45;
+.prize-counter-dialog[hidden] {
+  display: none;
 }
 
-.prize-equipment-note[hidden] {
-  display: none;
+.prize-counter-dialog {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+}
+
+.prize-counter-dialog-backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(2, 6, 23, 0.56);
+  backdrop-filter: blur(6px);
+}
+
+.prize-counter-dialog-card {
+  position: relative;
+  width: min(420px, calc(100vw - 32px));
+  margin: 18vh auto 0;
+  border-radius: 24px;
+  border: 1px solid var(--card-border);
+  background: var(--card);
+  color: var(--foreground);
+  padding: 22px 20px 18px;
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.24);
+}
+
+.prize-counter-dialog-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.prize-counter-dialog-text {
+  color: var(--muted);
+  line-height: 1.55;
+  margin-bottom: 16px;
+}
+
+.prize-counter-dialog-button {
+  border: 0;
+  border-radius: 12px;
+  min-height: 42px;
+  padding: 0 16px;
+  background: #0070F0;
+  color: #ffffff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
 }
 
 @media (max-width: 1023px) {
@@ -1926,8 +1977,9 @@ body.landing-modal-open {
   .prize-fab {
     top: 76px;
     right: 12px;
-    width: 46px;
+    width: auto;
     height: 46px;
+    padding: 0 14px 0 12px;
   }
 
   .prize-modal-dialog {
@@ -1988,6 +2040,12 @@ body.landing-modal-open {
     border-color: rgba(96, 165, 250, 0.26);
     background: rgba(0, 112, 240, 0.18);
     color: #93c5fd;
+  }
+
+  .prize-counter-dialog-card {
+    border-color: #2b3444;
+    background: #111827;
+    box-shadow: 0 24px 60px rgba(2, 6, 23, 0.5);
   }
 }
 

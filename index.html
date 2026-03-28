@@ -693,6 +693,7 @@
       <path d="M7 7a2.5 2.5 0 1 1 0-5c2 0 3 2.2 5 5" />
       <path d="M17 7a2.5 2.5 0 1 0 0-5c-2 0-3 2.2-5 5" />
     </svg>
+    <span id="prize-fab-label">Приз</span>
   </button>
 
   <div class="prize-modal" id="prize-modal" hidden>
@@ -739,6 +740,15 @@
 
         <div class="prize-catalog-grid" id="prize-catalog-grid"></div>
       </div>
+    </section>
+  </div>
+
+  <div class="prize-counter-dialog" id="prize-counter-dialog" hidden>
+    <button class="prize-counter-dialog-backdrop" type="button" data-prize-counter-close aria-label="Закрыть"></button>
+    <section class="prize-counter-dialog-card" role="dialog" aria-modal="true" aria-labelledby="prize-counter-dialog-title">
+      <h3 class="prize-counter-dialog-title" id="prize-counter-dialog-title">Самосвал</h3>
+      <p class="prize-counter-dialog-text" id="prize-counter-dialog-text">Собрана 4 из 20, при достижении начнется розыгрыш.</p>
+      <button class="prize-counter-dialog-button" type="button" data-prize-counter-close id="prize-counter-dialog-button">Понятно</button>
     </section>
   </div>
 

@@ -20,8 +20,10 @@ const REYZ_PLUS_APP_STORE_URL = REYZ_PLUS_PLAY_URL;
 
 const PRIZE_PROGRAM_COPY = {
   ru: {
+    fabLabel: 'Приз',
     fabAria: 'Открыть розыгрыш среди водителей',
     closeAria: 'Закрыть окно розыгрыша',
+    counterClose: 'Понятно',
     kicker: 'Розыгрыш среди водителей',
     title: '',
     subtitle: '',
@@ -41,8 +43,10 @@ const PRIZE_PROGRAM_COPY = {
     cardHint: (current, target) => `Собрана ${current} из ${target}, при достижении начнется розыгрыш.`,
   },
   uz: {
+    fabLabel: 'Sovrin',
     fabAria: "Haydovchilar o'rtasidagi sovrinni ochish",
     closeAria: "Sovrin oynasini yopish",
+    counterClose: 'Tushunarli',
     kicker: "Haydovchilar o'rtasidagi sovrin",
     title: '',
     subtitle: '',
@@ -673,6 +677,16 @@ function renderPrizeCatalog(language = getCurrentLanguage()) {
   const fragment = document.createDocumentFragment();
   const copy = getPrizeProgramCopy(language);
   const storeUrl = getReyzPlusStoreUrl();
+  const openCounterDialog = (itemName) => {
+    const dialog = document.getElementById('prize-counter-dialog');
+    const dialogTitle = document.getElementById('prize-counter-dialog-title');
+    const dialogText = document.getElementById('prize-counter-dialog-text');
+    if (!dialog || !dialogTitle || !dialogText) return;
+
+    dialogTitle.textContent = itemName;
+    dialogText.textContent = copy.cardHint(PRIZE_CURRENT_COUNT, PRIZE_TARGET_COUNT);
+    dialog.hidden = false;
+  };
 
   EQUIPMENT_ITEMS.forEach((item) => {
     const card = document.createElement('article');
@@ -705,11 +719,6 @@ function renderPrizeCatalog(language = getCurrentLanguage()) {
     counter.type = 'button';
     counter.textContent = copy.cardCounter(PRIZE_CURRENT_COUNT, PRIZE_TARGET_COUNT);
 
-    const note = document.createElement('div');
-    note.className = 'prize-equipment-note';
-    note.hidden = true;
-    note.textContent = copy.cardHint(PRIZE_CURRENT_COUNT, PRIZE_TARGET_COUNT);
-
     const openStore = () => {
       window.open(storeUrl, '_blank', 'noopener,noreferrer');
     };
@@ -723,10 +732,11 @@ function renderPrizeCatalog(language = getCurrentLanguage()) {
 
     counter.addEventListener('click', (event) => {
       event.stopPropagation();
-      note.hidden = !note.hidden;
+      openCounterDialog(getEquipmentLabel(item, language));
     });
 
-    body.append(name, counter, note);
+    media.append(counter);
+    body.append(name);
     card.append(media, body);
     fragment.append(card);
   });
@@ -744,6 +754,7 @@ function applyPrizeProgramLanguage(language = getCurrentLanguage()) {
 
   const fab = document.getElementById('prize-fab');
   if (fab) fab.setAttribute('aria-label', copy.fabAria);
+  setText('prize-fab-label', copy.fabLabel);
   setText('prize-modal-title', copy.kicker);
   setText('prize-rule-title-1', copy.rule1Title);
   setText('prize-rule-text-1', copy.rule1Text);
@@ -754,8 +765,13 @@ function applyPrizeProgramLanguage(language = getCurrentLanguage()) {
   setText('prize-catalog-title', copy.catalogTitle);
   setText('prize-catalog-subtitle', copy.catalogSubtitle);
   setText('prize-catalog-count', copy.countLabel(EQUIPMENT_ITEMS.length));
+  setText('prize-counter-dialog-button', copy.counterClose);
 
   document.querySelectorAll('[data-prize-close]').forEach((node) => {
+    node.setAttribute('aria-label', copy.closeAria);
+  });
+
+  document.querySelectorAll('[data-prize-counter-close]').forEach((node) => {
     node.setAttribute('aria-label', copy.closeAria);
   });
 
@@ -765,7 +781,8 @@ function applyPrizeProgramLanguage(language = getCurrentLanguage()) {
 function mountPrizeProgram() {
   const fab = document.getElementById('prize-fab');
   const modal = document.getElementById('prize-modal');
-  if (!fab || !modal) return;
+  const counterDialog = document.getElementById('prize-counter-dialog');
+  if (!fab || !modal || !counterDialog) return;
 
   const openModal = () => {
     modal.hidden = false;
@@ -776,17 +793,29 @@ function mountPrizeProgram() {
 
   const closeModal = () => {
     modal.hidden = true;
+    counterDialog.hidden = true;
     fab.setAttribute('aria-expanded', 'false');
     document.documentElement.classList.remove('landing-modal-open');
     document.body.classList.remove('landing-modal-open');
+  };
+
+  const closeCounterDialog = () => {
+    counterDialog.hidden = true;
   };
 
   fab.addEventListener('click', openModal);
   modal.querySelectorAll('[data-prize-close]').forEach((node) => {
     node.addEventListener('click', closeModal);
   });
+  counterDialog.querySelectorAll('[data-prize-counter-close]').forEach((node) => {
+    node.addEventListener('click', closeCounterDialog);
+  });
 
   document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !counterDialog.hidden) {
+      closeCounterDialog();
+      return;
+    }
     if (event.key === 'Escape' && !modal.hidden) {
       closeModal();
       fab.focus();
