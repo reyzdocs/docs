@@ -1682,10 +1682,34 @@ body.landing-modal-open {
   font-weight: 800;
   cursor: pointer;
   transition: transform 0.2s ease, opacity 0.2s ease;
+  animation: btn-heartbeat 1.9s ease-in-out infinite;
+  transform-origin: center;
+  will-change: transform, box-shadow;
+}
+
+.prize-fab::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+  border: 2px solid rgba(0, 112, 240, 0.4);
+  opacity: 0;
+  pointer-events: none;
+  animation: btn-pulse-ring 1.9s ease-out infinite;
 }
 
 .prize-fab:hover {
   transform: translateY(-1px);
+}
+
+.prize-fab:hover,
+.prize-fab:focus-visible {
+  animation-play-state: paused;
+}
+
+.prize-fab:hover::after,
+.prize-fab:focus-visible::after {
+  animation-play-state: paused;
 }
 
 .prize-fab:active {
