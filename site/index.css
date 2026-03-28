@@ -1662,8 +1662,8 @@ body.landing-modal-open {
 
 .prize-fab {
   position: fixed;
-  top: 82px;
-  right: 18px;
+  right: 96px;
+  bottom: 28px;
   z-index: 115;
   border: 0;
   height: 52px;
@@ -1975,8 +1975,9 @@ body.landing-modal-open {
 
 @media (max-width: 767px) {
   .prize-fab {
-    top: 76px;
-    right: 12px;
+    right: auto;
+    left: 16px;
+    bottom: max(16px, env(safe-area-inset-bottom));
     width: auto;
     height: 46px;
     padding: 0 14px 0 12px;
