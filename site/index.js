@@ -14,6 +14,51 @@ let testimonialsLoaded = false;
 let chatWidgetLoaded = false;
 let metaPixelLoaded = false;
 
+const PRIZE_PROGRAM_COPY = {
+  ru: {
+    fabLabel: 'Розыгрыш',
+    closeAria: 'Закрыть окно розыгрыша',
+    kicker: 'Идёт набор категорий',
+    title: 'Приз за запуск категорий',
+    subtitle:
+      'Первые исполнители, которые попадут в порог запуска категории, участвуют в розыгрыше приза.',
+    rule1Title: 'Подключитесь к категории',
+    rule1Text:
+      'У каждой техники свой порог запуска. Чем раньше вы подключитесь, тем выше шанс попасть в набор участников.',
+    rule2Title: 'Попадите в первые места',
+    rule2Text:
+      'Например, если порог категории 20, в розыгрыш попадают первые 20 подключившихся исполнителей этой техники.',
+    rule3Title: 'Категория откроется автоматически',
+    rule3Text:
+      'После достижения порога категория становится доступной для заказов, а победитель выбирается случайным образом.',
+    catalogTitle: 'Категории техники',
+    catalogSubtitle: 'Все текущие категории каталога и их slug.',
+    countLabel: (count) => `${count} категорий`,
+    slugLabel: 'slug',
+  },
+  uz: {
+    fabLabel: "Sovrin",
+    closeAria: "Sovrin oynasini yopish",
+    kicker: "Kategoriyalar bo'yicha qabul",
+    title: "Kategoriya ishga tushishi uchun sovrin",
+    subtitle:
+      "Kategoriya chegarasiga kirgan birinchi ijrochilar sovrin o'yinida qatnashadi.",
+    rule1Title: "Kategoriyaga ulanib oling",
+    rule1Text:
+      "Har bir texnikaning o'z ishga tushish chegarasi bor. Qanchalik erta ulansangiz, ishtirokchilar ro'yxatiga kirish imkoniyati shunchalik yuqori bo'ladi.",
+    rule2Title: "Birinchi o'rinlarga kiring",
+    rule2Text:
+      "Masalan, kategoriya chegarasi 20 bo'lsa, aynan shu texnikaga birinchi ulangan 20 ijrochi sovrin o'yiniga kiradi.",
+    rule3Title: "Kategoriya avtomatik ochiladi",
+    rule3Text:
+      "Chegara to'lgach kategoriya buyurtmalar uchun ochiladi, g'olib esa ishtirokchilar orasidan tasodifiy tanlanadi.",
+    catalogTitle: 'Texnika kategoriyalari',
+    catalogSubtitle: "Joriy katalogdagi barcha texnikalar va ularning sluglari.",
+    countLabel: (count) => `${count} kategoriya`,
+    slugLabel: 'slug',
+  },
+};
+
 function toHumanEquipmentName(slug) {
   return slug
     .toString()
@@ -606,6 +651,117 @@ function mountHeroEquipmentRotator() {
   });
 }
 
+function getPrizeProgramCopy(language = 'ru') {
+  return PRIZE_PROGRAM_COPY[language] || PRIZE_PROGRAM_COPY.ru;
+}
+
+function renderPrizeCatalog(language = getCurrentLanguage()) {
+  const grid = document.getElementById('prize-catalog-grid');
+  if (!grid) return;
+
+  grid.textContent = '';
+  const fragment = document.createDocumentFragment();
+
+  EQUIPMENT_ITEMS.forEach((item) => {
+    const card = document.createElement('article');
+    card.className = 'prize-equipment-card';
+
+    const media = document.createElement('div');
+    media.className = 'prize-equipment-media';
+
+    const img = document.createElement('img');
+    img.src = item.image;
+    img.alt = getEquipmentLabel(item, language);
+    img.width = 128;
+    img.height = 128;
+    img.loading = 'lazy';
+    img.decoding = 'async';
+    img.referrerPolicy = 'no-referrer';
+    media.append(img);
+
+    const body = document.createElement('div');
+    body.className = 'prize-equipment-body';
+
+    const name = document.createElement('div');
+    name.className = 'prize-equipment-name';
+    name.textContent = getEquipmentLabel(item, language);
+
+    const slug = document.createElement('div');
+    slug.className = 'prize-equipment-slug';
+    slug.textContent = item.slug;
+
+    body.append(name, slug);
+    card.append(media, body);
+    fragment.append(card);
+  });
+
+  grid.append(fragment);
+}
+
+function applyPrizeProgramLanguage(language = getCurrentLanguage()) {
+  const copy = getPrizeProgramCopy(language);
+
+  const setText = (id, value) => {
+    const node = document.getElementById(id);
+    if (node) node.textContent = value;
+  };
+
+  setText('prize-fab-label', copy.fabLabel);
+  setText('prize-modal-kicker', copy.kicker);
+  setText('prize-modal-title', copy.title);
+  setText('prize-modal-subtitle', copy.subtitle);
+  setText('prize-rule-title-1', copy.rule1Title);
+  setText('prize-rule-text-1', copy.rule1Text);
+  setText('prize-rule-title-2', copy.rule2Title);
+  setText('prize-rule-text-2', copy.rule2Text);
+  setText('prize-rule-title-3', copy.rule3Title);
+  setText('prize-rule-text-3', copy.rule3Text);
+  setText('prize-catalog-title', copy.catalogTitle);
+  setText('prize-catalog-subtitle', copy.catalogSubtitle);
+  setText('prize-catalog-count', copy.countLabel(EQUIPMENT_ITEMS.length));
+
+  document.querySelectorAll('[data-prize-close]').forEach((node) => {
+    node.setAttribute('aria-label', copy.closeAria);
+  });
+
+  renderPrizeCatalog(language);
+}
+
+function mountPrizeProgram() {
+  const fab = document.getElementById('prize-fab');
+  const modal = document.getElementById('prize-modal');
+  if (!fab || !modal) return;
+
+  const openModal = () => {
+    modal.hidden = false;
+    fab.setAttribute('aria-expanded', 'true');
+    document.documentElement.classList.add('landing-modal-open');
+    document.body.classList.add('landing-modal-open');
+  };
+
+  const closeModal = () => {
+    modal.hidden = true;
+    fab.setAttribute('aria-expanded', 'false');
+    document.documentElement.classList.remove('landing-modal-open');
+    document.body.classList.remove('landing-modal-open');
+  };
+
+  fab.addEventListener('click', openModal);
+  modal.querySelectorAll('[data-prize-close]').forEach((node) => {
+    node.addEventListener('click', closeModal);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !modal.hidden) {
+      closeModal();
+      fab.focus();
+    }
+  });
+
+  applyPrizeProgramLanguage(getCurrentLanguage());
+  onLanguageChange((language) => applyPrizeProgramLanguage(language));
+}
+
 /* ── Year ── */
 function setCurrentYear() {
   const year = document.getElementById('year');
@@ -629,6 +785,7 @@ function bootstrap() {
   mountMetaTracking();
   mountDeferredMetaPixel();
   mountHeroEquipmentRotator();
+  mountPrizeProgram();
   mountDeferredChatWidget();
 }
 
