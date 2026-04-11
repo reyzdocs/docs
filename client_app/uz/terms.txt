@@ -1,0 +1,196 @@
+FOYDALANUVCHI KELISHUVI
+Mijozlar uchun shartlar
+Kuchga kirish sanasi: 01.01.2026 y.
+
+MUHIM OGOHLANTIRISH
+PLATFORMA SIZ VA IJROCHILAR O'RTASIDA AXBOROT VOSITACHISI HISOBLANADI
+Platforma yuk tashish, maxsus texnika xizmatlarini taqdim ETMAYDI va ijrochilar xizmatlari sifati uchun javobgar EMAS
+1. ATAMALAR VA TA'RIFLAR
+Platforma – yuk tashish, maxsus texnika xizmatlari buyurtmachilari va ijrochilarini bog'lovchi mobil ilova.
+
+Operator – Reyzapp (mas'ul shaxs: Abdullaev Baxrom), Platforma ma'muri..
+
+Mijoz – Platforma orqali xizmat buyurtma beruvchi jismoniy shaxs yoki yuridik shaxs.
+
+Hamkor – Platforma orqali xizmat ko'rsatuvchi ijrochi.
+
+Buyurtma – Mijozning ko'rsatilgan parametrlar bilan texnika taqdim etish so'rovi.
+
+2. KELISHUV PREDMETI
+2.1. Operator Mijozga yuk tashish, maxsus texnika xizmatlarini qidirish va buyurtma berish uchun Platformadan foydalanish imkoniyatini beradi.
+
+2.2. Platforma faqat Mijozlar va Hamkorlar o'rtasida axborot vositachisi sifatida faoliyat yuritadi.
+
+2.3. Xizmat ko'rsatish bo'yicha barcha shartnomaviy munosabatlar bevosita Mijoz va Hamkor o'rtasida yuzaga keladi.
+
+3. PLATFORMA MAQOMI
+3.1. Platforma:
+Axborot vositachisi hisoblanadi
+Texnologik infratuzilmani ta'minlaydi
+Hamkorlarni tanlash uchun tender tizimini tashkil etadi
+3.2. Platforma QUYIDAGILARDAN BIRI EMAS:
+Texnika egasi
+Ijara shartnomasi tomoni
+Hamkorlar xizmatlari sifatini kafolatlovchi
+Hamkorlar harakatlari uchun javobgar
+4. MIJOZLARGA QO'YILADIGAN TALABLAR
+4.1. Majburiy talablar:
+Muomalaga layoqatlilik
+Ro'yxatdan o'tishda ishonchli ma'lumotlarni taqdim etish
+Shartnomalar tuzish huquqiga ega bo'lish
+4.2. Ro'yxatdan o'tish:
+Telegram orqali tasdiqlash
+Kelishuv shartlariga rozilik berish
+Mijoz o‘z Telegram akkauntining xavfsizligi hamda u orqali amalga oshirilgan barcha harakatlar uchun javobgar
+5. ISHLASH TARTIBI
+5.1. Buyurtma berish:
+Texnika toifasi va parametrlarini tanlash
+Manzil, vaqt va ishlar tavsifini ko'rsatish
+Buyurtmani Platformada e'lon qilish
+Hamkorlardan takliflar olish
+5.2. Ijrochi tanlash:
+Narxlar va shartlar bilan takliflarni ko'rib chiqish
+Mos keladigan Hamkorni tanlash
+Tanlangan Hamkor kontaktlarini olish
+Hamkor bilan tafsilotlar bo'yicha bevosita kelishish
+5.3. Buyurtma bajarilishi:
+Barcha keyingi o'zaro aloqalar Mijoz va Ijrochi o'rtasida Platforma ishtirokisiz amalga oshiriladi.
+
+6. MOLIYAVIY SHARTLAR
+6.1. Joriy shartlar (ishga tushirish davrida):
+Ro'yxatdan o'tish: BEPUL
+Buyurtmalar yaratish: BEPUL
+Platforma komissiyasi: 0%
+6.2. Kelajakdagi monetizatsiya:
+Pullik xizmatlar joriy etilishidan kamida 30 kun oldin Mijozlarga xabar beriladi. 
+
+6.3 Ijrochilar bilan hisob-kitoblar:
+Barcha moliyaviy hisob-kitoblar Mijoz va Hamkor o'rtasida BEVOSITA amalga oshiriladi. Platforma pul hisob-kitoblarida ishtirok etmaydi.
+
+7. MIJOZ HUQUQ VA MAJBURIYATLARI
+7.1. Mijoz quyidagi huquqlarga ega:
+Cheklanmagan miqdorda buyurtmalar yaratish
+Ijrochi tanlash mezonlarini belgilash
+Mos kelmaydigan barcha takliflarni rad etish
+Hamkorlar haqida sharhlar qoldirish
+Istalgan vaqtda akkauntni o'chirish
+7.2. Mijoz majburiyatlari:
+Buyurtma haqida aniq ma'lumot taqdim etish
+Tanlangan Hamkor bilan kelishuvlarga rioya qilish
+Hamkor xizmatlari haqini o'z vaqtida to'lash
+Noqonuniy ishlar bajarilishini talab qilmaslik
+Ijrochilarga hurmat bilan munosabatda bo'lish
+Platformani qonunga zid maqsadlarda foydalanmaslik
+7.3. Mijozga quyidagilar taqiqlanadi:
+Soxta buyurtmalar yaratish
+Ijrochilarni kamsitish
+Boshqalarning shaxsiy ma'lumotlaridan foydalanish
+Reyting tizimini manipulyatsiya qilish
+Maxfiy axborotni oshkor etish
+Intellektual mulk huquqlarini buzish
+8. OPERATOR HUQUQ VA MAJBURIYATLARI
+8.1. Operator majburiyatlari:
+Platformaning ishga yaroqliligini ta'minlash
+Buyurtmalarni Hamkorlarga uzatish
+Shaxsiy ma'lumotlarni himoya qilish
+Hamkorlarni tekshirish
+Texnik yordamni ta'minlash
+8.2. Operator quyidagi huquqlarga ega:
+Platformadagi kontentni moderatsiya qilish
+Qoidabuzarlar akkauntlarini taqiqlash (bloklash)
+Xabar berish orqali Platforma ishlash shartlarini o'zgartirish
+Pullik xizmatlarni joriy etish
+Tahlil uchun shaxssizlantirilgan ma'lumotlardan foydalanish
+8.3. Mas'uliyat cheklanishi:
+Operator Hamkorlar xizmatlari sifati, Hamkorlar harakatlari, Mijoz va Hamkor o'rtasidagi nizolar, yo'qotilgan foyda uchun javobgar EMAS.
+
+
+9. MIJOZ MAS'ULIYATI
+9.1. Mijoz quyidagilarga javobgar:
+Taqdim etilgan ma'lumotlarning ishonchliligi
+Hamkorlar bilan kelishuvlarga rioya qilish
+Platformani qonuniy maqsadlarda foydalanish
+Uchinchi shaxslar huquqlarini buzish
+9.2. Mijoz Operatorga Mijoz tomonidan Kelishuv shartlarini buzish natijasida yuzaga kelgan barcha zararlarni qoplashga majbur.
+10. TAQIQLAR (BLOKIROVKA) VA JARIMALAR
+10.1. Taqiqga asos bo’luvchi holatlar:
+Noto'g'ri ma'lumotlar taqdim etish
+Soxta buyurtmalar yaratish
+Firibgarlik harakatlari
+Muntazam qoidabuzarlik
+Haqoratli xatti-harakatlar
+10.2. Taqiq tartibi:
+Qoidabuzarlik haqida xabarnoma
+Tushuntirish berish imkoniyati (3 kun)
+Blokirovka qarori
+Shikoyat qilish imkoniyati (10 kun)
+11. NIZOLARNI HAL QILISH
+11.1. Hamkorlar bilan nizolar Mijoz tomonidan mustaqil hal qilinadi. Platforma tomonlar iltimosiga ko'ra vositachi bo'lishi mumkin.
+
+11.2. Operator bilan nizolar quyidagi tartibda hal qilinadi:
+Da'vo yuborish (majburiy sudgacha tartib)
+Da'voni ko'rib chiqish muddati - 30 kun
+Muzokaralar
+Kelishuvga erishilmasa - Toshkent shahar sudiga murojaat
+12. FORS-MAJOR
+12.1. Tomonlar ta’sir korsatib bo'lmaydigan holatlar (tabiiy ofatlar, harbiy harakatlar, epidemiyalar, hokimiyat harakatlari) natijasida majburiyatlarni bajarmaganligi uchun javobgarlikdan ozod qilinadi.
+
+12.2. Tomon fors-major haqida 3 kun ichida xabar berishi shart.
+
+13. AMAL QILISH MUDDATI VA SHARTLARNI O'ZGARTIRISH
+13.1. Kelishuv ro'yxatdan o'tish paytidan boshlab noma'lum muddatga amal qiladi.
+
+13.2. Mijoz istalgan vaqtda akkauntni o'chirish orqali Platformadan foydalanishni to'xtatishi mumkin.
+
+13.3. Operator o'zgarishlar haqida xabar beradi:
+Kichik o'zgarishlar - 7 kun oldin
+Muhim o'zgarishlar - 30 kun oldin
+Moliyaviy shartlar - 30 kun oldin
+13.4. O'zgarishlar kuchga kirgandan keyin Platformadan foydalanishni davom ettirish yangi shartlarga rozilikni bildiradi.
+
+14. MAXFIYLIK
+14.1. Shaxsiy ma'lumotlarni qayta ishlash ilova va saytda mavjud Maxfiylik siyosati bilan tartibga solinadi: https://reyzdocs.github.io/docs/driver_app/uz/privacy.html
+
+14.2. Mijoz boshqa foydalanuvchilarning shaxsiy ma'lumotlari va Platforma haqidagi maxfiy axborotni oshkor etmaslikka majbur.
+
+15. INTELLEKTUAL MULK
+15.1. Platformaning barcha huquqlari, jumladan tovar belgilari, dizayn va dastur kodi Operatorga tegishli.
+
+15.2. Mijozga faqat xizmatlar buyurtma berish uchun Platformadan foydalanish cheklangan huquqi beriladi.
+
+16. QO'LLANILADIGAN HUQUQ
+16.1. Ushbu Kelishuv O'zbekiston Respublikasi qonunchiligi bilan tartibga solinadi.
+
+16.2. Barcha nizolar Toshkent shahar sudlarida ko'rib chiqiladi.
+
+16.3. O'zbek va rus tilidagi matnlar o'rtasida tafovutlar bo'lsa, rus tilidagi matn ustunlikka ega.
+
+17. ALOQA MA'LUMOTLARI
+Email: bakhroma7@gmail.com
+Telefon: +998908310000
+Telegram: mavjud emas
+Ish vaqti: 24/7
+
+Yuridik bo'lim:
+Email: bakhroma7@gmail.com
+Telefon: +998908310000
+Ish vaqti: Dush-Jum, 09:00-18:00
+
+Yuridik manzil:
+Reyzapp
+Mas'ul shaxs: Abdullaev Baxrom
+Manzil: Toshkent, Yunusobod, bog'cha 17
+
+Rekvizitlar:
+Rekvizitlar so‘rov bo‘yicha taqdim etiladi
+
+SHARTLARNI QABUL QILISHNI TASDIQLASH
+Mijoz sifatida ro'yxatdan o'tib, men tasdiqlayman:
+	
+Kelishuv shartlarini o'qib chiqdim va tushundim
+Barcha talablarga rioya qilishga roziman
+Platforma faqat vositachi ekanligini tushunaman
+Hamkorlar bilan nizolarni mustaqil hal qilaman
+Taqdim etilgan barcha ma'lumotlar to'g'ri
+Oxirgi yangilanish sanasi: 09.02.2026
+Versiya: 1.0

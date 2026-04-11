@@ -1,0 +1,204 @@
+FOYDALANUVCHI KELISHUVI
+Hamkorlar uchun shartlar (haydovchilar va texnika egalari)
+Kuchga kirish sanasi: 01.01.2026
+
+MUHIM OGOHLANTIRISH
+SIZ MUSTAQIL IJROCHI HISOBLANASIZ, PLATFORMA XODIMI EMASSIZ
+Platforma axborot vositachisi bo'lib, sizning harakatlaringiz uchun javobgar EMAS
+1. ATAMALAR VA TA'RIFLAR
+Platforma – yuk tashish, maxsus texnika xizmatlarini ko'rsatuvchi ijrochilar va buyurtmachilarni bog'lovchi mobil ilova va veb-servis.
+
+Operator – Reyzapp (mas'ul shaxs: Abdullaev Baxrom), Platforma ma'muri.
+
+Hamkor – Platforma orqali xizmat ko'rsatuvchi jismoniy shaxs, yakka tartibdagi tadbirkor yoki yuridik shaxs.
+
+Mijoz – Platforma orqali xizmat buyurtmachisi.
+
+Buyurtma – Mijozning ko'rsatilgan parametrlar bilan texnika taqdim etish so'rovi.
+
+2. KELISHUV PREDMETI
+2.1. Operator Hamkorga Mijozlardan buyurtmalar olish uchun Platformadan foydalanish imkoniyatini beradi.
+
+2.2. Platforma faqat Hamkorlar va Mijozlar o'rtasida axborot vositachisi sifatida faoliyat yuritadi.
+
+2.3. Xizmat ko'rsatish bo'yicha barcha shartnomaviy munosabatlar bevosita Hamkor va Mijoz o'rtasida yuzaga keladi.
+
+3. HAMKOR MAQOMI
+3.1. Siz tasdiqlaysizki:
+Mustaqil ijrochi hisoblanasiz
+Operator xodimi EMASSIZ
+Barcha soliqlarni mustaqil to'laysiz
+Tadbirkorlik faoliyati xavflarini o'z zimmangizga olasiz
+Ishlarni bajarish usullarini mustaqil belgilaysiz
+3.2. Operator QUYIDAGILARNI KAFOLATLAMAYDI:
+Minimal buyurtmalar yoki daromad hajmi
+Ishlar bajarilishi jarayonini nazorat qilish
+Ish beruvchi yoki xizmat buyurtmachisi sifatida harakat qilish
+Uchinchi shaxslar oldida sizning harakatlaringiz uchun javobgarlik
+4. HAMKORLARGA QO'YILGAN TALABLAR
+4.1. Majburiy talablar:
+18 yoshdan katta bo'lish
+O'zbekiston Respublikasida ishlash huquqiga ega bo'lish
+Tegishli toifadagi amal qiluvchi haydovchilik guvohnomasi
+Texnikaga egalik yoki foydalanish huquqi
+Texnik jihatdan soz texnika
+Amal qiluvchi MFTS polisi
+4.2. Tekshirish uchun hujjatlar:
+Transport vositasining texnik pasporti
+5. ISHLASH TARTIBI
+5.1. Buyurtmalarni olish:
+Platforma yangi buyurtmalar haqida xabar yuboradi
+Hamkor narx va shartlar bilan taklif beradi
+Mijoz ijrochini tanlaydi
+Hamkor Mijoz kontaktlarini oladi
+5.2. Buyurtmani bajarish:
+Tafsilotlarni aniqlash uchun Mijoz bilan aloqa
+Kelishilgan vaqtda obyektga kelish
+Kelishilgan ishlarni bajarish
+Mijozdan bevosita to'lovni olish
+5.3. Geolokatsiya:
+Joylashuvni kuzatish FAQAT buyurtma bajarilishi vaqtida va sizning roziligingiz bilan amalga oshiriladi.
+Hamkor buyurtmani bajarish jarayonida joylashuv ma’lumotlarining qayta ishlanishiga rozilik bildiradi hamda bu ma’lumotlar Mijozga aks ettirilishi mumkinligini anglaydi.
+
+6. MOLIYAVIY SHARTLAR
+6.1. Joriy shartlar (ishga tushirish davrida):
+Ro'yxatdan o'tish: BEPUL
+Platforma komissiyasi: 0%
+Abonent to'lovi: mavjud emas
+6.2. Kelajakdagi monetizatsiya:
+Pullik xizmatlar joriy etilishidan kamida 30 kun oldin Hamkorlarga xabar beriladi. 
+
+6.3. Mijozlar bilan hisob-kitoblar:
+Barcha moliyaviy hisob-kitoblar Hamkor va Mijoz o'rtasida BEVOSITA amalga oshiriladi. Platforma pul hisob-kitoblarida ishtirok etmaydi va soliq agenti hisoblanmaydi.
+
+7. HAMKOR HUQUQ VA MAJBURIYATLARI
+7.1. Hamkor quyidagi huquqlarga ega:
+O'z xizmatlariga narx belgilash
+Ishtirok etish uchun buyurtmalarni tanlash
+O'z ish grafikini belgilash
+Xizmat ko'rsatish hududlarini ko'rsatish
+Istalgan vaqtda akkauntni o'chirish
+7.2. Hamkor quyidagi majburiyatlarni o'z zimmasiga oladi:
+Ishonchli ma'lumotlar va hujjatlarni taqdim etish
+Qabul qilingan buyurtmalarni bajarish
+Mijoz bilan kelishilgan shartlarga rioya qilish
+Texnikaning texnik sozligini ta'minlash
+Qonunchilikka va xavfsizlik qoidalariga rioya qilish
+Mijozlar bilan professional muloqotni saqlash
+Soliqlarni mustaqil to'lash
+7.3. Hamkorga quyidagilar taqiqlanadi:
+Tegishli huquq va ruxsatnomalarsiz ishlash
+Mast holatda texnikani boshqarish
+Soxta hujjatlardan foydalanish
+Noqonuniy ishlarni bajarish
+Reyting tizimini manipulyatsiya qilish
+Mijozlarning shaxsiy ma'lumotlarini oshkor etish
+8. OPERATOR HUQUQ VA MAJBURIYATLARI
+8.1. Operator quyidagi majburiyatlarni o'z zimmasiga oladi:
+Platformaning ishga yaroqliligini ta'minlash
+Mijozlardan buyurtmalarni uzatish
+Shaxsiy ma'lumotlarni himoya qilish
+Hujjatlarni tekshirish
+Texnik yordamni ta'minlash
+8.2. Operator quyidagi huquqlarga ega:
+Hujjatlar va texnika holatini tekshirish
+Qoidabuzarlar akkauntlarini bloklash
+Xabar berish orqali Platforma ish shartlarini o'zgartirish
+Pullik xizmatlarni joriy etish
+Tahlil uchun shaxssizlantirilgan ma'lumotlardan foydalanish
+8.3. Mas'uliyat cheklanishi:
+Operator buyurtmalar hajmi, Hamkor daromad darajasi, Mijozlar harakatlari, Hamkor va Mijoz o'rtasidagi nizolar, yo'qotilgan foyda uchun javobgar EMAS.
+
+9. HAMKOR MAS'ULIYATI
+9.1. Hamkor quyidagilarga to'liq javobgar:
+Ko'rsatilgan xizmatlar sifati
+Mijozga yetkazilgan har qanday zarar
+Uchinchi shaxslarga yetkazilgan zarar
+Qonunchilikka rioya qilish
+Texnika xavfsizligiga rioya qilish
+Soliq majburiyatlari
+9.2. Hamkor Operatorga Hamkor harakatlari natijasida uchinchi shaxslarning da'volari tufayli yuzaga kelgan barcha zararlarni qoplashga majbur.
+
+10. BLOKIROVKA VA JARIMALAR
+10.1. Blokirovka uchun asoslar:
+Soxta hujjatlar taqdim etish
+Mast holatda ishlash
+Xavfli vaziyatlar yaratish
+Firibgarlik harakatlari
+Muntazam qoidabuzarlik
+3.0 dan past reyting
+10.2. Blokirovka tartibi:
+Qoidabuzarlik haqida xabarnoma
+Tushuntirish berish imkoniyati (3 kun)
+Blokirovka qarori
+Shikoyat qilish imkoniyati (10 kun)
+11. NIZOLARNI HAL QILISH
+11.1. Mijozlar bilan nizolar Hamkor tomonidan mustaqil hal qilinadi. Platforma tomonlar iltimosiga ko'ra vositachi bo'lishi mumkin.
+
+11.2. Operator bilan nizolar quyidagi tartibda hal qilinadi:
+Da'vo yuborish (majburiy sudgacha tartib)
+Da'voni ko'rib chiqish muddati - 30 kun
+Muzokaralar
+Kelishuvga erishilmasa - Toshkent shahar sudiga murojaat
+12. FORS-MAJOR
+12.1. Tomonlar ta'sir etib bo'lmaydigan holatlar (tabiiy ofatlar, harbiy harakatlar, epidemiyalar, hokimiyat harakatlari) natijasida majburiyatlarni bajarmaganligi uchun javobgarlikdan ozod qilinadi.
+
+12.2. Tomon fors-major haqida 3 kun ichida xabar berishi shart.
+
+13. AMAL QILISH MUDDATI VA SHARTLARNI O'ZGARTIRISH
+13.1. Kelishuv ro'yxatdan o'tish paytidan boshlab noma'lum muddatga amal qiladi.
+
+13.2. Hamkor istalgan vaqtda akkauntni o'chirish orqali Platformadan foydalanishni to'xtatishi mumkin.
+
+13.3. Operator o'zgarishlar haqida xabar beradi:
+Kichik o'zgarishlar - 7 kun oldin
+Muhim o'zgarishlar - 30 kun oldin
+Moliyaviy shartlar - 30 kun oldin
+13.4. O'zgarishlar kuchga kirgandan keyin Platformadan foydalanishni davom ettirish yangi shartlarga rozilikni bildiradi.
+
+14. MAXFIYLIK
+14.1. Shaxsiy ma'lumotlarni qayta ishlash ilova va saytda mavjud Maxfiylik siyosati bilan tartibga solinadi: https://reyzdocs.github.io/docs/driver_app/uz/privacy.html
+
+14.2. Hamkor Mijozlarning shaxsiy ma'lumotlari va Platforma haqidagi maxfiy axborotni oshkor etmaslikka majbur.
+
+15. INTELLEKTUAL MULK
+15.1. Platformaning barcha huquqlari, jumladan tovar belgilari, dizayn va dastur kodi Operatorga tegishli.
+
+15.2. Hamkorga faqat buyurtmalar olish uchun Platformadan foydalanish cheklangan huquqi beriladi.
+
+16. QO'LLANILADIGAN HUQUQ
+16.1. Ushbu Kelishuv O'zbekiston Respublikasi qonunchiligi bilan tartibga solinadi.
+
+16.2. Barcha nizolar Toshkent shahar sudlarida ko'rib chiqiladi.
+
+16.3. O'zbek va rus tilidagi matnlar o'rtasida tafovutlar bo'lsa, rus tilidagi matn ustunlikka ega.
+
+17. ALOQA UCHUN MA'LUMOTLAR
+Hamkorlarni qo'llab-quvvatlash xizmati:
+Email: bakhroma7@gmail.com
+Telefon: +998908310000
+Ish vaqti: 24/7
+
+Yuridik bo'lim:
+Email: bakhroma7@gmail.com
+Telefon: +998908310000
+Ish vaqti: Dush-Jum, 09:00-18:00
+
+Yuridik manzil:
+Reyzapp
+Mas'ul shaxs: Abdullaev Baxrom
+Manzil: Toshkent, Yunusobod, bog'cha 17
+
+Rekvizitlar:
+Rekvizitlar so‘rov bo‘yicha taqdim etiladi
+
+SHARTLARNI QABUL QILISHNI TASDIQLASH
+Hamkor sifatida ro'yxatdan o'tib, men tasdiqlayman:
+
+Kelishuv shartlarini o'qib chiqdim va tushundim
+Barcha talablarga rioya qilishga roziman
+Mustaqil ijrochi maqomimni tushunaman
+Barcha soliqlarni mustaqil to'layman
+Taqdim etilgan barcha ma'lumotlar to'g'ri
+Oxirgi yangilanish sanasi: 09.02.2026
+Versiya: 1.0
