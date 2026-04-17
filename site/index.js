@@ -13,6 +13,13 @@ let equipmentControlsMounted = false;
 let testimonialsLoaded = false;
 let chatWidgetLoaded = false;
 let metaPixelLoaded = false;
+let landingAttribution = null;
+const GA_MEASUREMENT_ID = 'G-YNF6Q023JC';
+const ATTRIBUTION_STORAGE_KEY = 'reyz_landing_attribution_v1';
+const ATTRIBUTION_MAX_AGE_MS = 30 * 24 * 60 * 60 * 1000;
+const CAMPAIGN_PARAM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+const CLICK_ID_PARAM_KEYS = ['gclid', 'fbclid', 'yclid'];
+const ATTRIBUTION_PARAM_KEYS = [...CAMPAIGN_PARAM_KEYS, ...CLICK_ID_PARAM_KEYS];
 const PRIZE_CURRENT_COUNT = 4;
 const PRIZE_TARGET_COUNT = 20;
 const REYZ_PLUS_PLAY_URL = 'https://play.google.com/store/apps/details?id=com.reyzplus.driver';
@@ -459,6 +466,211 @@ function mountBurger() {
   });
 }
 
+/* ── Web analytics and UTM attribution ── */
+function readAttributionFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const attribution = {};
+
+  ATTRIBUTION_PARAM_KEYS.forEach((key) => {
+    const value = params.get(key);
+    if (value && value.trim()) {
+      attribution[key] = value.trim();
+    }
+  });
+
+  return attribution;
+}
+
+function isFreshAttribution(value) {
+  if (!value || typeof value !== 'object') return false;
+  const capturedAtMs = Number(value.captured_at_ms || 0);
+  if (!Number.isFinite(capturedAtMs) || capturedAtMs <= 0) return false;
+  return Date.now() - capturedAtMs <= ATTRIBUTION_MAX_AGE_MS;
+}
+
+function getStoredAttribution() {
+  const storages = [];
+  try {
+    storages.push(window.sessionStorage);
+  } catch (_) {
+    // Storage may be blocked by browser settings.
+  }
+  try {
+    storages.push(window.localStorage);
+  } catch (_) {
+    // Storage may be blocked by browser settings.
+  }
+
+  for (const storage of storages) {
+    try {
+      const raw = storage.getItem(ATTRIBUTION_STORAGE_KEY);
+      if (!raw) continue;
+      const parsed = JSON.parse(raw);
+      if (isFreshAttribution(parsed)) return parsed;
+    } catch (_) {
+      // Storage may be blocked by browser settings.
+    }
+  }
+
+  return null;
+}
+
+function storeAttribution(attribution) {
+  const raw = JSON.stringify(attribution);
+  const storages = [];
+  try {
+    storages.push(window.sessionStorage);
+  } catch (_) {
+    // Storage may be blocked by browser settings.
+  }
+  try {
+    storages.push(window.localStorage);
+  } catch (_) {
+    // Storage may be blocked by browser settings.
+  }
+
+  storages.forEach((storage) => {
+    try {
+      storage.setItem(ATTRIBUTION_STORAGE_KEY, raw);
+    } catch (_) {
+      // Storage may be blocked by browser settings.
+    }
+  });
+}
+
+function captureLandingAttribution() {
+  const fromUrl = readAttributionFromUrl();
+  const hasCampaignParams = Object.keys(fromUrl).length > 0;
+
+  if (hasCampaignParams) {
+    landingAttribution = {
+      ...fromUrl,
+      landing_page: window.location.href,
+      page_path: `${window.location.pathname}${window.location.search}`,
+      referrer: document.referrer || '',
+      captured_at: new Date().toISOString(),
+      captured_at_ms: Date.now(),
+    };
+    storeAttribution(landingAttribution);
+    return landingAttribution;
+  }
+
+  landingAttribution = getStoredAttribution() || {
+    landing_page: window.location.href,
+    page_path: `${window.location.pathname}${window.location.search}`,
+    referrer: document.referrer || '',
+    captured_at: new Date().toISOString(),
+    captured_at_ms: Date.now(),
+  };
+
+  return landingAttribution;
+}
+
+function getLandingAttribution() {
+  return landingAttribution || captureLandingAttribution();
+}
+
+function buildAnalyticsParams(params = {}) {
+  const attribution = getLandingAttribution();
+  const result = { ...params };
+
+  ATTRIBUTION_PARAM_KEYS.forEach((key) => {
+    const value = attribution[key];
+    if (value) result[key] = value;
+  });
+
+  if (attribution.landing_page) result.landing_page = attribution.landing_page;
+  if (attribution.referrer) result.initial_referrer = attribution.referrer;
+
+  return result;
+}
+
+function trackGaEvent(eventName, params = {}) {
+  if (!GA_MEASUREMENT_ID || typeof window.gtag !== 'function') return;
+  try {
+    window.gtag('event', eventName, buildAnalyticsParams(params));
+  } catch (_) {
+    // Analytics must never block the landing page.
+  }
+}
+
+window.reyzTrackGa = trackGaEvent;
+
+function buildPlayStoreReferrer() {
+  const attribution = getLandingAttribution();
+  const params = new URLSearchParams();
+
+  CAMPAIGN_PARAM_KEYS.forEach((key) => {
+    const value = attribution[key];
+    if (value) params.set(key, value);
+  });
+
+  return params.toString();
+}
+
+function withPlayStoreAttribution(href) {
+  try {
+    const url = new URL(href, window.location.href);
+    const isPlayStore = url.hostname.includes('play.google.com')
+      && url.pathname.includes('/store/apps/details');
+    if (!isPlayStore) return href;
+
+    const referrer = buildPlayStoreReferrer();
+    if (referrer) url.searchParams.set('referrer', referrer);
+    return url.toString();
+  } catch (_) {
+    return href;
+  }
+}
+
+function getPlayStorePackageId(href) {
+  try {
+    return new URL(href, window.location.href).searchParams.get('id') || '';
+  } catch (_) {
+    return '';
+  }
+}
+
+function getAppKeyFromPackageId(packageId) {
+  if (packageId === 'com.reyzplus.driver') return 'driver';
+  if (packageId === 'com.reyzapp.app') return 'client';
+  return 'unknown';
+}
+
+function trackPlayStoreClick(href, params = {}) {
+  const packageId = getPlayStorePackageId(href);
+  const app = getAppKeyFromPackageId(packageId);
+  const eventParams = {
+    app,
+    package_id: packageId,
+    outbound_url: href,
+    ...params,
+  };
+
+  trackGaEvent('play_store_click', eventParams);
+  trackMetaEvent('PlayStoreClick', buildAnalyticsParams(eventParams));
+}
+
+function mountWebAnalytics() {
+  captureLandingAttribution();
+
+  document.querySelectorAll('a[href*="play.google.com/store/apps/details"]').forEach((link) => {
+    const href = link.getAttribute('href') || '';
+    const attributedHref = withPlayStoreAttribution(href);
+    link.setAttribute('href', attributedHref);
+  });
+
+  document.querySelectorAll('[data-card-href*="play.google.com/store/apps/details"]').forEach((card) => {
+    const href = card.getAttribute('data-card-href') || '';
+    card.setAttribute('data-card-href', withPlayStoreAttribution(href));
+  });
+
+  trackGaEvent('landing_view', {
+    page_title: document.title,
+    page_path: `${window.location.pathname}${window.location.search}`,
+  });
+}
+
 /* ── Clickable for-cards ── */
 function mountForCards() {
   const cards = document.querySelectorAll('.for-card-link[data-card-href]');
@@ -471,6 +683,7 @@ function mountForCards() {
 
     card.addEventListener('click', (event) => {
       if (event.target.closest('a, button, input, textarea, select, label')) return;
+      trackPlayStoreClick(href, { click_surface: 'for_card' });
       window.open(href, '_blank', 'noopener,noreferrer');
     });
 
@@ -478,6 +691,7 @@ function mountForCards() {
       if (event.target !== card) return;
       if (event.key !== 'Enter' && event.key !== ' ') return;
       event.preventDefault();
+      trackPlayStoreClick(href, { click_surface: 'for_card_keyboard' });
       window.open(href, '_blank', 'noopener,noreferrer');
     });
   });
@@ -501,6 +715,9 @@ function showNavCTA() {
 
 
 function trackMetaEvent(eventName, params = {}) {
+  if (typeof window.fbq !== 'function') {
+    loadMetaPixel();
+  }
   if (typeof window.fbq !== 'function') return;
   try {
     window.fbq('trackCustom', eventName, params);
@@ -509,14 +726,16 @@ function trackMetaEvent(eventName, params = {}) {
 
 window.reyzTrackMeta = trackMetaEvent;
 
-function mountMetaTracking() {
+function mountPlayStoreTracking() {
   document.addEventListener('click', (event) => {
     const link = event.target.closest('a[href*="play.google.com/store/apps/details"]');
     if (!link) return;
 
     const href = link.getAttribute('href') || '';
-    const app = href.includes('com.reyzplus.driver') ? 'driver' : 'client';
-    trackMetaEvent('PlayStoreClick', { app, href });
+    trackPlayStoreClick(href, {
+      click_surface: 'link',
+      link_text: (link.textContent || '').trim().slice(0, 80),
+    });
   });
 }
 
@@ -676,7 +895,7 @@ function renderPrizeCatalog(language = getCurrentLanguage()) {
   grid.textContent = '';
   const fragment = document.createDocumentFragment();
   const copy = getPrizeProgramCopy(language);
-  const storeUrl = getReyzPlusStoreUrl();
+  const storeUrl = withPlayStoreAttribution(getReyzPlusStoreUrl());
   const openCounterDialog = (itemName) => {
     const dialog = document.getElementById('prize-counter-dialog');
     const dialogTitle = document.getElementById('prize-counter-dialog-title');
@@ -720,6 +939,7 @@ function renderPrizeCatalog(language = getCurrentLanguage()) {
     counter.textContent = copy.cardCounter(PRIZE_CURRENT_COUNT, PRIZE_TARGET_COUNT);
 
     const openStore = () => {
+      trackPlayStoreClick(storeUrl, { click_surface: 'prize_catalog' });
       window.open(storeUrl, '_blank', 'noopener,noreferrer');
     };
 
@@ -845,8 +1065,9 @@ function bootstrap() {
   mountDeferredSections();
   mountFAQ();
   mountBurger();
+  mountWebAnalytics();
   mountForCards();
-  mountMetaTracking();
+  mountPlayStoreTracking();
   mountDeferredMetaPixel();
   mountHeroEquipmentRotator();
   mountPrizeProgram();
