@@ -1661,6 +1661,7 @@ body.landing-modal-open {
 }
 
 .prize-fab {
+  display: none !important;
   position: fixed;
   right: 96px;
   bottom: 28px;
@@ -1672,7 +1673,7 @@ body.landing-modal-open {
   width: auto;
   height: 52px;
   border-radius: 999px;
-  display: inline-flex;
+  /* display: inline-flex; */
   align-items: center;
   justify-content: center;
   background: #0070F0;
