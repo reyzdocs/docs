@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.reyzapp.app",
+      "sha256_cert_fingerprints": [
+        "53:5F:5A:81:72:20:26:CF:41:BE:0C:08:FB:83:B7:FD:74:E2:6D:EC:0E:0F:80:DE:52:A9:7B:26:B6:73:3A:03"
+      ]
+    }
+  }
+]
