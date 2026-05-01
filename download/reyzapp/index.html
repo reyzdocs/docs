@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Скачать Reyzapp</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f6f0e6;
+      --card: #fffaf2;
+      --text: #1d1b16;
+      --muted: #6f6658;
+      --accent: #ef7d00;
+      --accent-dark: #c86400;
+      --border: rgba(29, 27, 22, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 15%, rgba(239, 125, 0, 0.18), transparent 32%),
+        radial-gradient(circle at 85% 10%, rgba(0, 0, 0, 0.08), transparent 28%),
+        var(--bg);
+    }
+
+    main {
+      width: min(440px, 100%);
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      background: var(--card);
+      box-shadow: 0 24px 80px rgba(29, 27, 22, 0.14);
+      text-align: center;
+    }
+
+    img {
+      width: 72px;
+      height: 72px;
+      border-radius: 18px;
+      box-shadow: 0 10px 28px rgba(29, 27, 22, 0.18);
+    }
+
+    h1 {
+      margin: 18px 0 8px;
+      font-size: 30px;
+      line-height: 1.08;
+    }
+
+    p {
+      margin: 0 0 22px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .actions {
+      display: grid;
+      gap: 12px;
+    }
+
+    a {
+      display: block;
+      padding: 14px 18px;
+      border-radius: 16px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .primary {
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+    }
+
+    .secondary {
+      color: var(--text);
+      border: 1px solid var(--border);
+      background: #fff;
+    }
+
+    .hint {
+      margin-top: 16px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <img src="/public/reyzapp-icon-v3-128.webp" alt="" width="72" height="72" />
+    <h1>Скачать Reyzapp</h1>
+    <p>Если переход не открылся автоматически, выберите магазин вручную.</p>
+    <div class="actions">
+      <a class="primary" id="primary-link" href="https://apps.apple.com/app/reyzapp/id6763622040">Открыть App Store</a>
+      <a class="secondary" id="secondary-link" href="https://play.google.com/store/apps/details?id=com.reyzapp.app">Открыть Google Play</a>
+      <a class="secondary" href="/">Перейти на сайт</a>
+    </div>
+    <div class="hint">Reyzapp для заказчиков</div>
+  </main>
+
+  <script>
+    const APP_STORE_URL = 'https://apps.apple.com/app/reyzapp/id6763622040';
+    const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.reyzapp.app';
+
+    function isIOSDevice() {
+      const ua = navigator.userAgent || navigator.vendor || '';
+      return /iPad|iPhone|iPod/i.test(ua)
+        || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    }
+
+    function isAndroidDevice() {
+      return /Android/i.test(navigator.userAgent || '');
+    }
+
+    function appendPlayReferrer(url) {
+      const current = new URLSearchParams(window.location.search);
+      const referrer = new URLSearchParams();
+      ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'fbclid', 'yclid']
+        .forEach((key) => {
+          const value = current.get(key);
+          if (value) referrer.set(key, value);
+        });
+
+      if (!referrer.toString()) return url;
+
+      const next = new URL(url);
+      next.searchParams.set('referrer', referrer.toString());
+      return next.toString();
+    }
+
+    const playUrl = appendPlayReferrer(PLAY_STORE_URL);
+    document.getElementById('secondary-link').href = playUrl;
+
+    if (isIOSDevice()) {
+      window.location.replace(APP_STORE_URL);
+    } else if (isAndroidDevice()) {
+      window.location.replace(playUrl);
+    }
+  </script>
+</body>
+</html>

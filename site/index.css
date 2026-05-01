@@ -358,20 +358,10 @@ ul, ol {
   color: var(--primary-foreground);
 }
 
-.mobile-menu-cta .btn-primary:hover {
-  background: var(--primary-strong);
-  border-color: var(--primary-strong);
-}
-
 .mobile-menu-cta .btn-secondary {
   background: var(--primary-soft);
   border-color: var(--primary-medium);
   color: var(--accent-text);
-}
-
-.mobile-menu-cta .btn-secondary:hover {
-  background: var(--primary-light);
-  border-color: var(--primary-medium);
 }
 
 @media (min-width: 768px) {
@@ -403,19 +393,10 @@ ul, ol {
   border-color: var(--primary);
 }
 
-.btn-primary:hover {
-  background: var(--primary-strong);
-  border-color: var(--primary-strong);
-}
-
 .btn-secondary {
   background: transparent;
   color: var(--foreground);
   border-color: var(--card-border);
-}
-
-.btn-secondary:hover {
-  background: var(--muted-bg);
 }
 
 .btn-sm {
@@ -447,15 +428,37 @@ ul, ol {
   width: 100%;
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  pointer-events: none;
   transition: left 0.5s ease;
 }
 
-.btn-shiny:hover::before {
-  left: 100%;
-}
+@media (hover: hover) and (pointer: fine) {
+  .mobile-menu-cta .btn-primary:hover {
+    background: var(--primary-strong);
+    border-color: var(--primary-strong);
+  }
 
-.btn-shiny:hover {
-  background: var(--primary-strong);
+  .mobile-menu-cta .btn-secondary:hover {
+    background: var(--primary-light);
+    border-color: var(--primary-medium);
+  }
+
+  .btn-primary:hover {
+    background: var(--primary-strong);
+    border-color: var(--primary-strong);
+  }
+
+  .btn-secondary:hover {
+    background: var(--muted-bg);
+  }
+
+  .btn-shiny:hover::before {
+    left: 100%;
+  }
+
+  .btn-shiny:hover {
+    background: var(--primary-strong);
+  }
 }
 
 /* ── Section badge ── */
@@ -1229,14 +1232,22 @@ img[data-src]:not([src]) {
   animation: btn-pulse-ring 1.9s ease-out infinite;
 }
 
-.btn-pulse:hover,
 .btn-pulse:focus-visible {
   animation-play-state: paused;
 }
 
-.btn-pulse:hover::after,
 .btn-pulse:focus-visible::after {
   animation-play-state: paused;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .btn-pulse:hover {
+    animation-play-state: paused;
+  }
+
+  .btn-pulse:hover::after {
+    animation-play-state: paused;
+  }
 }
 
 @keyframes btn-heartbeat {
