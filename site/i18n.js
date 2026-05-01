@@ -199,7 +199,7 @@ const STATIC_TEXT_UZ = {
     "Buyurtma asosida yuk tashish va maxsus texnika - tez, shaffof va ortiqcha qo'ng'iroqlarsiz",
   'Грузоперевозки и спецтехника':
     'Yuk tashish va maxsus texnika',
-  'прозрачные цены • понятные заявки • автоподбор грузов и техники • тендер по цене • трекинг • два отдельные приложения для заказчиков и для исполнителей.':
+  'прозрачные цены • понятные заявки • автоподбор грузов и техники • тендер по цене • трекинг • два отдельных приложения для заказчиков и для исполнителей.':
     "shaffof narxlar • tushunarli buyurtmalar • yuk va texnikani avtomatik tanlash • narx bo'yicha tender • tracking • buyurtmachi va ijrochilar uchun ikki alohida ilova.",
   'Reyzapp объединяет заказчиков и водителей в одном рабочем контуре: создание заявки, автоматический матчинг, тендер по цене и контроль статусов в реальном времени.':
     "Reyzapp buyurtmachi va haydovchilarni bitta ish konturida birlashtiradi: so'rov yaratish, avtomatik matching, narx tenderi va statuslarni real vaqtda nazorat qilish.",
@@ -212,7 +212,7 @@ const STATIC_TEXT_UZ = {
   'Всё для заказа техники в одной платформе': "Texnika buyurtmasi uchun hammasi bitta platformada",
   'Мощные инструменты для заказчиков и водителей — подбор, ставки, контроль и рейтинги.':
     "Buyurtmachi va haydovchilar uchun kuchli vositalar - tanlash, narx takliflari, nazorat va reytinglar.",
-  'Мощные инструменты для заказчиков и водителей — подбор, предложений цены, контроль и рейтинги.':
+  'Мощные инструменты для заказчиков и водителей — подбор, ценовые предложения, контроль и рейтинги.':
     "Buyurtmachi va haydovchilar uchun kuchli vositalar - narx takliflarini tanlash, nazorat va reytinglar.",
   'Мгновенный матчинг': 'Tezkor matching',
   'Система автоматически находит водителей с подходящей техникой и отправляет уведомления за секунды.':
@@ -220,7 +220,7 @@ const STATIC_TEXT_UZ = {
   'Прозрачный тендер': 'Shaffof tender',
   'Водители подают ставки, формируя конкурентную цену. Заказчик выбирает лучшее предложение.':
     "Haydovchilar taklif beradi va raqobat narxini shakllantiradi. Buyurtmachi eng yaxshi taklifni tanlaydi.",
-  'Водители отправлают предложений, формируя конкурентную цену. Заказчик выбирает лучшее предложение.':
+  'Водители отправляют ценовые предложения, формируя конкурентную цену. Заказчик выбирает лучшее предложение.':
     "Haydovchilar takliflarni yuborib, raqobatbardosh narxni shakllantiradi. Buyurtmachi eng yaxshi taklifni tanlaydi.",
   'Realtime трекинг': 'Realtime tracking',
   'Отслеживайте движение техники на карте и получайте обновления статусов в реальном времени.':
@@ -266,10 +266,10 @@ const STATIC_TEXT_UZ = {
   'Рейтинг: ★★★★★': 'Reyting: ★★★★★',
   'Цена: 4 000 000 сум': "Narx: 4 000 000 so'm",
   'Тендер по цене': "Narx bo'yicha tender",
-  'Водители подают ставки с ценой и временем прибытия. Выбирайте лучший вариант по условиям.':
-    "Haydovchilar narx va yetib kelish vaqti bilan taklif beradi. Shartlarga ko'ra eng yaxshi variantni tanlang.",
-  'Водители отпраляют предложений с ценой и временем прибытия. Выбирайте лучший вариант по условиям.':
-    "Haydovchilar narx va yetib kelish vaqti bilan takliflarni yuboradi. Shartlarga ko'ra eng yaxshi variantni tanlang.",
+  'Водители подают ставки с ценой. Выбирайте лучший вариант по условиям.':
+    "Haydovchilar narx takliflarini beradi. Shartlarga ko'ra eng yaxshi variantni tanlang.",
+  'Водители отправляют ценовые предложения. Выбирайте лучший вариант по условиям.':
+    "Haydovchilar narx takliflarini yuboradi. Shartlarga ko'ra eng yaxshi variantni tanlang.",
   'Контроль': 'Nazorat',
   'В процессе': 'Jarayonda',
   'Назначен водитель': 'Haydovchi tayinlandi',
@@ -384,7 +384,7 @@ const HERO_SUBLINE_COPY = {
   ru: {
     before: 'прозрачные цены • понятные заявки • автоподбор грузов и техники • ',
     tender: 'тендер по цене',
-    middle: ' • трекинг • два отдельные приложения ',
+    middle: ' • трекинг • два отдельных приложения ',
     audience: 'для заказчиков и для исполнителей.',
   },
   uz: {
