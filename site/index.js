@@ -715,7 +715,9 @@ function trackStoreClick(href, params = {}) {
   };
 
   trackGaEvent('store_click', eventParams);
+  trackGaEvent('play_store_click', eventParams);
   trackMetaEvent('StoreClick', buildAnalyticsParams(eventParams));
+  trackMetaEvent('PlayStoreClick', buildAnalyticsParams(eventParams));
 }
 
 function trackPlayStoreClick(href, params = {}) {
