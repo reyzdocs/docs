@@ -22,8 +22,14 @@ const CLICK_ID_PARAM_KEYS = ['gclid', 'fbclid', 'yclid'];
 const ATTRIBUTION_PARAM_KEYS = [...CAMPAIGN_PARAM_KEYS, ...CLICK_ID_PARAM_KEYS];
 const PRIZE_CURRENT_COUNT = 4;
 const PRIZE_TARGET_COUNT = 20;
+const REYZAPP_PLAY_URL = 'https://play.google.com/store/apps/details?id=com.reyzapp.app';
+const REYZAPP_APP_STORE_URL = 'https://apps.apple.com/app/reyzapp/id6763622040';
 const REYZ_PLUS_PLAY_URL = 'https://play.google.com/store/apps/details?id=com.reyzplus.driver';
-const REYZ_PLUS_APP_STORE_URL = REYZ_PLUS_PLAY_URL;
+const REYZ_PLUS_APP_STORE_URL = 'https://apps.apple.com/app/reyz/id6763616124';
+const APP_STORE_URL_BY_PACKAGE_ID = new Map([
+  ['com.reyzapp.app', REYZAPP_APP_STORE_URL],
+  ['com.reyzplus.driver', REYZ_PLUS_APP_STORE_URL],
+]);
 
 const PRIZE_PROGRAM_COPY = {
   ru: {
@@ -623,6 +629,29 @@ function withPlayStoreAttribution(href) {
   }
 }
 
+function isIOSDevice() {
+  const ua = navigator.userAgent || navigator.vendor || '';
+  return /iPad|iPhone|iPod/i.test(ua)
+    || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+}
+
+function withSmartStoreUrl(href) {
+  try {
+    const url = new URL(href, window.location.href);
+    const isPlayStore = url.hostname.includes('play.google.com')
+      && url.pathname.includes('/store/apps/details');
+    if (!isPlayStore) return href;
+
+    const packageId = url.searchParams.get('id') || '';
+    const appStoreUrl = APP_STORE_URL_BY_PACKAGE_ID.get(packageId);
+    if (isIOSDevice() && appStoreUrl) return appStoreUrl;
+
+    return withPlayStoreAttribution(href);
+  } catch (_) {
+    return href;
+  }
+}
+
 function getPlayStorePackageId(href) {
   try {
     return new URL(href, window.location.href).searchParams.get('id') || '';
@@ -637,18 +666,60 @@ function getAppKeyFromPackageId(packageId) {
   return 'unknown';
 }
 
-function trackPlayStoreClick(href, params = {}) {
-  const packageId = getPlayStorePackageId(href);
-  const app = getAppKeyFromPackageId(packageId);
+function getStoreInfo(href) {
+  try {
+    const url = new URL(href, window.location.href);
+    const isPlayStore = url.hostname.includes('play.google.com')
+      && url.pathname.includes('/store/apps/details');
+    if (isPlayStore) {
+      const packageId = url.searchParams.get('id') || '';
+      return {
+        app: getAppKeyFromPackageId(packageId),
+        store: 'google_play',
+        package_id: packageId,
+      };
+    }
+
+    const isAppStore = url.hostname.includes('apps.apple.com')
+      && url.pathname.includes('/app/');
+    if (isAppStore) {
+      const path = url.pathname;
+      const app = path.includes('/reyzapp/') || path.includes('id6763622040')
+        ? 'client'
+        : path.includes('/reyz/') || path.includes('id6763616124')
+          ? 'driver'
+          : 'unknown';
+      const appleIdMatch = path.match(/id(\d+)/);
+      return {
+        app,
+        store: 'app_store',
+        apple_id: appleIdMatch ? appleIdMatch[1] : '',
+      };
+    }
+  } catch (_) {
+    // Fall through to unknown store metadata.
+  }
+
+  return {
+    app: 'unknown',
+    store: 'unknown',
+  };
+}
+
+function trackStoreClick(href, params = {}) {
+  const storeInfo = getStoreInfo(href);
   const eventParams = {
-    app,
-    package_id: packageId,
+    ...storeInfo,
     outbound_url: href,
     ...params,
   };
 
-  trackGaEvent('play_store_click', eventParams);
-  trackMetaEvent('PlayStoreClick', buildAnalyticsParams(eventParams));
+  trackGaEvent('store_click', eventParams);
+  trackMetaEvent('StoreClick', buildAnalyticsParams(eventParams));
+}
+
+function trackPlayStoreClick(href, params = {}) {
+  trackStoreClick(href, params);
 }
 
 function mountWebAnalytics() {
@@ -656,13 +727,12 @@ function mountWebAnalytics() {
 
   document.querySelectorAll('a[href*="play.google.com/store/apps/details"]').forEach((link) => {
     const href = link.getAttribute('href') || '';
-    const attributedHref = withPlayStoreAttribution(href);
-    link.setAttribute('href', attributedHref);
+    link.setAttribute('href', withSmartStoreUrl(href));
   });
 
   document.querySelectorAll('[data-card-href*="play.google.com/store/apps/details"]').forEach((card) => {
     const href = card.getAttribute('data-card-href') || '';
-    card.setAttribute('data-card-href', withPlayStoreAttribution(href));
+    card.setAttribute('data-card-href', withSmartStoreUrl(href));
   });
 
   trackGaEvent('landing_view', {
@@ -683,7 +753,7 @@ function mountForCards() {
 
     card.addEventListener('click', (event) => {
       if (event.target.closest('a, button, input, textarea, select, label')) return;
-      trackPlayStoreClick(href, { click_surface: 'for_card' });
+      trackStoreClick(href, { click_surface: 'for_card' });
       window.open(href, '_blank', 'noopener,noreferrer');
     });
 
@@ -691,7 +761,7 @@ function mountForCards() {
       if (event.target !== card) return;
       if (event.key !== 'Enter' && event.key !== ' ') return;
       event.preventDefault();
-      trackPlayStoreClick(href, { click_surface: 'for_card_keyboard' });
+      trackStoreClick(href, { click_surface: 'for_card_keyboard' });
       window.open(href, '_blank', 'noopener,noreferrer');
     });
   });
@@ -728,11 +798,13 @@ window.reyzTrackMeta = trackMetaEvent;
 
 function mountPlayStoreTracking() {
   document.addEventListener('click', (event) => {
-    const link = event.target.closest('a[href*="play.google.com/store/apps/details"]');
+    const link = event.target.closest(
+      'a[href*="play.google.com/store/apps/details"], a[href*="apps.apple.com/app/"]',
+    );
     if (!link) return;
 
     const href = link.getAttribute('href') || '';
-    trackPlayStoreClick(href, {
+    trackStoreClick(href, {
       click_surface: 'link',
       link_text: (link.textContent || '').trim().slice(0, 80),
     });
@@ -883,9 +955,7 @@ function getPrizeProgramCopy(language = 'ru') {
 }
 
 function getReyzPlusStoreUrl() {
-  const ua = navigator.userAgent || navigator.vendor || '';
-  const isApple = /iPad|iPhone|iPod|Macintosh/i.test(ua);
-  return isApple ? REYZ_PLUS_APP_STORE_URL : REYZ_PLUS_PLAY_URL;
+  return isIOSDevice() ? REYZ_PLUS_APP_STORE_URL : REYZ_PLUS_PLAY_URL;
 }
 
 function renderPrizeCatalog(language = getCurrentLanguage()) {
