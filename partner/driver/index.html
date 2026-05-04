@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Reyz+ — заказы для водителей спецтехники и грузового транспорта</title>
-  <meta name="description" content="Есть грузовая машина для логистики или спецтехника для строительства? Получайте заказы напрямую через Reyz+. Клиенты создают заявки, а вы сами предлагаете свою цену." />
+  <meta name="description" content="Есть грузовая техника или спецтехника? Получайте заказы напрямую через Reyz+. Клиенты создают заявки, а вы сами предлагаете свою цену." />
   <meta property="og:title" content="Reyz+ — получайте заказы напрямую" />
   <meta property="og:description" content="Самосвал, манипулятор, автокран, фура, экскаватор и другие виды техники. Подключайтесь к Reyz+ и получайте заявки." />
   <meta property="og:type" content="website" />
@@ -46,7 +46,7 @@
     .nav {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
       gap: 16px;
       margin-bottom: 56px;
     }
@@ -66,15 +66,11 @@
       border-radius: 10px;
     }
 
-    .nav-link {
-      color: var(--muted);
-      font-weight: 700;
-      font-size: 14px;
-    }
-
     .hero {
       position: relative;
       max-width: 820px;
+      margin: 0 auto;
+      text-align: center;
     }
 
     .hero-grid-bg {
@@ -91,25 +87,27 @@
     }
 
     h1 {
-      margin: 0;
-      font-size: clamp(42px, 7vw, 82px);
-      line-height: 0.92;
-      letter-spacing: -0.075em;
+      margin: 0 auto;
+      font-size: clamp(2.25rem, 5vw, 3.75rem);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
       max-width: 760px;
+      text-wrap: balance;
     }
 
     .lead {
-      margin: 24px 0 0;
-      max-width: 650px;
+      margin: 24px auto 0;
+      max-width: 540px;
       color: var(--muted);
-      font-size: clamp(18px, 2vw, 23px);
-      line-height: 1.42;
-      font-weight: 650;
+      font-size: 1.125rem;
+      line-height: 1.7;
+      font-weight: 400;
     }
 
-    .lead strong {
-      color: var(--ink);
-      font-weight: 900;
+    .lead-accent {
+      color: #ff8a00;
+      font-weight: 700;
     }
 
     .hero-rotator-line {
@@ -138,6 +136,7 @@
     .actions {
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: 14px;
       flex-wrap: wrap;
       margin-top: 32px;
@@ -147,14 +146,16 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 58px;
-      padding: 0 28px;
+      gap: 8px;
+      min-height: auto;
+      padding: 14px 28px;
       border-radius: 999px;
-      background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+      background: #000;
       color: white;
-      font-size: 17px;
-      font-weight: 900;
-      box-shadow: 0 18px 42px rgba(239, 125, 0, 0.28);
+      font-size: 1rem;
+      font-weight: 600;
+      border: 0;
+      box-shadow: none;
     }
 
     .notes {
@@ -184,19 +185,12 @@
     @media (hover: hover) and (pointer: fine) {
       .cta:hover {
         transform: translateY(-1px);
-        box-shadow: 0 24px 54px rgba(239, 125, 0, 0.34);
+        background: #ff7300;
       }
 
-      .nav-link:hover {
-        color: var(--ink);
-      }
     }
 
     @media (max-width: 520px) {
-      .nav-link {
-        display: none;
-      }
-
       .actions {
         display: grid;
       }
@@ -214,24 +208,26 @@
         <img src="/public/reyzplus-icon-v3-128.webp" alt="" width="38" height="38" />
         <span>Reyz+</span>
       </a>
-      <a class="nav-link" href="/">На главный сайт</a>
     </nav>
 
     <main>
       <section class="hero">
         <div class="hero-grid-bg"></div>
         <div>
-          <h1>Есть грузовая машина для логистики или спецтехника для строительства?</h1>
+          <h1>Есть грузовая техника или спецтехника?</h1>
           <div class="hero-rotator-line" aria-live="polite">
             <span class="hero-rotator-word" id="partner-hero-rotator-word">самосвала</span>
           </div>
           <p class="lead">
-            Получайте заказы напрямую через <strong>Reyz+</strong>.
-            Клиенты создают заявки, а вы сами предлагаете свою цену.
+            Получайте заказы <span class="lead-accent">напрямую</span> через Reyz+.
+            Клиенты создают заявки, а вы сами предлагаете <span class="lead-accent">свою цену</span>.
           </p>
 
           <div class="actions">
-            <a class="cta" href="/download/reyzplus/">Получать заказы</a>
+            <a class="cta" href="/download/reyzplus/">
+              Получать заказы
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
           </div>
         </div>
       </section>
