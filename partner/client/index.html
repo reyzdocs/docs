@@ -1,0 +1,460 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Получите предложения цен на технику через Reyzapp</title>
+  <meta name="description" content="Создайте заказ, водители сами предложат цену. Выберите выгодное предложение и отслеживайте технику на карте." />
+  <meta property="og:title" content="Получите предложения цен на технику через Reyzapp" />
+  <meta property="og:description" content="Создайте заказ, водители сами предложат цену. Выберите выгодное предложение и отслеживайте технику на карте." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://www.reyz.app/public/reyzapp-icon-v3.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Получите предложения цен на технику через Reyzapp" />
+  <meta name="twitter:description" content="Создайте заказ, водители сами предложат цену. Выберите выгодное предложение и отслеживайте технику на карте." />
+  <meta name="twitter:image" content="https://www.reyz.app/public/reyzapp-icon-v3.png" />
+  <meta name="theme-color" content="#111111" />
+  <link rel="icon" href="/public/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="/public/apple-touch-icon.png" />
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #ffffff;
+      --ink: #17140f;
+      --muted: #6d6253;
+      --orange: #ef7d00;
+      --line: rgba(23, 20, 15, 0.12);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Arial", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      width: min(100% - 24px, 560px);
+      margin: 0 auto;
+      padding: 20px 0 40px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 38px;
+      margin-bottom: 56px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      font-size: 22px;
+    }
+
+    .brand img {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+    }
+
+    .lang-switch {
+      display: inline-flex;
+      gap: 4px;
+      padding: 3px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.82);
+    }
+
+    .lang-btn {
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--muted);
+      padding: 6px 9px;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 900;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .lang-btn.is-active {
+      background: #000;
+      color: #fff;
+    }
+
+    .hero {
+      position: relative;
+      max-width: 820px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hero-grid-bg {
+      position: absolute;
+      inset: -80px -40px;
+      z-index: -1;
+      opacity: 0.5;
+      background-image:
+        linear-gradient(to right, rgba(59, 130, 246, 0.15) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(59, 130, 246, 0.15) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 0%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 0%, transparent 100%);
+    }
+
+    h1 {
+      margin: 0 auto;
+      font-size: clamp(2.25rem, 5vw, 3.75rem);
+      font-weight: 700;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      max-width: 760px;
+      text-wrap: balance;
+    }
+
+    .lead {
+      margin: 24px auto 0;
+      max-width: 540px;
+      color: var(--muted);
+      font-size: 1.125rem;
+      line-height: 1.7;
+      font-weight: 400;
+    }
+
+    .lead-accent {
+      color: #ff8a00;
+      font-weight: 700;
+    }
+
+    .hero-rotator-line {
+      min-height: 2.16em;
+      margin: 8px 0 18px;
+    }
+
+    .hero-rotator-word {
+      display: inline-block;
+      color: #ff8a00;
+      font-weight: 900;
+      font-size: clamp(42px, 7vw, 82px);
+      line-height: 0.98;
+      letter-spacing: -0.055em;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 320ms ease, transform 320ms ease;
+      will-change: opacity, transform;
+    }
+
+    .hero-rotator-word.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+
+    .offer-note {
+      width: 100%;
+      color: #ff8a00;
+      font-size: 1.25rem;
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      text-align: center;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: auto;
+      padding: 18px 34px;
+      border-radius: 999px;
+      background: #000;
+      color: white;
+      font-size: 1.14rem;
+      font-weight: 800;
+      border: 0;
+      box-shadow: none;
+    }
+
+    .notes {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-top: 30px;
+    }
+
+    .note {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.48);
+      color: var(--muted);
+      font-weight: 750;
+      line-height: 1.45;
+    }
+
+    .note strong {
+      display: block;
+      color: var(--ink);
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .lang-btn:hover:not(.is-active) {
+        color: var(--ink);
+        background: rgba(23, 20, 15, 0.06);
+      }
+
+      .cta:hover {
+        transform: translateY(-1px);
+        background: #ff7300;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .actions {
+        display: grid;
+      }
+
+      .cta {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <nav class="nav" aria-label="Навигация">
+      <a class="brand" href="/">
+        <img src="/public/reyzapp-icon-v3-128.webp" alt="" width="38" height="38" />
+        <span>Reyzapp</span>
+      </a>
+      <div class="lang-switch" role="group" aria-label="Выбор языка">
+        <button class="lang-btn is-active" type="button" data-lang="ru" aria-pressed="true">RU</button>
+        <button class="lang-btn" type="button" data-lang="uz" aria-pressed="false">UZ</button>
+      </div>
+    </nav>
+
+    <main>
+      <section class="hero">
+        <div class="hero-grid-bg"></div>
+        <div>
+          <h1 data-i18n="heroTitle">Создайте заказ — водители сами предложат цену</h1>
+          <div class="hero-rotator-line" aria-live="polite">
+            <span class="hero-rotator-word" id="partner-hero-rotator-word">Самосвал</span>
+          </div>
+          <p class="lead" data-i18n-html="lead">
+            Выберите <span class="lead-accent">выгодное предложение</span> и отслеживайте технику <span class="lead-accent">на карте</span>.
+          </p>
+
+          <div class="actions">
+            <div class="offer-note" data-i18n="offerNote">55+ видов техники</div>
+            <a class="cta" href="/download/reyzapp/">
+              <span data-i18n="cta">Получить предложения цен</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="notes" aria-label="Преимущества">
+        <div class="note">
+          <strong data-i18n="noteOrderTitle">Заявка за минуту</strong>
+          <span data-i18n="noteOrderText">Укажите технику, адреса, дату и детали заказа.</span>
+        </div>
+        <div class="note">
+          <strong data-i18n="noteBidTitle">Ценовые предложения</strong>
+          <span data-i18n="noteBidText">Водители отправляют свои цены, а вы выбираете подходящий вариант.</span>
+        </div>
+        <div class="note">
+          <strong data-i18n="noteMapTitle">Техника на карте</strong>
+          <span data-i18n="noteMapText">После выбора исполнителя отслеживайте движение и статусы заказа.</span>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script type="module">
+    import { EQUIPMENT_ITEMS } from '/site/equipment-list.js';
+    import { EQUIPMENT_UZ_NAMES } from '/site/equipment-i18n.js';
+
+    const LANG_STORAGE_KEY = 'reyz_partner_client_lang';
+    const translations = {
+      ru: {
+        pageTitle: 'Получите предложения цен на технику через Reyzapp',
+        pageDescription: 'Создайте заказ, водители сами предложат цену. Выберите выгодное предложение и отслеживайте технику на карте.',
+        heroTitle: 'Создайте заказ — водители сами предложат цену',
+        lead: 'Выберите <span class="lead-accent">выгодное предложение</span> и отслеживайте технику <span class="lead-accent">на карте</span>.',
+        offerNote: '55+ видов техники',
+        cta: 'Получить предложения цен',
+        noteOrderTitle: 'Заявка за минуту',
+        noteOrderText: 'Укажите технику, адреса, дату и детали заказа.',
+        noteBidTitle: 'Ценовые предложения',
+        noteBidText: 'Водители отправляют свои цены, а вы выбираете подходящий вариант.',
+        noteMapTitle: 'Техника на карте',
+        noteMapText: 'После выбора исполнителя отслеживайте движение и статусы заказа.',
+      },
+      uz: {
+        pageTitle: 'Reyzapp orqali texnika uchun narx takliflarini oling',
+        pageDescription: 'Buyurtma yarating, haydovchilar narx taklif qiladi. Qulay taklifni tanlang va texnikani xaritada kuzating.',
+        heroTitle: 'Buyurtma yarating — haydovchilar narx taklif qiladi',
+        lead: '<span class="lead-accent">Qulay taklifni</span> tanlang va texnikani <span class="lead-accent">xaritada</span> kuzating.',
+        offerNote: '55+ turdagi texnika',
+        cta: 'Narx takliflarini olish',
+        noteOrderTitle: 'Bir daqiqada ariza',
+        noteOrderText: 'Texnika turi, manzillar, sana va buyurtma tafsilotlarini kiriting.',
+        noteBidTitle: 'Narx takliflari',
+        noteBidText: 'Haydovchilar o\'z narxlarini yuboradi, siz esa mos variantni tanlaysiz.',
+        noteMapTitle: 'Texnika xaritada',
+        noteMapText: 'Ijrochi tanlangandan keyin harakat va buyurtma statuslarini kuzating.',
+      },
+    };
+
+    const wordEl = document.getElementById('partner-hero-rotator-word');
+    const langButtons = Array.from(document.querySelectorAll('[data-lang]'));
+    const textElements = Array.from(document.querySelectorAll('[data-i18n]'));
+    const htmlElements = Array.from(document.querySelectorAll('[data-i18n-html]'));
+    const metaDescription = document.querySelector('meta[name="description"]');
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    const ogDescription = document.querySelector('meta[property="og:description"]');
+    const twitterTitle = document.querySelector('meta[name="twitter:title"]');
+    const twitterDescription = document.querySelector('meta[name="twitter:description"]');
+    const wordsByLang = {
+      ru: EQUIPMENT_ITEMS
+        .map((item) => String(item.name || '').trim())
+        .filter((name) => name.length > 0),
+      uz: EQUIPMENT_ITEMS
+        .map((item) => String(EQUIPMENT_UZ_NAMES[item.slug] || item.name || '').trim())
+        .filter((name) => name.length > 0),
+    };
+
+    let currentLanguage = getInitialLanguage();
+    let currentWord = '';
+
+    function getInitialLanguage() {
+      try {
+        const stored = window.localStorage.getItem(LANG_STORAGE_KEY);
+        if (stored === 'ru' || stored === 'uz') return stored;
+      } catch (_) {
+        // Ignore storage restrictions.
+      }
+
+      const browserLanguage = String(window.navigator.language || '').toLowerCase();
+      return browserLanguage.startsWith('uz') ? 'uz' : 'ru';
+    }
+
+    function storeLanguage(lang) {
+      try {
+        window.localStorage.setItem(LANG_STORAGE_KEY, lang);
+      } catch (_) {
+        // Ignore storage restrictions.
+      }
+    }
+
+    function getWords() {
+      return wordsByLang[currentLanguage] || wordsByLang.ru;
+    }
+
+    function pickRandomWord() {
+      const words = getWords();
+      if (!words.length) return currentLanguage === 'uz' ? 'Samosval' : 'Самосвал';
+      if (words.length === 1) return words[0];
+
+      let next = currentWord;
+      let attempts = 0;
+      while (next === currentWord && attempts < 12) {
+        next = words[Math.floor(Math.random() * words.length)];
+        attempts += 1;
+      }
+      return next;
+    }
+
+    function showWord(next, instant = false) {
+      if (!wordEl) return;
+      if (instant) {
+        wordEl.textContent = next;
+        wordEl.classList.add('is-visible');
+        return;
+      }
+
+      wordEl.classList.remove('is-visible');
+      window.setTimeout(() => {
+        wordEl.textContent = next;
+        wordEl.classList.add('is-visible');
+      }, 180);
+    }
+
+    function refreshRotatorWord(instant = false) {
+      currentWord = pickRandomWord();
+      showWord(currentWord, instant);
+    }
+
+    function applyLanguage(lang) {
+      currentLanguage = translations[lang] ? lang : 'ru';
+      const copy = translations[currentLanguage];
+
+      document.documentElement.lang = currentLanguage;
+      document.title = copy.pageTitle;
+      if (metaDescription) metaDescription.setAttribute('content', copy.pageDescription);
+      if (ogTitle) ogTitle.setAttribute('content', copy.pageTitle);
+      if (ogDescription) ogDescription.setAttribute('content', copy.pageDescription);
+      if (twitterTitle) twitterTitle.setAttribute('content', copy.pageTitle);
+      if (twitterDescription) twitterDescription.setAttribute('content', copy.pageDescription);
+
+      textElements.forEach((element) => {
+        const key = element.dataset.i18n;
+        if (key && copy[key]) element.textContent = copy[key];
+      });
+
+      htmlElements.forEach((element) => {
+        const key = element.dataset.i18nHtml;
+        if (key && copy[key]) element.innerHTML = copy[key];
+      });
+
+      langButtons.forEach((button) => {
+        const isActive = button.dataset.lang === currentLanguage;
+        button.classList.toggle('is-active', isActive);
+        button.setAttribute('aria-pressed', String(isActive));
+      });
+
+      storeLanguage(currentLanguage);
+      refreshRotatorWord(true);
+    }
+
+    langButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        applyLanguage(button.dataset.lang);
+      });
+    });
+
+    applyLanguage(currentLanguage);
+
+    if (wordEl) {
+      window.setInterval(() => {
+        refreshRotatorWord();
+      }, 2000);
+    }
+  </script>
+</body>
+</html>
