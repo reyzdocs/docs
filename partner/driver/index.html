@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reyz+ — заказы для водителей спецтехники и грузового транспорта</title>
+  <meta name="description" content="Есть грузовая машина или спецтехника? Получайте заказы напрямую через Reyz+. Клиенты создают заявки, а вы сами предлагаете свою цену." />
+  <meta property="og:title" content="Reyz+ — получайте заказы напрямую" />
+  <meta property="og:description" content="Самосвал, манипулятор, автокран, фура, экскаватор и другие виды техники. Подключайтесь к Reyz+ и получайте заявки." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://www.reyz.app/public/reyzplus-icon-v3.png" />
+  <meta name="theme-color" content="#111111" />
+  <link rel="icon" href="/public/favicon.ico" sizes="any" />
+  <link rel="apple-touch-icon" href="/public/apple-touch-icon.png" />
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f8efe1;
+      --ink: #17140f;
+      --muted: #6d6253;
+      --orange: #ef7d00;
+      --orange-dark: #c86300;
+      --cream: #fff7ec;
+      --line: rgba(23, 20, 15, 0.12);
+      --shadow: 0 28px 90px rgba(64, 42, 18, 0.18);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Arial", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 12%, rgba(239, 125, 0, 0.24), transparent 26%),
+        radial-gradient(circle at 92% 8%, rgba(0, 0, 0, 0.10), transparent 24%),
+        linear-gradient(145deg, #fffaf1 0%, var(--bg) 52%, #f2dfc5 100%);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .page {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 40px;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 56px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      font-size: 22px;
+    }
+
+    .brand img {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      box-shadow: 0 10px 28px rgba(23, 20, 15, 0.18);
+    }
+
+    .nav-link {
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 44px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 247, 236, 0.72);
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--orange);
+      box-shadow: 0 0 0 5px rgba(239, 125, 0, 0.16);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(42px, 7vw, 82px);
+      line-height: 0.92;
+      letter-spacing: -0.075em;
+      max-width: 760px;
+    }
+
+    .lead {
+      margin: 24px 0 0;
+      max-width: 650px;
+      color: var(--muted);
+      font-size: clamp(18px, 2vw, 23px);
+      line-height: 1.42;
+      font-weight: 650;
+    }
+
+    .lead strong {
+      color: var(--ink);
+      font-weight: 900;
+    }
+
+    .types {
+      margin: 24px 0 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      max-width: 690px;
+    }
+
+    .chip {
+      padding: 9px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.52);
+      color: #3c3327;
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 58px;
+      padding: 0 28px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--orange), var(--orange-dark));
+      color: white;
+      font-size: 17px;
+      font-weight: 900;
+      box-shadow: 0 18px 42px rgba(239, 125, 0, 0.28);
+    }
+
+    .secondary {
+      color: var(--muted);
+      font-weight: 800;
+      font-size: 15px;
+    }
+
+    .visual {
+      position: relative;
+      min-height: 520px;
+    }
+
+    .visual-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 520px;
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: 38px;
+      background:
+        linear-gradient(160deg, rgba(255, 255, 255, 0.84), rgba(255, 247, 236, 0.5)),
+        var(--cream);
+      box-shadow: var(--shadow);
+    }
+
+    .visual-card::before {
+      content: "";
+      position: absolute;
+      inset: auto -20% -34% -20%;
+      height: 62%;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(239, 125, 0, 0.32), transparent 64%);
+    }
+
+    .app-tile {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.78);
+      backdrop-filter: blur(10px);
+    }
+
+    .app-tile img {
+      width: 58px;
+      height: 58px;
+      border-radius: 14px;
+    }
+
+    .app-title {
+      font-size: 20px;
+      font-weight: 950;
+      letter-spacing: -0.04em;
+    }
+
+    .app-subtitle {
+      color: var(--muted);
+      font-weight: 750;
+      font-size: 14px;
+    }
+
+    .mock-card {
+      position: relative;
+      margin-top: 22px;
+      padding: 18px;
+      border-radius: 28px;
+      background: #16120d;
+      color: #fff;
+      box-shadow: 0 18px 48px rgba(23, 20, 15, 0.20);
+    }
+
+    .mock-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .mock-row:last-child { border-bottom: 0; }
+
+    .mock-label {
+      color: rgba(255, 255, 255, 0.62);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .mock-value {
+      text-align: right;
+      font-weight: 900;
+    }
+
+    .price-card {
+      position: absolute;
+      right: 18px;
+      bottom: 24px;
+      left: 18px;
+      padding: 18px;
+      border-radius: 26px;
+      background: linear-gradient(135deg, var(--orange), #ff9c2a);
+      color: #fff;
+      box-shadow: 0 22px 50px rgba(239, 125, 0, 0.32);
+    }
+
+    .price-card small {
+      display: block;
+      opacity: 0.82;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .price-card strong {
+      display: block;
+      font-size: 28px;
+      line-height: 1;
+      letter-spacing: -0.045em;
+    }
+
+    .notes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 44px;
+    }
+
+    .note {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.48);
+      color: var(--muted);
+      font-weight: 750;
+      line-height: 1.45;
+    }
+
+    .note strong {
+      display: block;
+      color: var(--ink);
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .cta:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 24px 54px rgba(239, 125, 0, 0.34);
+      }
+
+      .nav-link:hover,
+      .secondary:hover {
+        color: var(--ink);
+      }
+    }
+
+    @media (max-width: 860px) {
+      .page {
+        width: min(100% - 24px, 560px);
+        padding-top: 20px;
+      }
+
+      .nav {
+        margin-bottom: 34px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .visual {
+        min-height: 430px;
+      }
+
+      .visual-card {
+        min-height: 430px;
+        border-radius: 30px;
+      }
+
+      .notes {
+        grid-template-columns: 1fr;
+        margin-top: 30px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .nav-link {
+        display: none;
+      }
+
+      .actions {
+        display: grid;
+      }
+
+      .cta {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <nav class="nav" aria-label="Навигация">
+      <a class="brand" href="/">
+        <img src="/public/reyzplus-icon-v3-128.webp" alt="" width="38" height="38" />
+        <span>Reyz+</span>
+      </a>
+      <a class="nav-link" href="/">На главный сайт</a>
+    </nav>
+
+    <main>
+      <section class="hero">
+        <div>
+          <div class="eyebrow">Для владельцев техники и водителей</div>
+          <h1>Есть грузовая машина или спецтехника?</h1>
+          <p class="lead">
+            Получайте заказы напрямую через <strong>Reyz+</strong>.
+            Клиенты создают заявки, а вы сами предлагаете свою цену.
+          </p>
+
+          <div class="types" aria-label="Типы техники">
+            <span class="chip">Самосвал</span>
+            <span class="chip">Манипулятор</span>
+            <span class="chip">Автокран</span>
+            <span class="chip">Фура</span>
+            <span class="chip">Экскаватор</span>
+            <span class="chip">55+ видов техники</span>
+          </div>
+
+          <div class="actions">
+            <a class="cta" href="/download/reyzplus/">Получать заказы</a>
+            <a class="secondary" href="/driver_app/ru/terms.html">Условия для водителей</a>
+          </div>
+        </div>
+
+        <div class="visual" aria-hidden="true">
+          <div class="visual-card">
+            <div class="app-tile">
+              <img src="/public/reyzplus-icon-v3-128.webp" alt="" width="58" height="58" />
+              <div>
+                <div class="app-title">Reyz+</div>
+                <div class="app-subtitle">заявки рядом с вами</div>
+              </div>
+            </div>
+
+            <div class="mock-card">
+              <div class="mock-row">
+                <div>
+                  <div class="mock-label">Заказ</div>
+                  <div>Перевозка щебня</div>
+                </div>
+                <div class="mock-value">12 км</div>
+              </div>
+              <div class="mock-row">
+                <div>
+                  <div class="mock-label">Техника</div>
+                  <div>Самосвал</div>
+                </div>
+                <div class="mock-value">25 т</div>
+              </div>
+              <div class="mock-row">
+                <div>
+                  <div class="mock-label">Действие</div>
+                  <div>Предложите цену</div>
+                </div>
+                <div class="mock-value">сейчас</div>
+              </div>
+            </div>
+
+            <div class="price-card">
+              <small>Вы сами выбираете цену</small>
+              <strong>Без комиссии на старте</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="notes" aria-label="Преимущества">
+        <div class="note">
+          <strong>Прямые заявки</strong>
+          Клиенты создают заказ, а подходящие водители получают уведомление.
+        </div>
+        <div class="note">
+          <strong>Своя цена</strong>
+          Вы отправляете ценовое предложение и выбираете, какие заказы брать.
+        </div>
+        <div class="note">
+          <strong>Контроль заказа</strong>
+          Статусы, карта и уведомления помогают вести заказ по этапам.
+        </div>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
