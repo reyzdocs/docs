@@ -354,6 +354,13 @@
 
     function getInitialLanguage() {
       try {
+        const requested = new URLSearchParams(window.location.search).get('lang');
+        if (requested === 'ru' || requested === 'uz') return requested;
+      } catch (_) {
+        // Ignore malformed URLs.
+      }
+
+      try {
         const stored = window.localStorage.getItem(LANG_STORAGE_KEY);
         if (stored === 'ru' || stored === 'uz') return stored;
       } catch (_) {
