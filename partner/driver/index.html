@@ -111,7 +111,7 @@
     }
 
     .hero-rotator-line {
-      min-height: 1.08em;
+      min-height: 2.16em;
       margin: 8px 0 18px;
     }
 
@@ -253,7 +253,7 @@
 
     const wordEl = document.getElementById('partner-hero-rotator-word');
     const words = EQUIPMENT_ITEMS
-      .map((item) => String(item.name || '').trim().toLowerCase())
+      .map((item) => String(item.name || '').trim())
       .filter((name) => name.length > 0);
 
     let currentWord = '';
