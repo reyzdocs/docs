@@ -46,8 +46,9 @@
     .nav {
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
       gap: 16px;
+      min-height: 38px;
       margin-bottom: 56px;
     }
 
@@ -64,6 +65,33 @@
       width: 38px;
       height: 38px;
       border-radius: 10px;
+    }
+
+    .lang-switch {
+      display: inline-flex;
+      gap: 4px;
+      padding: 3px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.82);
+    }
+
+    .lang-btn {
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--muted);
+      padding: 6px 9px;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 900;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .lang-btn.is-active {
+      background: #000;
+      color: #fff;
     }
 
     .hero {
@@ -193,6 +221,11 @@
     }
 
     @media (hover: hover) and (pointer: fine) {
+      .lang-btn:hover:not(.is-active) {
+        color: var(--ink);
+        background: rgba(23, 20, 15, 0.06);
+      }
+
       .cta:hover {
         transform: translateY(-1px);
         background: #ff7300;
@@ -218,25 +251,29 @@
         <img src="/public/reyzplus-icon-v3-128.webp" alt="" width="38" height="38" />
         <span>Reyz+</span>
       </a>
+      <div class="lang-switch" role="group" aria-label="Выбор языка">
+        <button class="lang-btn is-active" type="button" data-lang="ru" aria-pressed="true">RU</button>
+        <button class="lang-btn" type="button" data-lang="uz" aria-pressed="false">UZ</button>
+      </div>
     </nav>
 
     <main>
       <section class="hero">
         <div class="hero-grid-bg"></div>
         <div>
-          <h1>Есть грузовая техника или спецтехника?</h1>
+          <h1 data-i18n="heroTitle">Есть грузовая техника или спецтехника?</h1>
           <div class="hero-rotator-line" aria-live="polite">
-            <span class="hero-rotator-word" id="partner-hero-rotator-word">самосвала</span>
+            <span class="hero-rotator-word" id="partner-hero-rotator-word">Самосвал</span>
           </div>
-          <p class="lead">
+          <p class="lead" data-i18n-html="lead">
             Получайте заказы <span class="lead-accent">напрямую</span> через Reyz+.
             Клиенты создают заявки, а вы сами предлагаете <span class="lead-accent">свою цену</span>.
           </p>
 
           <div class="actions">
-            <div class="commission-note">0% комиссии</div>
+            <div class="commission-note" data-i18n="commission">0% комиссии</div>
             <a class="cta" href="/download/reyzplus/">
-              Получать заказы
+              <span data-i18n="cta">Получать заказы</span>
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
             </a>
           </div>
@@ -245,32 +282,106 @@
 
       <section class="notes" aria-label="Преимущества">
         <div class="note">
-          <strong>Прямые заявки</strong>
-          Клиенты создают заказ, а подходящие водители получают уведомление.
+          <strong data-i18n="noteDirectTitle">Прямые заявки</strong>
+          <span data-i18n="noteDirectText">Клиенты создают заказ, а подходящие водители получают уведомление.</span>
         </div>
         <div class="note">
-          <strong>Своя цена</strong>
-          Вы отправляете ценовое предложение и выбираете, какие заказы брать.
+          <strong data-i18n="notePriceTitle">Своя цена</strong>
+          <span data-i18n="notePriceText">Вы отправляете ценовое предложение и выбираете, какие заказы брать.</span>
         </div>
         <div class="note">
-          <strong>Контроль заказа</strong>
-          Статусы, карта и уведомления помогают вести заказ по этапам.
+          <strong data-i18n="noteControlTitle">Контроль заказа</strong>
+          <span data-i18n="noteControlText">Статусы, карта и уведомления помогают вести заказ по этапам.</span>
         </div>
       </section>
     </main>
   </div>
   <script type="module">
     import { EQUIPMENT_ITEMS } from '/site/equipment-list.js';
+    import { EQUIPMENT_UZ_NAMES } from '/site/equipment-i18n.js';
+
+    const LANG_STORAGE_KEY = 'reyz_partner_driver_lang';
+    const translations = {
+      ru: {
+        pageTitle: 'Reyz+ — заказы для водителей спецтехники и грузового транспорта',
+        pageDescription: 'Есть грузовая техника или спецтехника? Получайте заказы напрямую через Reyz+. Клиенты создают заявки, а вы сами предлагаете свою цену.',
+        ogTitle: 'Reyz+ — получайте заказы напрямую',
+        ogDescription: 'Самосвал, манипулятор, автокран, фура, экскаватор и другие виды техники. Подключайтесь к Reyz+ и получайте заявки.',
+        heroTitle: 'Есть грузовая техника или спецтехника?',
+        lead: 'Получайте заказы <span class="lead-accent">напрямую</span> через Reyz+. Клиенты создают заявки, а вы сами предлагаете <span class="lead-accent">свою цену</span>.',
+        commission: '0% комиссии',
+        cta: 'Получать заказы',
+        noteDirectTitle: 'Прямые заявки',
+        noteDirectText: 'Клиенты создают заказ, а подходящие водители получают уведомление.',
+        notePriceTitle: 'Своя цена',
+        notePriceText: 'Вы отправляете ценовое предложение и выбираете, какие заказы брать.',
+        noteControlTitle: 'Контроль заказа',
+        noteControlText: 'Статусы, карта и уведомления помогают вести заказ по этапам.',
+      },
+      uz: {
+        pageTitle: 'Reyz+ — haydovchilar va maxsus texnika egalari uchun buyurtmalar',
+        pageDescription: 'Yuk texnikangiz yoki maxsus texnikangiz bormi? Reyz+ orqali buyurtmalarni to\'g\'ridan-to\'g\'ri oling. Mijozlar ariza yaratadi, siz esa o\'z narxingizni taklif qilasiz.',
+        ogTitle: 'Reyz+ — buyurtmalarni to\'g\'ridan-to\'g\'ri oling',
+        ogDescription: 'Samosval, kran-manipulyator, avtokran, fura, ekskavator va boshqa texnika turlari. Reyz+ ga ulaning va arizalar oling.',
+        heroTitle: 'Yuk texnikangiz yoki maxsus texnikangiz bormi?',
+        lead: 'Reyz+ orqali buyurtmalarni <span class="lead-accent">to\'g\'ridan-to\'g\'ri</span> oling. Mijozlar ariza yaratadi, siz esa <span class="lead-accent">o\'z narxingizni</span> taklif qilasiz.',
+        commission: '0% komissiya',
+        cta: 'Buyurtma olish',
+        noteDirectTitle: 'To\'g\'ridan-to\'g\'ri arizalar',
+        noteDirectText: 'Mijozlar buyurtma yaratadi, mos haydovchilar esa bildirishnoma oladi.',
+        notePriceTitle: 'O\'z narxingiz',
+        notePriceText: 'Siz narx taklifini yuborasiz va qaysi buyurtmalarni olishni o\'zingiz tanlaysiz.',
+        noteControlTitle: 'Buyurtma nazorati',
+        noteControlText: 'Statuslar, xarita va bildirishnomalar buyurtmani bosqichma-bosqich olib borishga yordam beradi.',
+      },
+    };
 
     const wordEl = document.getElementById('partner-hero-rotator-word');
-    const words = EQUIPMENT_ITEMS
-      .map((item) => String(item.name || '').trim())
-      .filter((name) => name.length > 0);
+    const langButtons = Array.from(document.querySelectorAll('[data-lang]'));
+    const textElements = Array.from(document.querySelectorAll('[data-i18n]'));
+    const htmlElements = Array.from(document.querySelectorAll('[data-i18n-html]'));
+    const metaDescription = document.querySelector('meta[name="description"]');
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    const ogDescription = document.querySelector('meta[property="og:description"]');
+    const wordsByLang = {
+      ru: EQUIPMENT_ITEMS
+        .map((item) => String(item.name || '').trim())
+        .filter((name) => name.length > 0),
+      uz: EQUIPMENT_ITEMS
+        .map((item) => String(EQUIPMENT_UZ_NAMES[item.slug] || item.name || '').trim())
+        .filter((name) => name.length > 0),
+    };
 
+    let currentLanguage = getInitialLanguage();
     let currentWord = '';
 
+    function getInitialLanguage() {
+      try {
+        const stored = window.localStorage.getItem(LANG_STORAGE_KEY);
+        if (stored === 'ru' || stored === 'uz') return stored;
+      } catch (_) {
+        // Ignore storage restrictions.
+      }
+
+      const browserLanguage = String(window.navigator.language || '').toLowerCase();
+      return browserLanguage.startsWith('uz') ? 'uz' : 'ru';
+    }
+
+    function storeLanguage(lang) {
+      try {
+        window.localStorage.setItem(LANG_STORAGE_KEY, lang);
+      } catch (_) {
+        // Ignore storage restrictions.
+      }
+    }
+
+    function getWords() {
+      return wordsByLang[currentLanguage] || wordsByLang.ru;
+    }
+
     function pickRandomWord() {
-      if (!words.length) return 'самосвала';
+      const words = getWords();
+      if (!words.length) return currentLanguage === 'uz' ? 'Samosval' : 'Самосвал';
       if (words.length === 1) return words[0];
 
       let next = currentWord;
@@ -282,8 +393,14 @@
       return next;
     }
 
-    function showWord(next) {
+    function showWord(next, instant = false) {
       if (!wordEl) return;
+      if (instant) {
+        wordEl.textContent = next;
+        wordEl.classList.add('is-visible');
+        return;
+      }
+
       wordEl.classList.remove('is-visible');
       window.setTimeout(() => {
         wordEl.textContent = next;
@@ -291,12 +408,52 @@
       }, 180);
     }
 
-    if (wordEl) {
+    function refreshRotatorWord(instant = false) {
       currentWord = pickRandomWord();
-      showWord(currentWord);
+      showWord(currentWord, instant);
+    }
+
+    function applyLanguage(lang) {
+      currentLanguage = translations[lang] ? lang : 'ru';
+      const copy = translations[currentLanguage];
+
+      document.documentElement.lang = currentLanguage;
+      document.title = copy.pageTitle;
+      if (metaDescription) metaDescription.setAttribute('content', copy.pageDescription);
+      if (ogTitle) ogTitle.setAttribute('content', copy.ogTitle);
+      if (ogDescription) ogDescription.setAttribute('content', copy.ogDescription);
+
+      textElements.forEach((element) => {
+        const key = element.dataset.i18n;
+        if (key && copy[key]) element.textContent = copy[key];
+      });
+
+      htmlElements.forEach((element) => {
+        const key = element.dataset.i18nHtml;
+        if (key && copy[key]) element.innerHTML = copy[key];
+      });
+
+      langButtons.forEach((button) => {
+        const isActive = button.dataset.lang === currentLanguage;
+        button.classList.toggle('is-active', isActive);
+        button.setAttribute('aria-pressed', String(isActive));
+      });
+
+      storeLanguage(currentLanguage);
+      refreshRotatorWord(true);
+    }
+
+    langButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        applyLanguage(button.dataset.lang);
+      });
+    });
+
+    applyLanguage(currentLanguage);
+
+    if (wordEl) {
       window.setInterval(() => {
-        currentWord = pickRandomWord();
-        showWord(currentWord);
+        refreshRotatorWord();
       }, 2000);
     }
   </script>
