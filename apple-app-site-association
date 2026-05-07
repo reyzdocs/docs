@@ -1,0 +1,15 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "ANYSM7HKG4.com.reyzplus.driver",
+        "paths": [
+          "/download/reyzplus",
+          "/download/reyzplus/",
+          "/download/reyzplus/*"
+        ]
+      }
+    ]
+  }
+}
