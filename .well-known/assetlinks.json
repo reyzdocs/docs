@@ -19,7 +19,8 @@
       "namespace": "android_app",
       "package_name": "com.reyzplus.driver",
       "sha256_cert_fingerprints": [
-        "9F:B2:8B:42:6F:FB:A0:7F:56:74:D7:0B:A6:6B:38:A7:D8:22:6D:DF:BC:0A:D0:9D:29:70:24:77:49:A9:F8:F6"
+        "9F:B2:8B:42:6F:FB:A0:7F:56:74:D7:0B:A6:6B:38:A7:D8:22:6D:DF:BC:0A:D0:9D:29:70:24:77:49:A9:F8:F6",
+        "46:52:59:48:A3:6F:71:C4:D7:B2:A3:33:BD:3A:3A:98:CE:68:6B:86:AB:9A:13:61:58:BE:C1:B7:B7:98:BF:CC"
       ]
     }
   }
