@@ -9,6 +9,14 @@
           "/download/reyzplus/",
           "/download/reyzplus/*"
         ]
+      },
+      {
+        "appID": "ANYSM7HKG4.com.reyzapp.client",
+        "paths": [
+          "/download/reyzapp",
+          "/download/reyzapp/",
+          "/download/reyzapp/*"
+        ]
       }
     ]
   }

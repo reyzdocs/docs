@@ -106,6 +106,8 @@
   <script>
     const APP_STORE_URL = 'https://apps.apple.com/app/reyzapp/id6763622040';
     const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.reyzapp.app';
+    const ANDROID_PACKAGE_NAME = 'com.reyzapp.app';
+    const IOS_APP_SCHEME_URL = 'reyzapp://open';
 
     function isIOSDevice() {
       const ua = navigator.userAgent || navigator.vendor || '';
@@ -115,6 +117,29 @@
 
     function isAndroidDevice() {
       return /Android/i.test(navigator.userAgent || '');
+    }
+
+    function buildAndroidIntentUrl(playUrl) {
+      const fallback = encodeURIComponent(playUrl);
+      const openTarget = `${window.location.host}${window.location.pathname}${window.location.search}`;
+      return `intent://${openTarget}#Intent;scheme=https;package=${ANDROID_PACKAGE_NAME};S.browser_fallback_url=${fallback};end`;
+    }
+
+    function openIosAppOrStore() {
+      let didLeavePage = false;
+      const markPageLeave = () => {
+        didLeavePage = true;
+      };
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) markPageLeave();
+      }, { once: true });
+      window.addEventListener('pagehide', markPageLeave, { once: true });
+      window.location.href = IOS_APP_SCHEME_URL;
+
+      window.setTimeout(() => {
+        if (!didLeavePage) window.location.replace(APP_STORE_URL);
+      }, 1200);
     }
 
     function appendPlayReferrer(url) {
@@ -137,9 +162,9 @@
     document.getElementById('secondary-link').href = playUrl;
 
     if (isIOSDevice()) {
-      window.location.replace(APP_STORE_URL);
+      openIosAppOrStore();
     } else if (isAndroidDevice()) {
-      window.location.replace(playUrl);
+      window.location.replace(buildAndroidIntentUrl(playUrl));
     }
   </script>
 </body>
