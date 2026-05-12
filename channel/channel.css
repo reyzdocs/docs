@@ -1,15 +1,11 @@
 :root {
   color-scheme: light;
-  --bg: #fffdf8;
-  --ink: #15110b;
-  --muted: #6f6355;
-  --line: rgba(21, 17, 11, 0.12);
+  --bg: #ffffff;
+  --ink: #161616;
+  --muted: #5f5f5f;
+  --line: rgba(22, 22, 22, 0.1);
   --orange: #ff7300;
-  --orange-dark: #b84d00;
-  --green: #17a765;
-  --cream: #fff1df;
-  --card: rgba(255, 255, 255, 0.72);
-  --shadow: 0 26px 100px rgba(74, 43, 14, 0.16);
+  --button: #111111;
 }
 
 * {
@@ -23,26 +19,11 @@ html {
 body {
   min-height: 100vh;
   margin: 0;
-  font-family: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--ink);
-  background:
-    radial-gradient(circle at 50% -8%, rgba(255, 115, 0, 0.2), transparent 30rem),
-    linear-gradient(180deg, #fffaf2 0%, #ffffff 58%);
+  background: #ffffff;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -2;
-  background-image:
-    linear-gradient(to right, rgba(59, 130, 246, 0.11) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(59, 130, 246, 0.11) 1px, transparent 1px);
-  background-size: 34px 34px;
-  mask-image: radial-gradient(ellipse 82% 48% at 50% 12%, black 0%, transparent 78%);
-  -webkit-mask-image: radial-gradient(ellipse 82% 48% at 50% 12%, black 0%, transparent 78%);
 }
 
 a {
@@ -55,7 +36,7 @@ button {
 }
 
 .page {
-  width: min(100% - 28px, 560px);
+  width: min(100% - 30px, 520px);
   min-height: 100vh;
   margin: 0 auto;
   padding: 18px 0 34px;
@@ -84,20 +65,20 @@ button {
 
 .brand-text {
   display: grid;
-  line-height: 1.05;
+  line-height: 1.08;
 }
 
 .brand-name {
   font-size: 20px;
   font-weight: 900;
-  letter-spacing: -0.045em;
+  letter-spacing: -0.035em;
 }
 
 .brand-label {
   color: var(--muted);
   font-size: 11px;
   font-weight: 800;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
 }
 
@@ -107,8 +88,7 @@ button {
   padding: 3px;
   border: 1px solid var(--line);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.78);
-  backdrop-filter: blur(14px);
+  background: #ffffff;
 }
 
 .lang-btn {
@@ -130,42 +110,18 @@ button {
 
 .hero {
   display: flex;
-  min-height: calc(100vh - 78px);
+  min-height: calc(100vh - 76px);
   flex-direction: column;
   justify-content: center;
-  padding: 34px 0 0;
+  padding: 42px 0 0;
   text-align: center;
-}
-
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: fit-content;
-  margin: 0 auto 18px;
-  padding: 8px 12px;
-  border: 1px solid rgba(255, 115, 0, 0.22);
-  border-radius: 999px;
-  background: rgba(255, 241, 223, 0.84);
-  color: var(--orange-dark);
-  font-size: 13px;
-  font-weight: 900;
-}
-
-.eyebrow-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--green);
-  box-shadow: 0 0 0 5px rgba(23, 167, 101, 0.13);
 }
 
 h1 {
   margin: 0;
-  font-size: clamp(2.75rem, 13.5vw, 4.85rem);
-  line-height: 0.92;
-  letter-spacing: -0.085em;
+  font-size: clamp(2.45rem, 11vw, 4.4rem);
+  line-height: 1.02;
+  letter-spacing: -0.055em;
   font-weight: 900;
   text-wrap: balance;
 }
@@ -175,12 +131,12 @@ h1 {
 }
 
 .lead {
-  margin: 22px auto 0;
-  max-width: 480px;
+  margin: 20px auto 0;
+  max-width: 460px;
   color: var(--muted);
-  font-size: 1.1rem;
-  line-height: 1.62;
-  font-weight: 700;
+  font-size: 1.04rem;
+  line-height: 1.65;
+  font-weight: 650;
 }
 
 .lead strong {
@@ -188,58 +144,10 @@ h1 {
   font-weight: 900;
 }
 
-.promise-card {
-  position: relative;
-  margin: 28px auto 0;
-  padding: 18px;
-  border: 1px solid rgba(21, 17, 11, 0.1);
-  border-radius: 28px;
-  background: var(--card);
-  box-shadow: var(--shadow);
-  text-align: left;
-  backdrop-filter: blur(18px);
-}
-
-.promise-card::before {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  z-index: -1;
-  border-radius: inherit;
-  background: linear-gradient(135deg, rgba(255, 115, 0, 0.28), rgba(255, 255, 255, 0));
-}
-
-.promise-kicker {
-  display: inline-flex;
-  margin-bottom: 10px;
-  padding: 6px 10px;
-  border-radius: 999px;
-  background: #111111;
-  color: #ffffff;
-  font-size: 12px;
-  font-weight: 900;
-}
-
-.promise-title {
-  margin: 0;
-  font-size: 1.15rem;
-  line-height: 1.25;
-  letter-spacing: -0.035em;
-  font-weight: 900;
-}
-
-.promise-text {
-  margin: 8px 0 0;
-  color: var(--muted);
-  font-size: 0.95rem;
-  line-height: 1.5;
-  font-weight: 700;
-}
-
 .cta-area {
   display: grid;
   gap: 12px;
-  margin-top: 24px;
+  margin-top: 28px;
 }
 
 .cta-button {
@@ -248,16 +156,15 @@ h1 {
   justify-content: center;
   gap: 9px;
   width: 100%;
-  min-height: 62px;
+  min-height: 60px;
   border: 0;
   border-radius: 999px;
-  background: #111111;
+  background: var(--button);
   color: #ffffff;
-  box-shadow: 0 18px 44px rgba(17, 17, 17, 0.2);
   cursor: pointer;
-  font-size: 1.08rem;
+  font-size: 1.04rem;
   font-weight: 900;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.01em;
 }
 
 .cta-button svg {
@@ -268,7 +175,7 @@ h1 {
   margin: 0;
   color: var(--muted);
   font-size: 13px;
-  font-weight: 750;
+  font-weight: 650;
   line-height: 1.45;
 }
 
@@ -276,21 +183,21 @@ h1 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 8px;
-  margin-top: 22px;
+  margin-top: 26px;
 }
 
 .proof-item {
-  min-height: 74px;
+  min-height: 70px;
   padding: 12px 8px;
   border: 1px solid var(--line);
   border-radius: 20px;
-  background: rgba(255, 255, 255, 0.62);
+  background: #ffffff;
 }
 
 .proof-value {
   display: block;
   color: var(--orange);
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 900;
   line-height: 1;
 }
@@ -300,7 +207,7 @@ h1 {
   margin-top: 7px;
   color: var(--muted);
   font-size: 11px;
-  font-weight: 850;
+  font-weight: 750;
   line-height: 1.25;
 }
 
@@ -309,38 +216,31 @@ h1 {
   color: var(--muted);
   text-align: center;
   font-size: 12px;
-  font-weight: 750;
+  font-weight: 650;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .lang-btn:hover:not(.is-active) {
     color: var(--ink);
-    background: rgba(21, 17, 11, 0.06);
+    background: rgba(22, 22, 22, 0.06);
   }
 
   .cta-button:hover {
     background: var(--orange);
-    transform: translateY(-1px);
-  }
-}
-
-@media (min-width: 720px) {
-  .page {
-    width: min(100% - 64px, 640px);
   }
 }
 
 @media (max-width: 380px) {
   .page {
-    width: min(100% - 22px, 560px);
+    width: min(100% - 22px, 520px);
   }
 
   h1 {
-    font-size: 2.42rem;
+    font-size: 2.28rem;
   }
 
   .lead {
-    font-size: 1rem;
+    font-size: 0.98rem;
   }
 
   .proof-row {
