@@ -4,9 +4,9 @@
   --ink: #07111f;
   --muted: #58708f;
   --line: rgba(7, 17, 31, 0.12);
-  --blue: #155eef;
-  --blue-2: #0ea5e9;
-  --cyan: #2dd4bf;
+  --blue: #ff7300;
+  --blue-2: #e47418;
+  --cyan: #ff9a2f;
   --soft: #f5f7fa;
   --card: rgba(255, 255, 255, 0.82);
   --shadow: 0 30px 90px rgba(7, 17, 31, 0.1);
@@ -204,7 +204,7 @@ h1 {
     linear-gradient(180deg, rgba(255, 255, 255, 0.18), transparent 44%),
     linear-gradient(135deg, var(--blue), var(--blue-2) 62%, var(--cyan));
   color: #ffffff;
-  box-shadow: 0 18px 42px rgba(21, 94, 239, 0.24), 0 2px 0 rgba(255, 255, 255, 0.26) inset;
+  box-shadow: 0 18px 42px rgba(255, 115, 0, 0.24), 0 2px 0 rgba(255, 255, 255, 0.26) inset;
   cursor: pointer;
   font-size: 1rem;
   font-weight: 900;
@@ -394,7 +394,7 @@ h1 {
 
   .cta-button:hover {
     transform: translateY(-1px);
-    box-shadow: 0 22px 54px rgba(21, 94, 239, 0.28), 0 2px 0 rgba(255, 255, 255, 0.3) inset;
+    box-shadow: 0 22px 54px rgba(255, 115, 0, 0.28), 0 2px 0 rgba(255, 255, 255, 0.3) inset;
   }
 }
 
