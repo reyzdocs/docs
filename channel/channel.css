@@ -235,6 +235,7 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   width: min(100%, 560px);
+  justify-content: center;
   gap: 10px 16px;
   margin-top: 22px;
 }
