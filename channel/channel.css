@@ -469,15 +469,19 @@ h1 {
   }
 
   .proof-row {
-    width: min(100%, 310px);
+    width: min(100%, 360px);
     grid-template-columns: minmax(0, 1fr);
-    gap: 8px;
-    margin-top: 18px;
+    gap: 10px;
+    margin-top: 22px;
   }
 
   .proof-item {
-    min-height: 58px;
-    padding: 9px 10px;
+    min-height: 78px;
+    justify-items: start;
+    padding: 15px 18px;
+    background:
+      linear-gradient(180deg, rgba(255, 244, 229, 0.13), rgba(255, 244, 229, 0.055)),
+      rgba(255, 154, 47, 0.035);
   }
 
   .proof-item:last-child {
@@ -485,10 +489,10 @@ h1 {
   }
 
   .proof-value {
-    font-size: 0.92rem;
+    font-size: 1.04rem;
   }
 
   .proof-label {
-    font-size: 0.7rem;
+    font-size: 0.78rem;
   }
 }
