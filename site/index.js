@@ -22,6 +22,7 @@ const CLICK_ID_PARAM_KEYS = ['gclid', 'fbclid', 'yclid'];
 const ATTRIBUTION_PARAM_KEYS = [...CAMPAIGN_PARAM_KEYS, ...CLICK_ID_PARAM_KEYS];
 const PRIZE_CURRENT_COUNT = 4;
 const PRIZE_TARGET_COUNT = 20;
+const REYZ_PLUS_SMART_LINK = '/download/reyzplus/';
 const REYZAPP_PLAY_URL = 'https://play.google.com/store/apps/details?id=com.reyzapp.app';
 const REYZAPP_APP_STORE_URL = 'https://apps.apple.com/app/reyzapp/id6763622040';
 const REYZ_PLUS_PLAY_URL = 'https://play.google.com/store/apps/details?id=com.reyzplus.driver';
@@ -669,6 +670,22 @@ function getAppKeyFromPackageId(packageId) {
 function getStoreInfo(href) {
   try {
     const url = new URL(href, window.location.href);
+    const path = url.pathname.replace(/\/+$/, '');
+    if (path === '/download/reyzapp') {
+      return {
+        app: 'client',
+        store: 'smart_link',
+        package_id: 'com.reyzapp.app',
+      };
+    }
+    if (path === '/download/reyzplus') {
+      return {
+        app: 'driver',
+        store: 'smart_link',
+        package_id: 'com.reyzplus.driver',
+      };
+    }
+
     const isPlayStore = url.hostname.includes('play.google.com')
       && url.pathname.includes('/store/apps/details');
     if (isPlayStore) {
@@ -801,7 +818,7 @@ window.reyzTrackMeta = trackMetaEvent;
 function mountPlayStoreTracking() {
   document.addEventListener('click', (event) => {
     const link = event.target.closest(
-      'a[href*="play.google.com/store/apps/details"], a[href*="apps.apple.com/app/"]',
+      'a[href*="play.google.com/store/apps/details"], a[href*="apps.apple.com/app/"], a[href*="/download/reyzapp"], a[href*="/download/reyzplus"]',
     );
     if (!link) return;
 
@@ -957,7 +974,7 @@ function getPrizeProgramCopy(language = 'ru') {
 }
 
 function getReyzPlusStoreUrl() {
-  return isIOSDevice() ? REYZ_PLUS_APP_STORE_URL : REYZ_PLUS_PLAY_URL;
+  return REYZ_PLUS_SMART_LINK;
 }
 
 function renderPrizeCatalog(language = getCurrentLanguage()) {
