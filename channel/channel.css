@@ -134,7 +134,7 @@ img {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: -1;
+  z-index: 0;
   background:
     linear-gradient(rgba(255, 224, 188, 0.045) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 224, 188, 0.045) 1px, transparent 1px);
@@ -144,7 +144,25 @@ img {
   opacity: 0.5;
 }
 
+.hero::after {
+  content: "";
+  position: absolute;
+  top: -120px;
+  right: -140px;
+  z-index: 0;
+  width: min(58vw, 620px);
+  aspect-ratio: 1;
+  background: url("/public/abc.png") center / contain no-repeat;
+  filter: hue-rotate(270deg) saturate(0.72) brightness(1.08);
+  mix-blend-mode: screen;
+  opacity: 0.18;
+  pointer-events: none;
+  transform: rotate(-8deg);
+}
+
 .hero-copy {
+  position: relative;
+  z-index: 1;
   display: grid;
   justify-items: center;
   text-align: center;
@@ -316,6 +334,7 @@ h1 {
 
 .hero-media {
   position: relative;
+  z-index: 1;
   display: none;
   min-height: 520px;
   align-items: center;
@@ -466,6 +485,13 @@ h1 {
   .cta-button {
     min-height: 60px;
     font-size: 0.96rem;
+  }
+
+  .hero::after {
+    top: -72px;
+    right: -92px;
+    width: 310px;
+    opacity: 0.12;
   }
 
   .proof-row {
