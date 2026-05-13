@@ -1,17 +1,17 @@
 :root {
   color-scheme: dark;
-  --bg: #1a1512;
-  --panel: #221914;
-  --panel-2: #2f2118;
+  --bg: #061a33;
+  --panel: #08264a;
+  --panel-2: #0d3b70;
   --ink: #ffffff;
-  --muted: #d2bca6;
-  --line: rgba(255, 229, 199, 0.18);
-  --orange: #ff7300;
-  --orange-2: #ff9a2f;
-  --orange-3: #ffb15f;
+  --muted: #c7d9f2;
+  --line: rgba(210, 232, 255, 0.2);
+  --blue: #1f7aff;
+  --blue-2: #7bbcff;
+  --blue-3: #d7ebff;
   --soft: rgba(255, 255, 255, 0.11);
   --card: rgba(255, 255, 255, 0.12);
-  --shadow: 0 34px 110px rgba(47, 22, 8, 0.34);
+  --shadow: 0 34px 110px rgba(3, 32, 74, 0.36);
 }
 
 * {
@@ -28,9 +28,9 @@ body {
   font-family: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--ink);
   background:
-    radial-gradient(circle at 16% 8%, rgba(255, 154, 47, 0.34), transparent 34%),
-    radial-gradient(circle at 84% 12%, rgba(255, 115, 0, 0.2), transparent 30%),
-    linear-gradient(160deg, #211712 0%, #352217 48%, #17151b 100%);
+    radial-gradient(circle at 16% 8%, rgba(123, 188, 255, 0.38), transparent 34%),
+    radial-gradient(circle at 84% 12%, rgba(31, 122, 255, 0.24), transparent 30%),
+    linear-gradient(160deg, #061a33 0%, #0b315f 48%, #0a1730 100%);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -88,8 +88,8 @@ img {
   padding: 3px;
   border: 1px solid var(--line);
   border-radius: 999px;
-  background: rgba(255, 244, 229, 0.12);
-  box-shadow: 0 14px 38px rgba(47, 22, 8, 0.18);
+  background: rgba(235, 246, 255, 0.12);
+  box-shadow: 0 14px 38px rgba(3, 32, 74, 0.2);
   backdrop-filter: blur(18px);
 }
 
@@ -122,10 +122,10 @@ img {
   border: 1px solid var(--line);
   border-radius: 30px;
   background:
-    radial-gradient(circle at 12% 4%, rgba(255, 154, 47, 0.32), transparent 35%),
-    linear-gradient(110deg, rgba(255, 115, 0, 0.2) 0%, transparent 38%),
+    radial-gradient(circle at 12% 4%, rgba(123, 188, 255, 0.34), transparent 35%),
+    linear-gradient(110deg, rgba(31, 122, 255, 0.24) 0%, transparent 38%),
     linear-gradient(145deg, rgba(255, 255, 255, 0.13) 0%, rgba(255, 255, 255, 0.045) 42%),
-    linear-gradient(160deg, var(--panel) 0%, var(--panel-2) 58%, #18151b 100%);
+    linear-gradient(160deg, var(--panel) 0%, var(--panel-2) 58%, #0a1730 100%);
   box-shadow: var(--shadow);
   isolation: isolate;
 }
@@ -136,8 +136,8 @@ img {
   inset: 0;
   z-index: 0;
   background:
-    linear-gradient(rgba(255, 224, 188, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 224, 188, 0.045) 1px, transparent 1px);
+    linear-gradient(rgba(210, 232, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(210, 232, 255, 0.05) 1px, transparent 1px);
   background-size: 52px 52px;
   -webkit-mask-image: linear-gradient(130deg, transparent 0%, #000000 22%, #000000 70%, transparent 100%);
   mask-image: linear-gradient(130deg, transparent 0%, #000000 22%, #000000 70%, transparent 100%);
@@ -153,7 +153,7 @@ img {
   width: min(58vw, 620px);
   aspect-ratio: 1;
   background: url("/public/abc.png") center / contain no-repeat;
-  filter: hue-rotate(270deg) saturate(0.72) brightness(1.08);
+  filter: hue-rotate(95deg) saturate(0.92) brightness(1.12);
   mix-blend-mode: screen;
   opacity: 0.18;
   pointer-events: none;
@@ -178,7 +178,7 @@ img {
   border: 1px solid var(--line);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 12px 36px rgba(47, 22, 8, 0.18);
+  box-shadow: 0 12px 36px rgba(3, 32, 74, 0.2);
 }
 
 .offer-pill span {
@@ -187,14 +187,14 @@ img {
   align-items: center;
   padding: 0 12px;
   border-radius: 999px;
-  background: linear-gradient(135deg, var(--orange), var(--orange-2));
+  background: linear-gradient(135deg, var(--blue), var(--blue-2));
   color: #ffffff;
   font-weight: 900;
   line-height: 1;
 }
 
 .offer-pill strong {
-  color: var(--orange-3);
+  color: var(--blue-3);
   font-size: 0.82rem;
   font-weight: 900;
   line-height: 1;
@@ -211,7 +211,7 @@ h1 {
 }
 
 .accent {
-  color: var(--orange-2);
+  color: var(--blue-2);
   letter-spacing: 0;
 }
 
@@ -250,7 +250,7 @@ h1 {
   background: #ffffff;
   color: #111722;
   box-shadow:
-    0 16px 44px rgba(255, 115, 0, 0.24),
+    0 16px 44px rgba(31, 122, 255, 0.28),
     0 2px 0 rgba(255, 255, 255, 0.74) inset;
   cursor: pointer;
   font-size: 1rem;
@@ -263,7 +263,7 @@ h1 {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(105deg, transparent 0%, rgba(255, 115, 0, 0.22) 45%, transparent 66%);
+  background: linear-gradient(105deg, transparent 0%, rgba(31, 122, 255, 0.22) 45%, transparent 66%);
   transform: translateX(-120%);
   transition: transform 0.6s ease;
 }
@@ -300,12 +300,12 @@ h1 {
   align-content: center;
   gap: 3px;
   padding: 10px 11px;
-  border: 1px solid rgba(255, 229, 199, 0.11);
+  border: 1px solid rgba(210, 232, 255, 0.14);
   border-radius: 8px;
   background:
-    linear-gradient(180deg, rgba(255, 244, 229, 0.105), rgba(255, 244, 229, 0.035)),
-    rgba(255, 154, 47, 0.03);
-  box-shadow: 0 10px 28px rgba(47, 22, 8, 0.1);
+    linear-gradient(180deg, rgba(235, 246, 255, 0.12), rgba(235, 246, 255, 0.04)),
+    rgba(31, 122, 255, 0.045);
+  box-shadow: 0 10px 28px rgba(3, 32, 74, 0.12);
   backdrop-filter: blur(16px);
 }
 
@@ -315,7 +315,7 @@ h1 {
 
 .proof-value {
   display: block;
-  color: var(--orange-2);
+  color: var(--blue-2);
   font-size: 0.95rem;
   font-weight: 900;
   line-height: 1.2;
@@ -348,7 +348,7 @@ h1 {
   height: min(72vw, 520px);
   border-radius: 44px;
   background:
-    linear-gradient(135deg, rgba(255, 115, 0, 0.42), rgba(255, 177, 95, 0.18)),
+    linear-gradient(135deg, rgba(31, 122, 255, 0.42), rgba(123, 188, 255, 0.2)),
     linear-gradient(160deg, rgba(255, 255, 255, 0.16), transparent 62%);
   filter: blur(10px);
   transform: rotate(-8deg);
@@ -359,12 +359,12 @@ h1 {
   z-index: 1;
   width: min(70vw, 270px);
   overflow: hidden;
-  border: 1px solid rgba(255, 232, 204, 0.24);
+  border: 1px solid rgba(210, 232, 255, 0.26);
   border-radius: 34px;
-  background: #201712;
+  background: #071d38;
   box-shadow:
-    0 42px 100px rgba(47, 22, 8, 0.42),
-    0 0 68px rgba(255, 115, 0, 0.28);
+    0 42px 100px rgba(3, 32, 74, 0.42),
+    0 0 68px rgba(31, 122, 255, 0.28);
 }
 
 .phone-card img {
@@ -381,8 +381,8 @@ h1 {
   padding: 14px;
   border: 1px solid var(--line);
   border-radius: 8px;
-  background: rgba(44, 29, 20, 0.74);
-  box-shadow: 0 24px 58px rgba(47, 22, 8, 0.24);
+  background: rgba(8, 31, 58, 0.76);
+  box-shadow: 0 24px 58px rgba(3, 32, 74, 0.26);
   backdrop-filter: blur(16px);
 }
 
@@ -457,7 +457,7 @@ h1 {
   .cta-button:hover {
     transform: translateY(-1px);
     box-shadow:
-      0 20px 54px rgba(255, 115, 0, 0.3),
+      0 20px 54px rgba(31, 122, 255, 0.34),
       0 2px 0 rgba(255, 255, 255, 0.78) inset;
   }
 }
@@ -506,8 +506,8 @@ h1 {
     justify-items: start;
     padding: 15px 18px;
     background:
-      linear-gradient(180deg, rgba(255, 244, 229, 0.13), rgba(255, 244, 229, 0.055)),
-      rgba(255, 154, 47, 0.035);
+      linear-gradient(180deg, rgba(235, 246, 255, 0.14), rgba(235, 246, 255, 0.06)),
+      rgba(31, 122, 255, 0.045);
   }
 
   .proof-item:last-child {
