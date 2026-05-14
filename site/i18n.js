@@ -234,6 +234,27 @@ const STATIC_TEXT_UZ = {
   'Рейтинги и отзывы': 'Reyting va sharhlar',
   'Система рейтингов помогает заказчикам выбирать проверенных исполнителей, а водителям — получать больше заказов.':
     "Reyting tizimi buyurtmachiga tekshirilgan ijrochini tanlashga, haydovchiga esa ko'proq buyurtma olishga yordam beradi.",
+  'Путь заказа': "Buyurtma yo'li",
+  'Reyzapp соединяет заказчика и исполнителя в понятный поток: заявка, цены, выбор и контроль на карте.':
+    "Reyzapp buyurtmachi va ijrochini tushunarli jarayonda bog'laydi: so'rov, narxlar, tanlov va xaritada nazorat.",
+  'Создаётся заявка': "So'rov yaratiladi",
+  'Заказчик выбирает технику, маршрут, дату и требования.':
+    "Buyurtmachi texnika, yo'nalish, sana va talablarni tanlaydi.",
+  'Исполнители видят заказ': "Ijrochilar buyurtmani ko'radi",
+  'Подходящие водители получают уведомление и открывают детали.':
+    "Mos haydovchilar bildirishnoma oladi va tafsilotlarni ochadi.",
+  'Приходят цены': 'Narxlar keladi',
+  'Водители отправляют предложения, а заказчик сравнивает условия.':
+    "Haydovchilar taklif yuboradi, buyurtmachi esa shartlarni solishtiradi.",
+  'Выбор исполнителя': 'Ijrochini tanlash',
+  'Заказчик выбирает лучшее предложение по цене, рейтингу и технике.':
+    "Buyurtmachi narx, reyting va texnika bo'yicha eng yaxshi taklifni tanlaydi.",
+  'Техника в пути': "Texnika yo'lda",
+  'Статусы и движение исполнителя отображаются на карте.':
+    "Ijrochining statuslari va harakati xaritada ko'rsatiladi.",
+  'Заказ завершён': 'Buyurtma yakunlandi',
+  'Работа закрывается, стороны видят итог и могут оставить оценку.':
+    "Ish yopiladi, tomonlar natijani ko'radi va baho qoldirishi mumkin.",
   'Процесс': 'Jarayon',
   'Как это работает': 'Bu qanday ishlaydi',
   'От заявки до завершения заказа — три ключевых этапа':
@@ -416,7 +437,7 @@ const ATTRIBUTE_BINDINGS = [
   { selector: '.nav-brand', attr: 'aria-label', ru: 'На главную Reyzapp', uz: 'Reyzapp bosh sahifasiga' },
   { selector: '.burger', attr: 'aria-label', ru: 'Открыть меню', uz: 'Menyuni ochish' },
   { selector: '.hero-phone:nth-child(1)', attr: 'src', ru: '/public/1-hero.webp', uz: '/public/1-hero-uz.webp' },
-  { selector: '.hero-phone:nth-child(2)', attr: 'data-src', ru: '/public/3-hero.webp', uz: '/public/3-hero-uz.webp' },
+  { selector: '.hero-phone:nth-child(2)', attr: 'src', ru: '/public/2-hero.webp', uz: '/public/3-hero-uz.webp' },
   { selector: '.showcase-card:nth-child(1) img', attr: 'data-src', ru: '/public/1-showcase.webp', uz: '/public/1-showcase-uz.webp' },
   { selector: '.showcase-card:nth-child(2) img', attr: 'data-src', ru: '/public/2-showcase.webp', uz: '/public/2-showcase-uz.webp' },
   { selector: '.showcase-card:nth-child(3) img', attr: 'data-src', ru: '/public/3-showcase.webp', uz: '/public/3-showcase-uz.webp' },
@@ -426,6 +447,7 @@ const ATTRIBUTE_BINDINGS = [
   { selector: '.showcase-card:nth-child(2) img', attr: 'alt', ru: 'Каталог из 55 категорий техники для стройки и логистики', uz: "Qurilish va logistika uchun 55 toifadagi texnika katalogi" },
   { selector: '.showcase-card:nth-child(3) img', attr: 'alt', ru: 'Отслеживание движения техники на карте в реальном времени', uz: 'Texnika harakatini xaritada real vaqtda kuzatish' },
   { selector: '.equipment-toolbar', attr: 'aria-label', ru: 'Управление списком техники', uz: "Texnika ro'yxatini boshqarish" },
+  { selector: '.order-flow-scroll', attr: 'aria-label', ru: 'Процесс выполнения заказа', uz: 'Buyurtmani bajarish jarayoni' },
   { selector: '#equipment-prev', attr: 'aria-label', ru: 'Прокрутить список влево', uz: "Ro'yxatni chapga surish" },
   { selector: '#equipment-next', attr: 'aria-label', ru: 'Прокрутить список вправо', uz: "Ro'yxatni o'ngga surish" },
   { selector: '#equipment-scroller', attr: 'aria-label', ru: 'Галерея техники', uz: 'Texnika galereyasi' },
