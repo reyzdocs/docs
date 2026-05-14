@@ -628,8 +628,13 @@ ul, ol {
     max-height: 360px;
   }
 
-  .hero-phone-secondary {
+  .hero-phone:not(.hero-phone-secondary) {
     display: none;
+  }
+
+  .hero-phone-secondary {
+    display: block;
+    transform: none;
   }
 }
 
