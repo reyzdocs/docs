@@ -979,54 +979,131 @@ ul, ol {
   background: var(--card-border);
 }
 
-.showcase-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 24px;
+.order-flow-section {
+  background:
+    radial-gradient(circle at 10% 0%, rgba(228, 116, 24, 0.08), transparent 30%),
+    linear-gradient(180deg, #ffffff 0%, var(--muted-bg) 100%);
 }
 
-@media (min-width: 768px) {
-  .showcase-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+.order-flow-scroll {
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(228, 116, 24, 0.35) transparent;
+  padding: 6px 2px 18px;
 }
 
-.showcase-card {
-  overflow: hidden;
+.order-flow-track {
+  display: flex;
+  align-items: stretch;
+  gap: 14px;
+  min-width: max-content;
 }
 
-.showcase-card-img {
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  margin-bottom: 20px;
-  background: var(--muted-bg);
-  aspect-ratio: 9 / 16;
+.order-flow-card {
+  width: 220px;
+  min-height: 230px;
+  display: flex;
+  flex-direction: column;
+  padding: 22px;
+  border: 1px solid rgba(228, 116, 24, 0.16);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+  scroll-snap-align: center;
 }
 
-.showcase-card-img img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  transition: transform 0.4s ease;
+.order-flow-icon {
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(228, 116, 24, 0.15), rgba(255, 255, 255, 0.9));
+  color: var(--primary-strong);
+  margin-bottom: 18px;
+}
+
+.order-flow-icon svg {
+  width: 25px;
+  height: 25px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.order-flow-kicker {
+  color: var(--primary-strong);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.order-flow-card h3 {
+  font-size: 1.05rem;
+  line-height: 1.25;
+  margin-bottom: 10px;
+}
+
+.order-flow-card p {
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.order-flow-arrow {
+  width: 42px;
+  min-width: 42px;
+  position: relative;
+  align-self: center;
+}
+
+.order-flow-arrow::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 8px;
+  top: 50%;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(228, 116, 24, 0.35), rgba(228, 116, 24, 0.75));
+}
+
+.order-flow-arrow::after {
+  content: "";
+  position: absolute;
+  right: 2px;
+  top: calc(50% - 5px);
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid rgba(228, 116, 24, 0.75);
+  border-right: 2px solid rgba(228, 116, 24, 0.75);
+  transform: rotate(45deg);
 }
 
 img[data-src]:not([src]) {
   visibility: hidden;
 }
 
-.showcase-card:hover .showcase-card-img img {
-  transform: scale(1.03);
-}
+@media (max-width: 767px) {
+  .order-flow-scroll {
+    margin-inline: calc(var(--container-padding) * -1);
+    padding-inline: var(--container-padding);
+    scroll-snap-type: x proximity;
+  }
 
-.showcase-card h3 {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin-bottom: 8px;
-}
+  .order-flow-card {
+    width: 245px;
+  }
 
-.showcase-card p {
-  color: var(--muted);
-  line-height: 1.6;
+  .order-flow-arrow {
+    width: 28px;
+    min-width: 28px;
+  }
 }
 
 /* ── Equipment Catalog Section ── */
@@ -2198,7 +2275,6 @@ html.js .no-js-banner {
 /* ── Content hierarchy polish ── */
 .feature-card p,
 .step-card > p,
-.showcase-card p,
 .for-card p,
 .faq-content p {
   line-height: 1.65;
@@ -2222,7 +2298,6 @@ html.js .no-js-banner {
 
 .feature-card,
 .step-card,
-.showcase-card,
 .for-card,
 .testimonial-card,
 .faq-item,
@@ -2231,7 +2306,6 @@ html.js .no-js-banner {
 }
 
 .feature-card,
-.showcase-card,
 .for-card,
 .testimonial-card {
   padding: 22px;
@@ -2269,7 +2343,6 @@ html.js .no-js-banner {
     justify-content: center;
   }
   .feature-card,
-  .showcase-card,
   .for-card,
   .testimonial-card { padding: 18px; }
 }

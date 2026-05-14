@@ -442,36 +442,82 @@
       </div>
     </section>
 
-    <!-- ── Showcase / App Screenshots ── -->
-    <section class="showcase-section" id="showcase">
+    <!-- ── Order Flow ── -->
+    <section class="showcase-section order-flow-section" id="showcase">
       <div class="container">
         <div class="showcase-header animate-on-scroll">
-          <h2 class="section-title">Приложение для заказчиков, партнёров и бизнеса</h2>
+          <div>
+            <div class="section-badge">Путь заказа</div>
+            <h2 class="section-title" style="margin-top:20px">От заявки до выполненного заказа</h2>
+            <p class="section-subtitle">Reyzapp соединяет заказчика и исполнителя в понятный поток: заявка, цены, выбор и контроль на карте.</p>
+          </div>
         </div>
 
-        <div class="showcase-grid">
-          <div class="showcase-card animate-on-scroll">
-            <div class="showcase-card-img">
-              <img data-src="/public/1-showcase.webp" alt="Удобный интерфейс Reyzapp с картой и каталогом техники" width="810" height="1440" loading="lazy" fetchpriority="low" decoding="async" />
+        <div class="order-flow-scroll" aria-label="Процесс выполнения заказа">
+          <div class="order-flow-track">
+            <div class="order-flow-card animate-on-scroll">
+              <div class="order-flow-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4h8l3 3v13H5V4h3Z"/><path d="M15 4v4h4"/><path d="M8 12h8"/><path d="M8 16h5"/></svg>
+              </div>
+              <span class="order-flow-kicker">01</span>
+              <h3>Создаётся заявка</h3>
+              <p>Заказчик выбирает технику, маршрут, дату и требования.</p>
             </div>
-            <h3>Заказчики</h3>
-            <p>Создайте заявку за минуту, получите цены от водителей и отслеживайте заказ на карте.</p>
-          </div>
 
-          <div class="showcase-card animate-on-scroll animate-delay-1">
-            <div class="showcase-card-img">
-              <img data-src="/public/2-showcase.webp" alt="Каталог из 55 категорий техники для стройки и логистики" width="810" height="1440" loading="lazy" fetchpriority="low" decoding="async" />
-            </div>
-            <h3>Водители</h3>
-            <p>Получайте релевантные заказы, подавайте цены и управляйте этапами выполнения прямо в приложении.</p>
-          </div>
+            <div class="order-flow-arrow" aria-hidden="true"></div>
 
-          <div class="showcase-card animate-on-scroll animate-delay-2">
-            <div class="showcase-card-img">
-              <img data-src="/public/3-showcase.webp" alt="Отслеживание движения техники на карте в реальном времени" width="810" height="1440" loading="lazy" fetchpriority="low" decoding="async" />
+            <div class="order-flow-card animate-on-scroll animate-delay-1">
+              <div class="order-flow-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-8 0v2"/><circle cx="12" cy="7" r="4"/><path d="M20 8v6"/><path d="M23 11h-6"/></svg>
+              </div>
+              <span class="order-flow-kicker">02</span>
+              <h3>Исполнители видят заказ</h3>
+              <p>Подходящие водители получают уведомление и открывают детали.</p>
             </div>
-            <h3>Бизнес</h3>
-            <p>Прозрачные цены, контроль исполнения и рейтинги — всё для эффективного управления заказами.</p>
+
+            <div class="order-flow-arrow" aria-hidden="true"></div>
+
+            <div class="order-flow-card animate-on-scroll animate-delay-2">
+              <div class="order-flow-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7H14a3.5 3.5 0 0 1 0 7H6"/></svg>
+              </div>
+              <span class="order-flow-kicker">03</span>
+              <h3>Приходят цены</h3>
+              <p>Водители отправляют предложения, а заказчик сравнивает условия.</p>
+            </div>
+
+            <div class="order-flow-arrow" aria-hidden="true"></div>
+
+            <div class="order-flow-card animate-on-scroll animate-delay-2">
+              <div class="order-flow-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+              </div>
+              <span class="order-flow-kicker">04</span>
+              <h3>Выбор исполнителя</h3>
+              <p>Заказчик выбирает лучшее предложение по цене, рейтингу и технике.</p>
+            </div>
+
+            <div class="order-flow-arrow" aria-hidden="true"></div>
+
+            <div class="order-flow-card animate-on-scroll animate-delay-2">
+              <div class="order-flow-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 17h4V5H2v12h3"/><path d="M14 8h4l4 4v5h-3"/><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
+              </div>
+              <span class="order-flow-kicker">05</span>
+              <h3>Техника в пути</h3>
+              <p>Статусы и движение исполнителя отображаются на карте.</p>
+            </div>
+
+            <div class="order-flow-arrow" aria-hidden="true"></div>
+
+            <div class="order-flow-card animate-on-scroll animate-delay-2">
+              <div class="order-flow-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2Z"/></svg>
+              </div>
+              <span class="order-flow-kicker">06</span>
+              <h3>Заказ завершён</h3>
+              <p>Работа закрывается, стороны видят итог и могут оставить оценку.</p>
+            </div>
           </div>
         </div>
       </div>
