@@ -820,7 +820,7 @@ ul, ol {
   display: flex;
   flex-direction: column;
   padding: 22px;
-  border: 1px solid rgba(228, 116, 24, 0.16);
+  border: 1px solid var(--primary-medium);
   border-radius: 24px;
   background: rgba(255, 255, 255, 0.92);
   box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
@@ -833,7 +833,7 @@ ul, ol {
   align-items: center;
   justify-content: center;
   border-radius: 18px;
-  background: linear-gradient(135deg, rgba(228, 116, 24, 0.15), rgba(255, 255, 255, 0.9));
+  background: linear-gradient(135deg, var(--primary-light), rgba(255, 255, 255, 0.9));
   color: var(--primary-strong);
   margin-bottom: 18px;
 }
@@ -885,7 +885,7 @@ ul, ol {
   bottom: 8px;
   width: 2px;
   transform: translateX(-50%);
-  background: linear-gradient(180deg, rgba(228, 116, 24, 0.35), rgba(228, 116, 24, 0.75));
+  background: linear-gradient(180deg, var(--primary-medium), var(--primary-strong));
 }
 
 .order-flow-arrow::after {
@@ -895,8 +895,8 @@ ul, ol {
   bottom: 1px;
   width: 10px;
   height: 10px;
-  border-bottom: 2px solid rgba(228, 116, 24, 0.75);
-  border-right: 2px solid rgba(228, 116, 24, 0.75);
+  border-bottom: 2px solid var(--primary-strong);
+  border-right: 2px solid var(--primary-strong);
   transform: rotate(45deg);
 }
 
